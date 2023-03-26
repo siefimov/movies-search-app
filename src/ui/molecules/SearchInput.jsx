@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FiSearch } from 'react-icons/fi';
+
+import Button from '../atoms/Button';
 
 const SearchInput = () => {
     const [searchVisible, setSearchVisible] = useState(false);
     const [searchMovie, setSearchTerm] = useState('');
     const searchInputRef = useRef(null);
+    console.log({ searchVisible });
+    console.log({ searchMovie });
+    console.log(searchInputRef.current);
 
     useEffect(() => {
         if (searchVisible) {
@@ -22,14 +27,14 @@ const SearchInput = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        
+
         setSearchTerm('');
         setSearchVisible(false);
     };
 
     return (
         <div>
-            {!searchVisible && <FaSearch onClick={handleSearchClick} />}
+            {!searchVisible && <FiSearch onClick={handleSearchClick} />}
             {searchVisible && (
                 <form onSubmit={handleSearchSubmit}>
                     <input
@@ -37,8 +42,9 @@ const SearchInput = () => {
                         value={searchMovie}
                         onChange={handleSearchChange}
                         ref={searchInputRef}
+                        className='pl-2 outline-none border rounded-lg py-2'
                     />
-                    <button type='submit'>Search</button>
+                    <Button type='submit' text='Search' />
                 </form>
             )}
         </div>

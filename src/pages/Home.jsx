@@ -1,7 +1,13 @@
 import React from 'react';
 
+import MovieList from '../ui/organisms/MovieList';
+
 const Home = () => {
-    return <div>Home</div>;
+    return (
+        <>
+            <MovieList category='top_rated' />
+        </>
+    );
 };
 
 export default Home;
