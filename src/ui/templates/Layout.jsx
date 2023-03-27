@@ -8,18 +8,18 @@ import NavItem from '../atoms/NavItem';
 
 const Layout = () => {
     return (
-        <>
-            <header className='flex items-center justify-between py-4 bg-neutral-800 text-slate-300'>
+        <div className='bg-[#0f172a]'>
+            <header className='flex px-10 items-center justify-between py-4 bg-[#0f172a] text-slate-300'>
                 <Logo />
                 <NavList>
-                    <NavItem value='Home' />
-                    <NavItem value='Movies' />
+                    <NavItem to={'/'} value='Home' />
+                    <NavItem to='/movies' value='Movies' />
                 </NavList>
                 <SearchInput />
             </header>
             <Outlet />
             <footer>footer</footer>
-        </>
+        </div>
     );
 };
 
