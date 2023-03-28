@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 const setActive = ({ isActive }) => (isActive ? 'text-[#38bdf8]' : '');
 
-const NavItem = ({ to, value }) => {
+const MenuItem = ({ to, value }) => {
   
     return (
-        <li className='hover:text-[#38bdf8]'>
+        <li className='text-[#b5cdf5] hover:text-[#38bdf8] uppercase'>
             <NavLink to={to} className={setActive}>
                 {value}
             </NavLink>
@@ -15,6 +15,6 @@ const NavItem = ({ to, value }) => {
     );
 };
 
-NavItem.propTypes = {};
+MenuItem.propTypes = {};
 
-export default NavItem;
+export default MenuItem;

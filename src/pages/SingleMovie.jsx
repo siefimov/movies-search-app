@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import SearchBar from '../ui/Header/molecules/SearchBar';
+
 const SingleMovie = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -22,7 +24,7 @@ const SingleMovie = () => {
     }, []);
 
     return (
-        <div className='py-10 pl-10 flex flex-col justify-center'>
+        <div className='py-10 pl-10 flex flex-col justify-center mt-[83px]'>
             {movie && (
                 <div className='flex gap-6 max-w-6xl w-full mx-auto bg-sky-50 mb-20'>
                     <img
@@ -59,11 +61,12 @@ const SingleMovie = () => {
             <Link
                 // to={`/movies`}
                 onClick={goBack}
-                className='border font-bold py-4 px-8 mx-auto hover:border-sky-600 rounded'
+                className='border text-[#b5cdf5] font-bold py-4 px-8 mx-auto hover:border-sky-600 rounded'
             >
                 Go Back
             </Link>
-            
+
+            <SearchBar />
         </div>
     );
 };

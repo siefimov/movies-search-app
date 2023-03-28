@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .list-scroll {
+    @apply flex snap-x snap-mandatory overflow-x-scroll overflow-y-hidden gap-4 relative scrollbar scrollbar-thin scrollbar-thumb-[#13293b] scrollbar-track-gray-500;
+  }
+  .list-grid{
+    @apply flex flex-wrap gap-3 justify-center
+  }
+}
 /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
