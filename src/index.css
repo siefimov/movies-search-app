@@ -3,12 +3,22 @@
 @tailwind utilities;
 
 @layer components {
-  .list-scroll {
-    @apply flex snap-x snap-mandatory overflow-x-scroll overflow-y-hidden gap-4 relative scrollbar scrollbar-thin scrollbar-thumb-[#13293b] scrollbar-track-gray-500;
-  }
-  .list-grid{
-    @apply flex flex-wrap gap-3 justify-center
-  }
+    .list-scroll {
+        @apply flex snap-x snap-mandatory overflow-x-scroll overflow-y-hidden gap-4 relative scrollbar scrollbar-thin scrollbar-thumb-[#13293b] scrollbar-track-gray-500 relative;
+    }
+    .list-grid {
+        @apply flex flex-wrap gap-3 justify-center;
+    }
+    .hero-button {
+        @apply cursor-pointer font-bold rounded px-8 py-2 mr-2 border border-[#b5cdf5] text-[#b4c6ef] hover:bg-[#b5cdf5] hover:text-[#1e293b] hover:opacity-[0.5] hover:transition-all max-w-fit inline-block;
+    }
+}
+
+body{
+  background-color: #0f172a;
+  padding: 0;
+  margin: 0;
+
 }
 /* 
 :root {

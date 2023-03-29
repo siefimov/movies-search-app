@@ -1,17 +1,21 @@
 import React from 'react';
 
-import HeroButton from '../atoms/HeroButton';
+
 import HeroContainer from '../atoms/HeroContainer';
-import HeroDescription from '../atoms/HeroDescription';
+import HeroContentContainer from '../molecules/HeroContentContainer';
 import HeroTitle from '../atoms/HeroTitle';
+import HeroDescription from '../atoms/HeroDescription';
+import HeroButton from '../atoms/HeroButton';
 
 const Hero = ({ movie }) => {
     return (
         <HeroContainer backgroundImages={movie?.backdrop_path}>
-            <HeroTitle>{movie?.name}</HeroTitle>
-            <HeroDescription>{movie?.overview}</HeroDescription>
-            <HeroButton>Play</HeroButton>
-            <HeroButton>My List</HeroButton>
+            <HeroContentContainer>
+              <HeroTitle>{movie?.name || movie?.original_title}</HeroTitle>
+              <HeroDescription>{movie?.overview}</HeroDescription>
+              <HeroButton>Play</HeroButton>
+              <HeroButton>My List</HeroButton>
+            </HeroContentContainer>
         </HeroContainer>
     );
 };

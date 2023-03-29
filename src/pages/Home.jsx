@@ -7,32 +7,35 @@ import MovieList from '../ui/organisms/MovieList';
 import { URL, API_KEY, endpoints } from '../../src/utils/api';
 
 const Home = () => {
-    const [originals, setOriginals] = useState([]);
+    const [trending, setTrending] = useState([]);
 
     const handleOriginals = async () => {
-        const responseOriginals = await fetch(
-            URL + endpoints.originals + API_KEY
+        const responseTrending = await fetch(
+            URL + endpoints.trending + API_KEY
         );
-        const jsonOriginals = await responseOriginals.json();
-        setOriginals(jsonOriginals.results);
-        console.log({ jsonOriginals });
+        const jsonTrending = await responseTrending.json();
+        setTrending(jsonTrending.results);
     };
-    console.log(originals);
-    console.log(originals[Math.floor(Math.random() * originals.length)]);
+
     useEffect(() => {
         handleOriginals();
     }, []);
 
     return (
-        <div className='mt-[83px]'>
+        <div className=''>
             <Hero
-                movie={originals[Math.floor(Math.random() * originals.length)]}
+                movie={trending[Math.floor(Math.random() * trending.length)]}
             />
             <Link to='user'> Edit User Profile </Link>
             <MovieList category='trending' display='list-scroll' />
-            <MovieList category='top_rated' display='list-scroll' />
+            <MovieList category='discover' genreId='28' display='list-scroll' />
+            <MovieList category='discover' genreId='35' display='list-scroll' />
+            <MovieList category='discover' genreId='18' display='list-scroll' />
+            <MovieList category='discover' genreId='14' display='list-scroll' />
+            <MovieList category='discover' genreId='53' display='list-scroll' />
+            {/* <MovieList category='top_rated' display='list-scroll' />
             <MovieList category='popular' display='list-scroll' />
-            <MovieList category='upcoming' display='list-scroll' />
+            <MovieList category='upcoming' display='list-scroll' /> */}
         </div>
     );
 };

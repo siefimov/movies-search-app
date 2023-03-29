@@ -17,3 +17,8 @@ export const endpoints = {
 
 // `https://www.themoviedb.org/t/p/original/${movie.poster_path}`
 // https://github.com/markshenouda/Netflix-Tailwind-Styled-Components/blob/master/src/components/Hero.styles.js
+
+// *** search by genre ***
+// https://api.themoviedb.org/27/movie/horror
+// Or else:
+// https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=27

@@ -11,7 +11,6 @@ import UserPage from './pages/UserPage';
 import RequireAuth from './hoc/RequireAuth';
 import AuthProvider from './hoc/AuthProvider'; // for redirect
 
-import './App.css';
 
 function App() {
     return (
@@ -21,7 +20,10 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path='movies' element={<Movies />} />
                     <Route path='movies/:category' element={<Movies />} />
-                    <Route path='movies/:category/:id' element={<SingleMovie />} />
+                    <Route
+                        path='movies/:category/:id'
+                        element={<SingleMovie />}
+                    />
                     <Route
                         path='user'
                         element={

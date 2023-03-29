@@ -2,14 +2,15 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '../Header/organisms/Header';
+import Footer from '../Footer/Footer';
 
 const Layout = () => {
     return (
-        <div className='bg-[#0f172a]'>
+        <>
             <Header />
             <Outlet />
-            <footer>footer</footer>
-        </div>
+            <Footer />
+        </>
     );
 };
 
