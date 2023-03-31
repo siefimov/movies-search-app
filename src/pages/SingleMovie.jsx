@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import SearchBar from '../ui/Header/molecules/SearchBar';
+import MovieList from '../ui/Movie/organisms/MovieList';
 
 const SingleMovie = () => {
     const { id } = useParams();
@@ -13,7 +13,7 @@ const SingleMovie = () => {
 
     const getMovieData = async () => {
         const resp = await fetch(
-            `https://api.themoviedb.org/3/movie/${id}?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&include_image_language=en,jp,null/`
+            `https://api.themoviedb.org/3/movie/${id}?api_key=83cb5904bd2f84699c28a99d9d4a0289&append_to_response=credits,images,videos`
         );
         const json = await resp.json();
         setMovie(json);
@@ -21,54 +21,158 @@ const SingleMovie = () => {
 
     useEffect(() => {
         getMovieData();
-    }, []);
+    }, [id]);
 
     return (
-        <div className='py-10 pl-10 flex flex-col justify-center mt-[83px]'>
+        <div className='mt-[83px] flex flex-col justify-center py-10'>
             {movie && (
-                <div className='flex gap-6 max-w-6xl w-full mx-auto bg-sky-50 mb-20'>
-                    <img
-                        src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
-                        alt={movie.title}
-                        className='w-[200px]'
-                    />
-                    <div className='flex flex-col gap-3'>
-                        <p className='font-bold'>id: {movie.id}</p>
-                        <h1 className='font-bold text-2xl text-sky-800'>
-                            {movie.title}
-                        </h1>
-                        <p>
-                            <span className='font-semibold'>release data:</span>{' '}
-                            {movie.release_date}
-                        </p>
-                        <p>
-                            <span className='font-semibold'>popularity:</span>{' '}
-                            {movie.popularity}
-                        </p>
-                        <p>
-                            <span className='font-semibold'>
-                                original language:
-                            </span>{' '}
-                            {movie.original_language}
-                        </p>
-                        <p>
-                            <span className='font-semibold'>overview:</span>{' '}
-                            {movie.overview}
-                        </p>
+                <>
+                    <div
+                        style={
+                            {
+                                // backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
+                            }
+                        }
+                        className={`relative z-[-1] w-full bg-gradient-to-r from-slate-800 to-blue-900`}
+                    >
+                        <div className='mx-auto my-8 flex w-full  max-w-6xl items-start gap-12 '>
+                            <img
+                                src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
+                                alt={movie.title}
+                                className='w-[300px] rounded-xl '
+                            />
+                            <div className='flex flex-col gap-3 pr-6 text-slate-100'>
+                                <div className='flex flex-wrap items-center'>
+                                    <h1 className='mr-3 text-3xl font-bold text-sky-500'>
+                                        {movie.title}
+                                    </h1>
+                                    <div className='text-2xl text-[#b5cdf5]'>
+                                        ({movie.release_date.split('-')[0]})
+                                    </div>
+                                </div>
+                                <div className='flex flex-wrap items-center justify-start gap-2'>
+                                    <span className='mr-2 rounded border-2 border-slate-500 py-0 px-1 font-semibold text-slate-400'>
+                                        R
+                                    </span>{' '}
+                                    <span>{movie.release_date}</span>
+                                    <span>
+                                        &#9900;{' '}
+                                        {movie.genres
+                                            .map((genre) => genre.name)
+                                            .join(', ')}
+                                    </span>
+                                    &#9900;{' '}
+                                    <span>
+                                        {Math.floor(movie.runtime / 60)}h{' '}
+                                        {movie.runtime % 60}m
+                                    </span>
+                                </div>
+                                <div className='font-bold italic text-slate-400'>
+                                    {movie.tagline}
+                                </div>
+
+                                <div className='mb-5 flex flex-col'>
+                                    <span className='mb-2 text-2xl font-semibold'>
+                                        Overview
+                                    </span>
+                                    {movie.overview}
+                                </div>
+                                <div className='flex justify-between'>
+                                    <div className='flex flex-col'>
+                                        <div className='mb-2 text-sm font-bold'>
+                                            Cast:
+                                        </div>
+                                        {movie.credits.cast.map((item) => (
+                                            <div
+                                                key={item.id + item.name}
+                                                className='text-xs'
+                                            >
+                                                {item.name}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className='flex flex-col'>
+                                        <div className='mb-2 text-sm font-bold'>
+                                            Directors:
+                                        </div>
+                                        {movie.credits.crew
+                                            .filter(
+                                                (elem) =>
+                                                    elem[
+                                                        'known_for_department'
+                                                    ] === 'Directing'
+                                            )
+                                            .map((item) => (
+                                                <div
+                                                    key={item.id + item.name}
+                                                    className='text-xs'
+                                                >
+                                                    {item.name}
+                                                </div>
+                                            ))}
+                                    </div>
+                                    <div className='flex flex-col'>
+                                        <div className='mb-2 text-sm font-bold'>
+                                            Co-Producers:
+                                        </div>
+                                        {movie.credits.crew
+                                            .filter(
+                                                (elem) =>
+                                                    elem[
+                                                        'known_for_department'
+                                                    ] === 'Production'
+                                            )
+                                            .map((item) => (
+                                                <div
+                                                    key={item.id + item.name}
+                                                    className='text-xs'
+                                                >
+                                                    {item.name}
+                                                </div>
+                                            ))}
+                                    </div>
+                                    <div className='flex flex-col'>
+                                        <div className='mb-2 text-sm font-bold'>
+                                            Writers:
+                                        </div>
+                                        {movie.credits.crew
+                                            .filter(
+                                                (elem) =>
+                                                    elem[
+                                                        'known_for_department'
+                                                    ] === 'Writing'
+                                            )
+                                            .map((item) => (
+                                                <div
+                                                    key={item.id + item.name}
+                                                    className='text-xs'
+                                                >
+                                                    {item.name}
+                                                </div>
+                                            ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div className='mx-auto mb-12 mt-10 w-full max-w-6xl bg-slate-100'>
+                        <h2 className='text-2xl'>Similar movies</h2>
+                        <MovieList category='similar' display='list-scroll' />
+                    </div>
+                </>
             )}
             <Link
                 // to={`/movies`}
                 onClick={goBack}
-                className='border text-[#b5cdf5] font-bold py-4 px-8 mx-auto hover:border-sky-600 rounded'
+                className='mx-auto rounded-xl border py-2 px-8 font-bold text-[#b5cdf5] hover:border-sky-600'
             >
                 Go Back
             </Link>
-
-            <SearchBar />
         </div>
     );
 };
 
 export default SingleMovie;
+
+// https://api.themoviedb.org/3/movie/603692?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&append_to_response=credits
+// https://api.themoviedb.org/3/movie/1077280?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&append_to_response=credits

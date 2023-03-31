@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { URL, API_KEY, IMAGES_URL } from '../../utils/api';
+import { URL, API_KEY, IMAGES_URL } from '../../../utils/api';
 import MovieCard from '../molecules/MovieCard';
-import MovieCardFull from '../molecules/MovieCardFull';
-import { movieCategories, genres } from '../../utils/db_categories';
+// import MovieCard from '../molecules/MovieCard';
+
+import { movieCategories, genres } from '../../../utils/db_categories';
 
 // https://api.themoviedb.org/3/movie/latest?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US
 
@@ -14,8 +15,10 @@ import { movieCategories, genres } from '../../utils/db_categories';
 // * COMPONENT *
 // *************
 const MovieList = ({ category, display, genreId, ...props }) => {
+    const { id } = useParams();
     const [movies, setMovies] = useState([]);
     const [isShown, setIsShown] = useState(false);
+    const [arrowVisibility, setArrowVisibility] = useState(false);
     const [movieGenre, setMovieGenre] = useState('');
 
     const getData = async () => {
@@ -29,10 +32,14 @@ const MovieList = ({ category, display, genreId, ...props }) => {
             category === 'top_rated' ||
             category === 'upcoming'
         ) {
-            console.log('object');
             const resp = await fetch(
                 `${URL}movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null`
             );
+            const json = await resp.json();
+            const result = await json.results;
+            setMovies(result);
+        } else if (category === 'similar') {
+            const resp = await fetch(`${URL}movie/${id}/${category}${API_KEY}`);
             const json = await resp.json();
             const result = await json.results;
             setMovies(result);
@@ -55,11 +62,6 @@ const MovieList = ({ category, display, genreId, ...props }) => {
         getData();
     }, []);
 
-    // const handleIsShown = () => {
-    //     setIsShown();
-    // };
-    console.log(movieGenre);
-
     return (
         <div className='py-10 px-10'>
             <div>
@@ -68,7 +70,7 @@ const MovieList = ({ category, display, genreId, ...props }) => {
                     onMouseEnter={() => setIsShown(true)}
                     onMouseLeave={() => setIsShown(false)}
                 >
-                    <p className=' text-2xl text-[#b5cdf5] font-bold py-4 cursor-pointer'>
+                    <p className=' cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
                         {movieCategories[category] || movieGenre}
                     </p>
                     <Link
@@ -76,11 +78,12 @@ const MovieList = ({ category, display, genreId, ...props }) => {
                         className='flex items-center self-center'
                     >
                         {isShown && (
-                            <p className='text-[#b5cdf5] hover:text-[#38bdf8] font-bold pl-4 '>
+                            <p className='pl-4 font-bold text-[#b5cdf5] hover:text-[#38bdf8] '>
                                 see all movies
                             </p>
                         )}
-                        <FiArrowRight className='text-[#38bdf8] font-bold text-xl' />
+
+                        <FiArrowRight className='text-xl font-bold text-[#38bdf8]' />
                     </Link>
                 </div>
                 <ul className={display}>

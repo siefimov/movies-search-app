@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import MovieList from '../ui/organisms/MovieList';
+import MovieList from '../ui/Movie/organisms/MovieList';
 
 const Movies = () => {
     const { category } = useParams();

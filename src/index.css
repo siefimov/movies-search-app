@@ -4,21 +4,20 @@
 
 @layer components {
     .list-scroll {
-        @apply flex snap-x snap-mandatory overflow-x-scroll overflow-y-hidden gap-4 relative scrollbar scrollbar-thin scrollbar-thumb-[#13293b] scrollbar-track-gray-500 relative;
+        @apply flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll scrollbar scrollbar-thin scrollbar-track-[#0f172a] scrollbar-thumb-[#b5cdf5];
     }
     .list-grid {
-        @apply flex flex-wrap gap-3 justify-center;
+        @apply flex flex-wrap justify-center gap-3;
     }
     .hero-button {
-        @apply cursor-pointer font-bold rounded px-8 py-2 mr-2 border border-[#b5cdf5] text-[#b4c6ef] hover:bg-[#b5cdf5] hover:text-[#1e293b] hover:opacity-[0.5] hover:transition-all max-w-fit inline-block;
+        @apply mr-2 inline-block max-w-fit cursor-pointer rounded border border-[#b5cdf5] px-8 py-2 font-bold text-[#b4c6ef] hover:bg-[#b5cdf5] hover:text-[#1e293b] hover:opacity-[0.5] hover:transition-all;
     }
 }
 
-body{
-  background-color: #0f172a;
-  padding: 0;
-  margin: 0;
-
+body {
+    background-color: #0f172a;
+    padding: 0;
+    margin: 0;
 }
 /* 
 :root {

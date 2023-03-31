@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Hero from '../ui/Hero/organisms/Hero';
-import MovieList from '../ui/organisms/MovieList';
+import MovieList from '../ui/Movie/organisms/MovieList';
 
 import { URL, API_KEY, endpoints } from '../../src/utils/api';
 
 const Home = () => {
     const [trending, setTrending] = useState([]);
 
-    const handleOriginals = async () => {
+    const handleTrendings = async () => {
         const responseTrending = await fetch(
             URL + endpoints.trending + API_KEY
         );
@@ -18,7 +18,7 @@ const Home = () => {
     };
 
     useEffect(() => {
-        handleOriginals();
+        handleTrendings();
     }, []);
 
     return (
@@ -28,14 +28,11 @@ const Home = () => {
             />
             <Link to='user'> Edit User Profile </Link>
             <MovieList category='trending' display='list-scroll' />
-            <MovieList category='discover' genreId='28' display='list-scroll' />
-            <MovieList category='discover' genreId='35' display='list-scroll' />
-            <MovieList category='discover' genreId='18' display='list-scroll' />
-            <MovieList category='discover' genreId='14' display='list-scroll' />
-            <MovieList category='discover' genreId='53' display='list-scroll' />
-            {/* <MovieList category='top_rated' display='list-scroll' />
-            <MovieList category='popular' display='list-scroll' />
-            <MovieList category='upcoming' display='list-scroll' /> */}
+            <MovieList category='discover' display='list-scroll' genreId='28' />
+            <MovieList category='discover' display='list-scroll' genreId='35' />
+            <MovieList category='discover' display='list-scroll' genreId='18' />
+            <MovieList category='discover' display='list-scroll' genreId='14' />
+            <MovieList category='discover' display='list-scroll' genreId='53' />
         </div>
     );
 };
