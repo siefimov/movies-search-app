@@ -14,7 +14,7 @@ import { movieCategories, genres } from '../../../utils/db_categories';
 // *************
 // * COMPONENT *
 // *************
-const MovieList = ({ category, display, genreId, ...props }) => {
+const MovieList = ({ category, display, genreId }) => {
     const { id } = useParams();
     const [movies, setMovies] = useState([]);
     const [isShown, setIsShown] = useState(false);
@@ -70,21 +70,24 @@ const MovieList = ({ category, display, genreId, ...props }) => {
                     onMouseEnter={() => setIsShown(true)}
                     onMouseLeave={() => setIsShown(false)}
                 >
-                    <p className=' cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
+                    <p className='movie-genre cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
                         {movieCategories[category] || movieGenre}
                     </p>
-                    <Link
-                        to={`movies/${category}`}
-                        className='flex items-center self-center'
-                    >
-                        {isShown && (
-                            <p className='pl-4 font-bold text-[#b5cdf5] hover:text-[#38bdf8] '>
-                                see all movies
-                            </p>
-                        )}
+                    
+                    {display == 'list-scroll' && (
+                        <Link
+                            to={`movies/${category}`}
+                            className='flex items-center self-center'
+                        >
+                            {isShown && (
+                                <p className='pl-4 font-bold text-[#b5cdf5] hover:text-[#38bdf8] '>
+                                    see all movies
+                                </p>
+                            )}
 
-                        <FiArrowRight className='text-xl font-bold text-[#38bdf8]' />
-                    </Link>
+                            <FiArrowRight className='text-xl font-bold text-[#38bdf8]' />
+                        </Link>
+                    )}
                 </div>
                 <ul className={display}>
                     {movies.map((movie) => (

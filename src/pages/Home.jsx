@@ -28,9 +28,9 @@ const Home = () => {
             />
             <Link to='user'> Edit User Profile </Link>
             <MovieList category='trending' display='list-scroll' />
-            <MovieList category='discover' display='list-scroll' genreId='28' />
             <MovieList category='discover' display='list-scroll' genreId='35' />
             <MovieList category='discover' display='list-scroll' genreId='18' />
+            <MovieList category='discover' display='list-scroll' genreId='28' />
             <MovieList category='discover' display='list-scroll' genreId='14' />
             <MovieList category='discover' display='list-scroll' genreId='53' />
         </div>
