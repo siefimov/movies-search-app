@@ -3,6 +3,9 @@ import { FiArrowRight } from 'react-icons/fi';
 import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
 import { URL, API_KEY, IMAGES_URL } from '../../../utils/api';
 import MovieCard from '../molecules/MovieCard';
 // import MovieCard from '../molecules/MovieCard';
@@ -63,7 +66,7 @@ const MovieList = ({ category, display, genreId }) => {
     }, [category]);
 
     return (
-        <div className='mx-auto max-w-[1360px] py-10 px-10'>
+        <div className='mx-auto max-w-[1360px] px-10'>
             <div>
                 <div
                     className='inline-flex items-center'
@@ -91,7 +94,7 @@ const MovieList = ({ category, display, genreId }) => {
                         </Link>
                     )}
                 </div>
-                <ul className={display}>
+                {/* <ul className={display}>
                     {movies.map((movie) => (
                         <>
                             <MovieCard
@@ -106,7 +109,45 @@ const MovieList = ({ category, display, genreId }) => {
                             />
                         </>
                     ))}
-                </ul>
+                </ul> */}
+
+                <AliceCarousel
+                    mouseTracking
+                    infinite
+                    disableDotsControls
+                    renderPrevButton={() => (
+                        <div className='carousel-arrow carousel-arrow-left absolute left-[-50px] bottom-[50%] cursor-pointer rounded-full border border-slate-700 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200'>
+                            &#60;
+                        </div>
+                    )}
+                    renderNextButton={() => (
+                        <div className='carousel-arrow carousel-arrow-right absolute right-[0px] bottom-[50%] cursor-pointer rounded-full border border-slate-700 px-2 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200'>
+                            &#62;
+                        </div>
+                    )}
+                    responsive={{
+                        0: { items: 1 },
+                        576: { items: 2 },
+                        768: { items: 3 },
+                        992: { items: 4 },
+                        1200: { items: 5 },
+                    }}
+                >
+                    {movies.map((movie) => (
+                        <>
+                            <MovieCard
+                                key={`${movie.id}-${Math.floor(
+                                    Math.random() * 10
+                                )}`}
+                                // to={`/movies/${movie.id}`}
+                                to={`/movies/${category}/${movie.id}/one`}
+                                src={`${IMAGES_URL}${movie.poster_path}`}
+                                alt={movie.title}
+                                title={movie.title}
+                            />
+                        </>
+                    ))}
+                </AliceCarousel>
             </div>
         </div>
     );
