@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 import HeaderContainer from './HeaderContainer';
 import Logo from '../atoms/Logo';
@@ -11,9 +11,9 @@ import SearchBar from '../molecules/SearchBar';
 import MobileMenuBar from '../molecules/MobileMenuBar';
 
 const Header = () => {
-    const { category } = useParams();
+    // const { category } = useParams();
 
-    const [isDark, setIsDark] = useState(false);
+    // const [isDark, setIsDark] = useState(false);
 
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -24,23 +24,31 @@ const Header = () => {
 
     return (
         <HeaderContainer bgColor={isScrolled}>
-            <Logo />
-            <MenuList>
-                <MenuItem to={'/'} value='Home' />
-                <div className='relative flex flex-col'>
-                    <MenuItem to='/movies' value='Movies' peer='peer' />
-                    <SubMenuList>
-                        <SubMenuItem to={`/movies/popular`} value='Popular' />
-                        <SubMenuItem to={`/movies/upcoming`} value='Upcoming' />
-                        <SubMenuItem
-                            to={`/movies/top_rated`}
-                            value='Top Rated'
-                        />
-                    </SubMenuList>
-                </div>
-            </MenuList>
-            <SearchBar />
-            <MobileMenuBar />
+            <div className='mx-auto flex w-full max-w-[1240px] items-center justify-between'>
+                <Logo />
+                <MenuList>
+                    <MenuItem to={'/'} value='Home' />
+                    <div className='relative flex flex-col'>
+                        <MenuItem to='/movies' value='Movies' peer='peer' />
+                        <SubMenuList>
+                            <SubMenuItem
+                                to={`/movies/popular`}
+                                value='Popular'
+                            />
+                            <SubMenuItem
+                                to={`/movies/upcoming`}
+                                value='Upcoming'
+                            />
+                            <SubMenuItem
+                                to={`/movies/top_rated`}
+                                value='Top Rated'
+                            />
+                        </SubMenuList>
+                    </div>
+                </MenuList>
+                <SearchBar />
+                <MobileMenuBar />
+            </div>
         </HeaderContainer>
     );
 };

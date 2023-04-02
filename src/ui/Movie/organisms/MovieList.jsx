@@ -19,7 +19,7 @@ const MovieList = ({ category, display, genreId }) => {
     const [movies, setMovies] = useState([]);
     const [isShown, setIsShown] = useState(false);
     const [arrowVisibility, setArrowVisibility] = useState(false);
-    const [movieGenre, setMovieGenre] = useState('');
+    const [movieGenre, setMovieGenre] = useState(null);
 
     const getData = async () => {
         if (category === 'trending') {
@@ -60,10 +60,10 @@ const MovieList = ({ category, display, genreId }) => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [category]);
 
     return (
-        <div className='py-10 px-10'>
+        <div className='mx-auto max-w-[1360px] py-10 px-10'>
             <div>
                 <div
                     className='inline-flex items-center'
@@ -73,10 +73,12 @@ const MovieList = ({ category, display, genreId }) => {
                     <p className='movie-genre cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
                         {movieCategories[category] || movieGenre}
                     </p>
-                    
+
                     {display == 'list-scroll' && (
                         <Link
-                            to={`movies/${category}`}
+                            to={`movies/${category}/${
+                                genreId ? genreId : null
+                            }`}
                             className='flex items-center self-center'
                         >
                             {isShown && (
@@ -96,7 +98,8 @@ const MovieList = ({ category, display, genreId }) => {
                                 key={`${movie.id}-${Math.floor(
                                     Math.random() * 10
                                 )}`}
-                                to={`/movies/${category}/${movie.id}`}
+                                // to={`/movies/${movie.id}`}
+                                to={`/movies/${category}/${movie.id}/one`}
                                 src={`${IMAGES_URL}${movie.poster_path}`}
                                 alt={movie.title}
                                 title={movie.title}
@@ -112,6 +115,3 @@ const MovieList = ({ category, display, genreId }) => {
 MovieList.propTypes = {};
 
 export default MovieList;
-
-// 'https://api.themoviedb.org/3/movie/top_rated?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&include_image_language=en,jp,uk,null'
-// <ul className='flex gap-4 overflow-x-scroll overflow-y-hidden relative' style={{grid}}>

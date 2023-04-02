@@ -22,9 +22,10 @@ const Home = () => {
     }, []);
 
     return (
-        <div className=''>
+        <>
             <Hero
                 movie={trending[Math.floor(Math.random() * trending.length)]}
+                id={trending.id}
             />
             <Link to='user'> Edit User Profile </Link>
             <MovieList category='trending' display='list-scroll' />
@@ -33,7 +34,7 @@ const Home = () => {
             <MovieList category='discover' display='list-scroll' genreId='28' />
             <MovieList category='discover' display='list-scroll' genreId='14' />
             <MovieList category='discover' display='list-scroll' genreId='53' />
-        </div>
+        </>
     );
 };
 

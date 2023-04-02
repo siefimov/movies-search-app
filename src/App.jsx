@@ -20,8 +20,9 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path='movies' element={<Movies />} />
                     <Route path='movies/:category' element={<Movies />} />
+                    <Route path='movies/:category/:genre_id' element={<Movies />} />
                     <Route
-                        path='movies/:category/:id'
+                        path='movies/:category/:id/:one'
                         element={<SingleMovie />}
                     />
                     <Route

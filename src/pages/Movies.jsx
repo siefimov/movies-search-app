@@ -5,7 +5,7 @@ import MovieList from '../ui/Movie/organisms/MovieList';
 // import { genres } from '../utils/db_categories';
 
 const Movies = () => {
-    const { category } = useParams();
+    const { category, genre_id } = useParams();
     // const [genre, setGenre] = useState(null);
 
     // const handleGenre = () => {
@@ -28,7 +28,7 @@ const Movies = () => {
             <MovieList
                 category={category ? category : 'popular'}
                 display='list-grid'
-                // genreId={genre}
+                genreId={genre_id}
             />
         </div>
     );

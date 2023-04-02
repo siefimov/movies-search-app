@@ -78,7 +78,7 @@ const SingleMovie = () => {
                                     {movie.overview}
                                 </div>
                                 <div className='flex justify-between'>
-                                    <div className='flex flex-col'>
+                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Cast:
                                         </div>
@@ -91,7 +91,7 @@ const SingleMovie = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className='flex flex-col'>
+                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Directors:
                                         </div>
@@ -111,7 +111,7 @@ const SingleMovie = () => {
                                                 </div>
                                             ))}
                                     </div>
-                                    <div className='flex flex-col'>
+                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Co-Producers:
                                         </div>
@@ -131,7 +131,7 @@ const SingleMovie = () => {
                                                 </div>
                                             ))}
                                     </div>
-                                    <div className='flex flex-col'>
+                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Writers:
                                         </div>
