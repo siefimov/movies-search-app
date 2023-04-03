@@ -1,20 +1,32 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { FaPlay } from 'react-icons/fa';
+
+import ReactPlayer from 'react-player';
+import ReactModal from 'react-modal';
 
 import MovieList from '../ui/Movie/organisms/MovieList';
-import { URL } from '../utils/api';
+import HeroButton from '../ui/Hero/atoms/HeroButton';
+import { URL, API_KEY } from '../utils/api';
 
 const SingleMovie = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
 
+    const [videoUrl, setVideoUrl] = useState('');
+    const [isPlaying, setIsPlaying] = useState(false);
+
+
+
     const goBack = () => navigate(-1);
 
     const getMovieData = async () => {
         const resp = await fetch(
-            `${URL}movie/${id}?api_key=83cb5904bd2f84699c28a99d9d4a0289&append_to_response=credits,images,videos`
+            `${URL}movie/${id}${API_KEY}&append_to_response=credits,images,videos`
         );
         const json = await resp.json();
         setMovie(json);
@@ -23,6 +35,17 @@ const SingleMovie = () => {
     useEffect(() => {
         getMovieData();
     }, [id]);
+
+
+    const handleOpenModal = (url) => {
+      setVideoUrl(url);
+      setIsPlaying(true);
+  };
+
+  const handleCloseModal = () => {
+      setIsPlaying(false);
+      setVideoUrl(null);
+  };
 
     return (
         <div className='mt-[83px] flex flex-col justify-center py-10'>
@@ -34,7 +57,7 @@ const SingleMovie = () => {
                                 // backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
                             }
                         }
-                        className={`relative z-[-1] w-full bg-gradient-to-r from-slate-800 to-blue-900`}
+                        className={`relative w-full bg-gradient-to-r from-slate-800 to-blue-900`}
                     >
                         <div className='mx-auto my-8 flex w-full  max-w-6xl items-start gap-12 '>
                             <img
@@ -60,7 +83,10 @@ const SingleMovie = () => {
                                     <span>
                                         {
                                             movie.genres.map((genre) => (
-                                                <span className='mr-2 bg-yellow-600 px-1 text-white'>
+                                                <span
+                                                    key={Math.random()}
+                                                    className='mr-2 bg-yellow-600 px-1 text-white'
+                                                >
                                                     {genre.name}
                                                 </span>
                                             ))
@@ -73,10 +99,37 @@ const SingleMovie = () => {
                                         {movie.runtime % 60}m
                                     </span>
                                 </div>
+
+                                <div className='mb-[30px] flex w-full max-w-[420px] items-center'>
+                                    <div className='h-[60px] w-[60px]'>
+                                        <CircularProgressbar
+                                            value={movie.vote_average}
+                                            maxValue={10}
+                                            text={`${movie.vote_average}`}
+                                            styles={buildStyles({
+                                                pathColor: 'green',
+                                            })}
+                                        />
+                                    </div>
+                                    <p className='mx-[20px]'>
+                                        User <br /> Score
+                                    </p>
+
+                                    <HeroButton
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                `https://www.youtube.com/watch?v=${movie.videos.results[0].key}`
+                                            )
+                                        }
+                                        className='border-none'
+                                    >
+                                        <FaPlay />
+                                        Play Trailer
+                                    </HeroButton>
+                                </div>
                                 <div className='font-bold italic text-slate-400'>
                                     {movie.tagline}
                                 </div>
-
                                 <div className='mb-5 flex flex-col'>
                                     <span className='mb-2 text-2xl font-semibold'>
                                         Overview
@@ -90,7 +143,7 @@ const SingleMovie = () => {
                                         </div>
                                         {movie.credits.cast.map((item) => (
                                             <div
-                                                key={item.id + item.name}
+                                                key={item.id + Math.random()}
                                                 className='text-xs'
                                             >
                                                 {item.name}
@@ -110,7 +163,9 @@ const SingleMovie = () => {
                                             )
                                             .map((item) => (
                                                 <div
-                                                    key={item.id + item.name}
+                                                    key={
+                                                        item.id + Math.random()
+                                                    }
                                                     className='text-xs'
                                                 >
                                                     {item.name}
@@ -130,7 +185,9 @@ const SingleMovie = () => {
                                             )
                                             .map((item) => (
                                                 <div
-                                                    key={item.id + item.name}
+                                                    key={
+                                                        item.id + Math.random()
+                                                    }
                                                     className='text-xs'
                                                 >
                                                     {item.name}
@@ -150,7 +207,9 @@ const SingleMovie = () => {
                                             )
                                             .map((item) => (
                                                 <div
-                                                    key={item.id + item.name}
+                                                    key={
+                                                        item.id + Math.random()
+                                                    }
                                                     className='text-xs'
                                                 >
                                                     {item.name}
@@ -163,7 +222,7 @@ const SingleMovie = () => {
                     </div>
                     <div className='mx-auto mb-12 mt-10 w-full max-w-6xl bg-slate-100'>
                         <h2 className='text-2xl'>You may also like</h2>
-                        <MovieList category='similar' display='grid' />
+                        <MovieList category='similar' display='carousel' />
                     </div>
                 </>
             )}
@@ -173,6 +232,28 @@ const SingleMovie = () => {
             >
                 Go Back
             </Link>
+
+            <ReactModal
+                isOpen={isPlaying}
+                onRequestClose={handleCloseModal}
+                className='fixed top-0 left-0 flex h-[100%] w-[100%] flex-col items-center justify-center bg-[rgba(0,0,0,0.7)]'
+            >
+                <button
+                    onClick={handleCloseModal}
+                    className='mt-4 rounded-full border bg-[#1e293b] px-4 py-2 text-[#b5cdf5] hover:bg-[#303e54]'
+                >
+                    X
+                </button>
+                <ReactPlayer
+                    url={videoUrl}
+                    controls={true}
+                    playing={true}
+                    width='65%'
+                    height='80%'
+                />
+            </ReactModal>
+
+
         </div>
     );
 };

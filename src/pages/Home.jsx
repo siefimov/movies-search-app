@@ -21,6 +21,8 @@ const Home = () => {
         handleTrendings();
     }, []);
 
+    console.log({ trending });
+
     return (
         <>
             <Hero
@@ -28,7 +30,7 @@ const Home = () => {
                 id={trending.id}
             />
             <Link to='user'> Edit User Profile </Link>
-            <MovieList category='trending' display='carousel'/>
+            <MovieList category='trending' display='carousel' />
             <MovieList category='discover' display='carousel' genreId='35' />
             <MovieList category='discover' display='carousel' genreId='18' />
             <MovieList category='discover' display='carousel' genreId='28' />

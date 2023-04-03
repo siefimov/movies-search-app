@@ -98,16 +98,18 @@ const MovieList = ({ category, display, genreId }) => {
                     <ul className={display}>
                         {movies.map((movie) => (
                             <>
-                                <MovieCard
-                                    key={`${movie.id}-${Math.floor(
-                                        Math.random() * 10
-                                    )}`}
-                                    // to={`/movies/${movie.id}`}
-                                    to={`/movies/${category}/${movie.id}/one`}
-                                    src={`${IMAGES_URL}${movie.poster_path}`}
-                                    alt={movie.title}
-                                    title={movie.title}
-                                />
+                                {movie.poster_path && (
+                                    <MovieCard
+                                        key={`${movie.id} * ${Math.floor(
+                                            Math.random() * 10
+                                        )}`}
+                                        // to={`/movies/${movie.id}`}
+                                        to={`/movies/${category}/${movie.id}/one`}
+                                        src={`${IMAGES_URL}${movie.poster_path}`}
+                                        alt={movie.title}
+                                        title={movie.title}
+                                    />
+                                )}
                             </>
                         ))}
                     </ul>
@@ -132,15 +134,16 @@ const MovieList = ({ category, display, genreId }) => {
                             0: { items: 1 },
                             576: { items: 2 },
                             768: { items: 3 },
-                            992: { items: 4 },
-                            1200: { items: 5 },
+                            840: { items: 4 },
+                            992: { items: 5 },
+                            1200: { items: 6 },
                         }}
                     >
                         {movies.map((movie) => (
-                            <>
+                            <ul>
                                 {movie.poster_path && (
                                     <MovieCard
-                                        key={`${movie.id}-${Math.floor(
+                                        key={`${movie.id}_*_${Math.floor(
                                             Math.random() * 10
                                         )}`}
                                         // to={`/movies/${movie.id}`}
@@ -150,7 +153,7 @@ const MovieList = ({ category, display, genreId }) => {
                                         title={movie.title}
                                     />
                                 )}
-                            </>
+                            </ul>
                         ))}
                     </AliceCarousel>
                 )}

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import MovieList from '../ui/Movie/organisms/MovieList';
+import MovieCard from '../ui/Movie/molecules/MovieCard';
 import Filters from '../ui/Movie/organisms/Filters';
 import { URL, IMAGES_URL } from '../utils/api';
 // import { genres } from '../utils/db_categories';
@@ -54,7 +55,7 @@ const Movies = () => {
         setMovies(response.data.results);
         setLoading(false);
     };
-
+console.log(movies);
     return (
         <div className='mt-[150px] flex gap-8'>
             <Filters
@@ -69,13 +70,31 @@ const Movies = () => {
                 setSelectedScore={setSelectedScore}
                 handleSearch={handleSearch}
             />
-            <div className='text-[#b5cdf5]'>
+            {movies.length === 0 && <div className='text-[#b5cdf5]'>
                 <MovieList
                     category={category ? category : 'popular'}
                     display='list-grid'
                     genreId={genre_id}
                 />
-            </div>
+            </div>}
+            {movies && (
+                    <ul className='flex flex-wrap gap-4'>
+                        {movies.map((movie) => (
+                            <>
+                              {movie.poster_path && <MovieCard
+                                    key={`${movie.id}-${Math.floor(
+                                        Math.random() * 10
+                                    )}`}
+                                    // to={`/movies/${movie.id}`}
+                                    to={`/movies/${category}/${movie.id}/one`}
+                                    src={`${IMAGES_URL}${movie.poster_path}`}
+                                    alt={movie.title}
+                                    title={movie.title}
+                                />}
+                            </>
+                        ))}
+                    </ul>
+                )}
         </div>
     );
 };

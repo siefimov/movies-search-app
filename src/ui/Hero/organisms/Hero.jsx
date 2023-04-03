@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import ReactModal from 'react-modal';
+import { FaPlay } from 'react-icons/fa';
 
 import HeroContainer from '../atoms/HeroContainer';
 import HeroContentContainer from '../molecules/HeroContentContainer';
@@ -16,7 +17,9 @@ const Hero = ({ movie, id }) => {
     const [isPlaying, setIsPlaying] = useState(false);
 
     const fetchVideo = async () => {
-        const response = await fetch(`${URL}movie/${movie.id}/videos${API_KEY}`);
+        const response = await fetch(
+            `${URL}movie/${movie.id}/videos${API_KEY}`
+        );
         const data = await response.json();
         setVideoKey(data.results[0]?.key);
     };
@@ -48,7 +51,8 @@ const Hero = ({ movie, id }) => {
                         )
                     }
                 >
-                    Play
+                    <FaPlay />
+                    Play Trailer
                 </HeroButton>
                 <HeroButton to={`/movies/trending/${movie?.id}/one`}>
                     Details
