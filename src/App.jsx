@@ -8,6 +8,7 @@ import Layout from './ui/templates/Layout';
 import Loginpage from './pages/Loginpage';
 import UserPage from './pages/UserPage';
 import MovieFilter from './ui/Movie/organisms/MovieFilter';
+import FilterResults from './ui/Filter/FilterResults';
 
 import RequireAuth from './hoc/RequireAuth';
 import AuthProvider from './hoc/AuthProvider'; // for redirect
@@ -29,6 +30,7 @@ function App() {
                         element={<SingleMovie />}
                     />
                     <Route path='search' element={<MovieFilter />} />
+                    <Route path='results' element={<FilterResults />} />
                     {/* <Route
                         path='user'
                         element={

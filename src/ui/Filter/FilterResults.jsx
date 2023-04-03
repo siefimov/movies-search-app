@@ -1,14 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Filters from './Filters';
+import MovieCard from '../Movie/molecules/MovieCard';
+import { URL, IMAGES_URL } from '../../utils/api';
 
-import MovieList from '../ui/Movie/organisms/MovieList';
-import Filters from '../ui/Filter/Filters';
-import { URL} from '../utils/api';
-// import { genres } from '../utils/db_categories';
-
-const Movies = () => {
-    const { category, genre_id } = useParams();
-
+const FilterResults = () => {
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
     const [selectedGenres, setSelectedGenres] = useState([]);
@@ -96,12 +92,9 @@ const Movies = () => {
         }
     };
 
-    
-
     return (
-      <div className='movies mt-[150px] flex gap-8'>
-        
-        <Filters
+        <div className='movies mt-[150px] flex gap-8'>
+            <Filters
                 genres={genres}
                 selectedGenres={selectedGenres}
                 selectedYearFrom={selectedYearFrom}
@@ -114,14 +107,7 @@ const Movies = () => {
                 onSearch={handleSearch}
             />
 
-          {/* <div className='mt-20 text-[#b5cdf5]'>
-              <MovieList
-                  category={category ? category : 'popular'}
-                  display='list-grid'
-                  genreId={genre_id}
-              />
-          </div> */}
-          <div>
+            <div>
                 {loading ? (
                     <p className='text-rose-600'>Loading...</p>
                 ) : (
@@ -143,8 +129,8 @@ const Movies = () => {
                     </div>
                 )}
             </div>
-      </div>
+        </div>
     );
 };
 
-export default Movies;
+export default FilterResults;
