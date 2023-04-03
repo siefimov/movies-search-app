@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import MovieList from '../ui/Movie/organisms/MovieList';
+import { URL } from '../utils/api';
 
 const SingleMovie = () => {
     const { id } = useParams();
@@ -13,7 +14,7 @@ const SingleMovie = () => {
 
     const getMovieData = async () => {
         const resp = await fetch(
-            `https://api.themoviedb.org/3/movie/${id}?api_key=83cb5904bd2f84699c28a99d9d4a0289&append_to_response=credits,images,videos`
+            `${URL}movie/${id}?api_key=83cb5904bd2f84699c28a99d9d4a0289&append_to_response=credits,images,videos`
         );
         const json = await resp.json();
         setMovie(json);
@@ -53,17 +54,22 @@ const SingleMovie = () => {
                                 <div className='flex flex-wrap items-center justify-start gap-2'>
                                     <span className='mr-2 rounded border-2 border-slate-500 py-0 px-1 font-semibold text-slate-400'>
                                         R
-                                    </span>{' '}
-                                    <span>{movie.release_date}</span>
-                                    <span>
-                                        &#9900;{' '}
-                                        {movie.genres
-                                            .map((genre) => genre.name)
-                                            .join(', ')}
                                     </span>
-                                    &#9900;{' '}
+                                    <span>{movie.release_date}</span>
+                                    &#9900;
                                     <span>
-                                        {Math.floor(movie.runtime / 60)}h{' '}
+                                        {
+                                            movie.genres.map((genre) => (
+                                                <span className='mr-2 bg-yellow-600 px-1 text-white'>
+                                                    {genre.name}
+                                                </span>
+                                            ))
+                                            // .join(', ')
+                                        }
+                                    </span>
+                                    &#9900;
+                                    <span>
+                                        {Math.floor(movie.runtime / 60)}h
                                         {movie.runtime % 60}m
                                     </span>
                                 </div>
@@ -78,7 +84,7 @@ const SingleMovie = () => {
                                     {movie.overview}
                                 </div>
                                 <div className='flex justify-between'>
-                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
+                                    <div className='flex max-h-[120px] flex-col overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Cast:
                                         </div>
@@ -91,7 +97,7 @@ const SingleMovie = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
+                                    <div className='flex max-h-[120px] flex-col overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Directors:
                                         </div>
@@ -111,7 +117,7 @@ const SingleMovie = () => {
                                                 </div>
                                             ))}
                                     </div>
-                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
+                                    <div className='flex max-h-[120px] flex-col overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Co-Producers:
                                         </div>
@@ -131,7 +137,7 @@ const SingleMovie = () => {
                                                 </div>
                                             ))}
                                     </div>
-                                    <div className='flex flex-col max-h-[120px] overflow-hidden'>
+                                    <div className='flex max-h-[120px] flex-col overflow-hidden'>
                                         <div className='mb-2 text-sm font-bold'>
                                             Writers:
                                         </div>
@@ -156,13 +162,12 @@ const SingleMovie = () => {
                         </div>
                     </div>
                     <div className='mx-auto mb-12 mt-10 w-full max-w-6xl bg-slate-100'>
-                        <h2 className='text-2xl'>Similar movies</h2>
+                        <h2 className='text-2xl'>You may also like</h2>
                         <MovieList category='similar' display='list-scroll' />
                     </div>
                 </>
             )}
             <Link
-                // to={`/movies`}
                 onClick={goBack}
                 className='mx-auto rounded-xl border py-2 px-8 font-bold text-[#b5cdf5] hover:border-sky-600'
             >

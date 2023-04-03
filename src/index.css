@@ -12,6 +12,9 @@
     .hero-button {
         @apply mr-2 inline-block max-w-fit cursor-pointer rounded border border-[#b5cdf5] px-8 py-2 font-bold text-[#b4c6ef] hover:bg-[#b5cdf5] hover:text-[#1e293b] hover:transition-all;
     }
+    .active-genre {
+      @apply bg-sky-700
+    }
 }
 
 body {

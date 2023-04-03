@@ -135,7 +135,7 @@ const MovieList = ({ category, display, genreId }) => {
                 >
                     {movies.map((movie) => (
                         <>
-                            <MovieCard
+                            {movie.poster_path && <MovieCard
                                 key={`${movie.id}-${Math.floor(
                                     Math.random() * 10
                                 )}`}
@@ -144,7 +144,7 @@ const MovieList = ({ category, display, genreId }) => {
                                 src={`${IMAGES_URL}${movie.poster_path}`}
                                 alt={movie.title}
                                 title={movie.title}
-                            />
+                            />}
                         </>
                     ))}
                 </AliceCarousel>

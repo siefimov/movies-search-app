@@ -6,22 +6,7 @@ import MovieList from '../ui/Movie/organisms/MovieList';
 
 const Movies = () => {
     const { category, genre_id } = useParams();
-    // const [genre, setGenre] = useState(null);
-
-    // const handleGenre = () => {
-    //     const genre = document.querySelector('.movie-genre').innerHTML;
-    //     console.log(genre);
-    //     const currentGenre = genres.filter(
-    //         (element) => element.name === genre
-    //     ).name;
-    //     setGenre(currentGenre);
-    // };
-
-    // useEffect(() => {
-    //     handleGenre();
-    // }, []);
-
-    // console.log(genre);
+    
 
     return (
         <div className='mt-20 text-[#b5cdf5]'>
