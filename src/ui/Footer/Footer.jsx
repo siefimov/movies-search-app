@@ -6,15 +6,16 @@ import {
     FaLinkedin,
 } from 'react-icons/fa';
 
+import Logo from '../Header/atoms/Logo';
+
 const Footer = () => {
     return (
         <footer className='mt-20 border-t-2 border-t-[#1e293b] bg-[#151f36] py-16 px-4 text-gray-300'>
             <div className='mx-auto flex max-w-[940px] flex-col items-center px-4'>
-                <h1 className='  text-3xl font-bold text-[#38bdf8]'>REACT.</h1>
+                <Logo />
+                <h1 className='  text-3xl font-bold text-[#1e293b]'>REACT.</h1>
                 <p className='py-4 text-center'>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id
-                    odit ullam iste repellat consequatur libero reiciendis,
-                    blanditiis accusantium.
+                Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. 
                 </p>
                 <div className='my-6 flex justify-center gap-4 md:w-[75%]'>
                     <a href='https://www.facebook.com/' target='_blank'>

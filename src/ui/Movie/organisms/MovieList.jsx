@@ -140,7 +140,7 @@ const MovieList = ({ category, display, genreId }) => {
                         }}
                     >
                         {movies.map((movie) => (
-                            <ul>
+                            <>
                                 {movie.poster_path && (
                                     <MovieCard
                                         key={`${movie.id}_*_${Math.floor(
@@ -153,7 +153,7 @@ const MovieList = ({ category, display, genreId }) => {
                                         title={movie.title}
                                     />
                                 )}
-                            </ul>
+                            </>
                         ))}
                     </AliceCarousel>
                 )}
