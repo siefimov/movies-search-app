@@ -77,7 +77,7 @@ const MovieList = ({ category, display, genreId }) => {
                         {movieCategories[category] || movieGenre}
                     </p>
 
-                    {display == 'list-scroll' && (
+                    {display == 'carousel' && (
                         <Link
                             to={`movies/${category}/${
                                 genreId ? genreId : null
@@ -94,60 +94,66 @@ const MovieList = ({ category, display, genreId }) => {
                         </Link>
                     )}
                 </div>
-                {/* <ul className={display}>
-                    {movies.map((movie) => (
-                        <>
-                            <MovieCard
-                                key={`${movie.id}-${Math.floor(
-                                    Math.random() * 10
-                                )}`}
-                                // to={`/movies/${movie.id}`}
-                                to={`/movies/${category}/${movie.id}/one`}
-                                src={`${IMAGES_URL}${movie.poster_path}`}
-                                alt={movie.title}
-                                title={movie.title}
-                            />
-                        </>
-                    ))}
-                </ul> */}
+                {display === 'list-grid' && (
+                    <ul className={display}>
+                        {movies.map((movie) => (
+                            <>
+                                <MovieCard
+                                    key={`${movie.id}-${Math.floor(
+                                        Math.random() * 10
+                                    )}`}
+                                    // to={`/movies/${movie.id}`}
+                                    to={`/movies/${category}/${movie.id}/one`}
+                                    src={`${IMAGES_URL}${movie.poster_path}`}
+                                    alt={movie.title}
+                                    title={movie.title}
+                                />
+                            </>
+                        ))}
+                    </ul>
+                )}
 
-                <AliceCarousel
-                    mouseTracking
-                    infinite
-                    disableDotsControls
-                    renderPrevButton={() => (
-                        <div className='carousel-arrow carousel-arrow-left absolute left-[-50px] bottom-[50%] cursor-pointer rounded-full border border-slate-700 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200'>
-                            &#60;
-                        </div>
-                    )}
-                    renderNextButton={() => (
-                        <div className='carousel-arrow carousel-arrow-right absolute right-[0px] bottom-[50%] cursor-pointer rounded-full border border-slate-700 px-2 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200'>
-                            &#62;
-                        </div>
-                    )}
-                    responsive={{
-                        0: { items: 1 },
-                        576: { items: 2 },
-                        768: { items: 3 },
-                        992: { items: 4 },
-                        1200: { items: 5 },
-                    }}
-                >
-                    {movies.map((movie) => (
-                        <>
-                            {movie.poster_path && <MovieCard
-                                key={`${movie.id}-${Math.floor(
-                                    Math.random() * 10
-                                )}`}
-                                // to={`/movies/${movie.id}`}
-                                to={`/movies/${category}/${movie.id}/one`}
-                                src={`${IMAGES_URL}${movie.poster_path}`}
-                                alt={movie.title}
-                                title={movie.title}
-                            />}
-                        </>
-                    ))}
-                </AliceCarousel>
+                {display === 'carousel' && (
+                    <AliceCarousel
+                        mouseTracking
+                        infinite
+                        disableDotsControls
+                        renderPrevButton={() => (
+                            <div className=' carousel-arrow carousel-arrow-left carouselPrevBtn'>
+                                &#60;
+                            </div>
+                        )}
+                        renderNextButton={() => (
+                            <div className='carousel-arrow carousel-arrow-right carouselNextBtn'>
+                                &#62;
+                            </div>
+                        )}
+                        responsive={{
+                            0: { items: 1 },
+                            576: { items: 2 },
+                            768: { items: 3 },
+                            992: { items: 4 },
+                            1200: { items: 5 },
+                        }}
+                    >
+                        {movies.map((movie) => (
+                            <>
+                                {movie.poster_path && (
+                                    <MovieCard
+                                        key={`${movie.id}-${Math.floor(
+                                            Math.random() * 10
+                                        )}`}
+                                        // to={`/movies/${movie.id}`}
+                                        to={`/movies/${category}/${movie.id}/one`}
+                                        src={`${IMAGES_URL}${movie.poster_path}`}
+                                        alt={movie.title}
+                                        title={movie.title}
+                                    />
+                                )}
+                            </>
+                        ))}
+                    </AliceCarousel>
+                )}
             </div>
         </div>
     );

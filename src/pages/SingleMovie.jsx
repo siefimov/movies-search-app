@@ -163,7 +163,7 @@ const SingleMovie = () => {
                     </div>
                     <div className='mx-auto mb-12 mt-10 w-full max-w-6xl bg-slate-100'>
                         <h2 className='text-2xl'>You may also like</h2>
-                        <MovieList category='similar' display='list-scroll' />
+                        <MovieList category='similar' display='grid' />
                     </div>
                 </>
             )}
