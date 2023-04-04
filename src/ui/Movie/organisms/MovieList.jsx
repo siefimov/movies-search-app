@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
+import { Pagination, Stack } from '@mui/material';
+
 import PropTypes from 'prop-types';
 
 import MovieCard from '../molecules/MovieCard';
@@ -17,35 +19,44 @@ const MovieList = ({ category, display, genreId }) => {
   const [arrowVisibility, setArrowVisibility] = useState(false);
   const [movieGenre, setMovieGenre] = useState(null);
 
+  const [page, setPage] = useState(1);
+  const [pageQty, setPageQty] = useState(0);
+
   const getData = async () => {
     if (category === 'trending') {
-      const resp = await fetch(`${URL}${category}/movie/week${API_KEY}`);
+      const resp = await fetch(`${URL}${category}/movie/week${API_KEY}&page=${page}`);
       const json = await resp.json();
       const result = await json.results;
       setMovies(result);
+      setPageQty(json.total_pages);
     } else if (
       category === 'popular' ||
       category === 'top_rated' ||
       category === 'upcoming'
     ) {
       const resp = await fetch(
-        `${URL}movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null`
+        `${URL}movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null&page=${page}`
       );
       const json = await resp.json();
       const result = await json.results;
       setMovies(result);
+      setPageQty(json.total_pages);
+      
+      
     } else if (category === 'similar') {
-      const resp = await fetch(`${URL}movie/${id}/${category}${API_KEY}`);
+      const resp = await fetch(`${URL}movie/${id}/${category}${API_KEY}&page=${page}}`);
       const json = await resp.json();
       const result = await json.results;
       setMovies(result);
+      setPageQty(json.total_pages);
     } else {
       const resp = await fetch(
-        `${URL}${category}/movie${API_KEY}&with_genres=${genreId}`
+        `${URL}${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`
       );
       const json = await resp.json();
       const result = await json.results;
       setMovies(result);
+      setPageQty(json.total_pages);
 
       const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
       setMovieGenre(currentMovieGenre[0].name);
@@ -54,7 +65,7 @@ const MovieList = ({ category, display, genreId }) => {
 
   useEffect(() => {
     getData();
-  }, [category]);
+  }, [category, page]);
 
   return (
     <div className='mx-auto max-w-[1360px] px-10'>
@@ -84,22 +95,42 @@ const MovieList = ({ category, display, genreId }) => {
           )}
         </div>
         {display === 'list-grid' && (
-          <ul className={display}>
-            {movies.map((movie) => (
-              <>
-                {movie.poster_path && (
-                  <MovieCard
-                    key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
-                    // to={`/movies/${movie.id}`}
-                    to={`/movies/${category}/${movie.id}/one`}
-                    src={`${IMAGES_URL}${movie.poster_path}`}
-                    alt={movie.title}
-                    title={movie.title}
-                  />
-                )}
-              </>
-            ))}
-          </ul>
+          <>
+            <Stack spacing={2}>
+              {/* {!!pageQty && ( */}
+              <Pagination
+                count={pageQty}
+                page={page}
+                onChange={(_, numPage) => (setPage(numPage) )}
+                color='primary'
+                variant='outlined'
+                sx={{
+                  button: { color: '#ffffff' },
+                  ul: {
+                    justifyContent: 'center',
+                    marginBottom: '20px',
+                  },
+                }}
+              />
+              {/* )} */}
+            </Stack>
+
+            <ul className={display}>
+              {movies.map((movie) => (
+                <>
+                  {movie.poster_path && (
+                    <MovieCard
+                      key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
+                      to={`/movies/${category}/${movie.id}/one`}
+                      src={`${IMAGES_URL}${movie.poster_path}`}
+                      alt={movie.title}
+                      title={movie.title}
+                    />
+                  )}
+                </>
+              ))}
+            </ul>
+          </>
         )}
 
         {display === 'carousel' && (

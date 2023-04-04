@@ -47,7 +47,7 @@ const SingleMovie = () => {
       {movie && (
         <>
           <div className='relative w-full bg-gradient-to-r from-slate-800 to-blue-900'>
-            <div className='mx-auto my-8 flex w-full max-w-[1192px] px-5 items-start gap-12'>
+            <div className='mx-auto my-8 flex w-full max-w-[1280px] px-5 items-start gap-12'>
               <img
                 src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.title}
@@ -102,7 +102,7 @@ const SingleMovie = () => {
                     User <br /> Score
                   </p>
 
-                  <HeroButton
+                 {movie.videos.results.length > 0 && <HeroButton
                     onClick={() =>
                       handleOpenModal(
                         `https://www.youtube.com/watch?v=${movie.videos.results[0].key}`
@@ -112,7 +112,7 @@ const SingleMovie = () => {
                   >
                     <FaPlay />
                     Play Trailer
-                  </HeroButton>
+                  </HeroButton>}
                 </div>
                 <div className='font-bold italic text-slate-400'>
                   {movie.tagline}
@@ -121,15 +121,7 @@ const SingleMovie = () => {
                   <span className='mb-2 text-2xl font-semibold'>Overview</span>
                   {movie.overview}
                 </div>
-                <div className='flex justify-between'>
-                  <div className='flex max-h-[120px] flex-col overflow-hidden'>
-                    <div className='mb-2 text-sm font-bold'>Cast:</div>
-                    {movie.credits.cast.map((item) => (
-                      <div key={item.id + Math.random()} className='text-xs'>
-                        {item.name}
-                      </div>
-                    ))}
-                  </div>
+                <div className='flex flex-wrap justify-start gap-5'>
                   <div className='flex max-h-[120px] flex-col overflow-hidden'>
                     <div className='mb-2 text-sm font-bold'>Directors:</div>
                     {movie.credits.crew
@@ -137,7 +129,7 @@ const SingleMovie = () => {
                         (elem) => elem['known_for_department'] === 'Directing'
                       )
                       .map((item) => (
-                        <div key={item.id + Math.random()} className='text-xs'>
+                        <div key={item.id + Math.random()} className='text-xs text-slate-400'>
                           {item.name}
                         </div>
                       ))}
@@ -149,7 +141,7 @@ const SingleMovie = () => {
                         (elem) => elem['known_for_department'] === 'Production'
                       )
                       .map((item) => (
-                        <div key={item.id + Math.random()} className='text-xs'>
+                        <div key={item.id + Math.random()} className='text-xs text-slate-400'>
                           {item.name}
                         </div>
                       ))}
@@ -161,7 +153,7 @@ const SingleMovie = () => {
                         (elem) => elem['known_for_department'] === 'Writing'
                       )
                       .map((item) => (
-                        <div key={item.id + Math.random()} className='text-xs'>
+                        <div key={item.id + Math.random()} className='text-xs text-slate-400'>
                           {item.name}
                         </div>
                       ))}
@@ -170,7 +162,7 @@ const SingleMovie = () => {
               </div>
             </div>
           </div>
-          <div className='mx-auto mt-5 flex max-w-[1192px] flex-col px-5'>
+          <div className='mx-auto mt-5 flex max-w-[1280px] flex-col px-5'>
             <div className='my-2 text-xl font-bold text-white'>Cast</div>
             <ul className='list-scroll shadow-[inset_-45px_0px_34px_0px_rgba(233,243,245,0.55);]'>
               {movie.credits.cast.map(
@@ -194,7 +186,7 @@ const SingleMovie = () => {
               )}
             </ul>
           </div>
-          <div className='mx-auto mb-12 mt-10 w-full max-w-6xl bg-slate-100'>
+          <div className='mx-auto mb-12 mt-10 w-full max-w-[1280px] px-5 text-slate-300 '>
             <h2 className='text-2xl'>You may also like</h2>
             <MovieList category='similar' display='carousel' />
           </div>
@@ -234,3 +226,7 @@ export default SingleMovie;
 
 // https://api.themoviedb.org/3/movie/603692?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&append_to_response=credits
 // https://api.themoviedb.org/3/movie/1077280?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&append_to_response=credits
+
+// 4,600,000.00
+//  90,000,000.00
+// 244,878,306.00
