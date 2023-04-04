@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Hero from '../ui/Hero/organisms/Hero';
 import MovieList from '../ui/Movie/organisms/MovieList';
-
 import { URL, API_KEY, endpoints } from '../../src/utils/api';
 
 const Home = () => {

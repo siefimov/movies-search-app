@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import { Pagination, Stack } from '@mui/material';
+
 import MovieList from '../ui/Movie/organisms/MovieList';
 import MovieCard from '../ui/Movie/molecules/MovieCard';
 import Filters from '../ui/Movie/organisms/Filters';
 import { URL, IMAGES_URL } from '../utils/api';
-// import { genres } from '../utils/db_categories';
 
 const Movies = () => {
     const { category, genre_id } = useParams();
@@ -18,6 +19,9 @@ const Movies = () => {
     const [selectedYearTo, setSelectedYearTo] = useState('');
     const [selectedScore, setSelectedScore] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const [page, setPage] = useState(1);
+    const [pageQty, setPageQty] = useState(0);
 
     const getGenres = async () => {
         const response = await axios.get(
@@ -50,14 +54,13 @@ const Movies = () => {
                 selectedYearTo ? selectedYearTo : 2023
             }-12-31&vote_average.gte=${
                 selectedScore ? selectedScore : ''
-            }&sort_by=vote_average.desc`
+            }&sort_by=vote_average.desc&page=${page}`
         );
         setMovies(response.data.results);
         setLoading(false);
-        console.log(response);
-        console.log(response.data);
+        setPageQty(response.data.total_pages);
     };
-    console.log(movies);
+
     return (
         <div className='mt-[150px] flex gap-8'>
             <Filters
@@ -82,24 +85,49 @@ const Movies = () => {
                 </div>
             )}
             {movies && (
-                <ul className='flex flex-wrap gap-4'>
-                    {movies.map((movie) => (
-                        <>
-                            {movie.poster_path && (
-                                <MovieCard
-                                    key={`${movie.id}-${Math.floor(
-                                        Math.random() * 10
-                                    )}`}
-                                    // to={`/movies/${movie.id}`}
-                                    to={`/movies/${category}/${movie.id}/one`}
-                                    src={`${IMAGES_URL}${movie.poster_path}`}
-                                    alt={movie.title}
-                                    title={movie.title}
+                <>
+                    <div className='flex flex-col'>
+                        <Stack spacing={2}>
+                            {!!pageQty && (
+                                <Pagination
+                                    count={pageQty}
+                                    page={page}
+                                    onChange={(_, numPage) => (
+                                        setPage(numPage), handleSearch()
+                                    )}
+                                    color='primary'
+                                    variant='outlined'
+                                    sx={{ button: { color: '#ffffff' },
+                                    ul: {                                      
+                                      justifyContent: 'center',
+                                      marginBottom: '20px'
+                                   },
+                                  
+                                  }}
                                 />
                             )}
-                        </>
-                    ))}
-                </ul>
+                        </Stack>
+
+                        <ul className='flex flex-wrap gap-4'>
+                            {movies.map((movie) => (
+                                <>
+                                    {movie.poster_path && (
+                                        <MovieCard
+                                            key={`${movie.id}-${Math.floor(
+                                                Math.random() * 10
+                                            )}`}
+                                            // to={`/movies/${movie.id}`}
+                                            to={`/movies/${category}/${movie.id}/one`}
+                                            src={`${IMAGES_URL}${movie.poster_path}`}
+                                            alt={movie.title}
+                                            title={movie.title}
+                                        />
+                                    )}
+                                </>
+                            ))}
+                        </ul>
+                    </div>
+                </>
             )}
         </div>
     );

@@ -11,7 +11,7 @@ import HeroButton from '../atoms/HeroButton';
 
 import { URL, API_KEY } from '../../../utils/api';
 
-const Hero = ({ movie, id }) => {
+const Hero = ({ movie }) => {
     const [videoKey, setVideoKey] = useState(null);
     const [videoUrl, setVideoUrl] = useState('');
     const [isPlaying, setIsPlaying] = useState(false);
