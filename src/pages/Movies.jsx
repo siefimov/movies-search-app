@@ -54,8 +54,10 @@ const Movies = () => {
         );
         setMovies(response.data.results);
         setLoading(false);
+        console.log(response);
+        console.log(response.data);
     };
-console.log(movies);
+    console.log(movies);
     return (
         <div className='mt-[150px] flex gap-8'>
             <Filters
@@ -70,18 +72,21 @@ console.log(movies);
                 setSelectedScore={setSelectedScore}
                 handleSearch={handleSearch}
             />
-            {movies.length === 0 && <div className='text-[#b5cdf5]'>
-                <MovieList
-                    category={category ? category : 'popular'}
-                    display='list-grid'
-                    genreId={genre_id}
-                />
-            </div>}
+            {movies.length === 0 && (
+                <div className='text-[#b5cdf5]'>
+                    <MovieList
+                        category={category ? category : 'popular'}
+                        display='list-grid'
+                        genreId={genre_id}
+                    />
+                </div>
+            )}
             {movies && (
-                    <ul className='flex flex-wrap gap-4'>
-                        {movies.map((movie) => (
-                            <>
-                              {movie.poster_path && <MovieCard
+                <ul className='flex flex-wrap gap-4'>
+                    {movies.map((movie) => (
+                        <>
+                            {movie.poster_path && (
+                                <MovieCard
                                     key={`${movie.id}-${Math.floor(
                                         Math.random() * 10
                                     )}`}
@@ -90,11 +95,12 @@ console.log(movies);
                                     src={`${IMAGES_URL}${movie.poster_path}`}
                                     alt={movie.title}
                                     title={movie.title}
-                                />}
-                            </>
-                        ))}
-                    </ul>
-                )}
+                                />
+                            )}
+                        </>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
