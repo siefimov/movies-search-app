@@ -120,6 +120,7 @@ const MovieList = ({ category, display, genreId }) => {
                 <>
                   {movie.poster_path && (
                     <MovieCard
+                    movie={movie}
                       key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
                       to={`/movies/${category}/${movie.id}/one`}
                       src={`${IMAGES_URL}${movie.poster_path}`}
@@ -135,6 +136,12 @@ const MovieList = ({ category, display, genreId }) => {
 
         {display === 'carousel' && (
           <AliceCarousel
+          autoHeight
+          animationType={'fadeout'}
+          controlsStrategy={'responsive'}
+          disableSlideInfo={false}
+          touchTracking
+          
             mouseTracking
             infinite
             disableDotsControls
@@ -153,7 +160,7 @@ const MovieList = ({ category, display, genreId }) => {
               576: { items: 2 },
               768: { items: 3 },
               840: { items: 4 },
-              992: { items: 5 },
+              992: { items: 5, itemsFit: 'contain' },
               1200: { items: 6 },
             }}
           >
