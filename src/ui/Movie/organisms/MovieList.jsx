@@ -12,11 +12,12 @@ import MovieCard from '../molecules/MovieCard';
 import { URL, API_KEY, IMAGES_URL } from '../../../utils/api';
 import { movieCategories, genres } from '../../../utils/db_categories';
 
+//* COMPONENT
 const MovieList = ({ category, display, genreId }) => {
-  const { id } = useParams();
+  const { id, movieTitle } = useParams();
   const [movies, setMovies] = useState([]);
   const [isShown, setIsShown] = useState(false);
-  const [arrowVisibility, setArrowVisibility] = useState(false);
+  // const [arrowVisibility, setArrowVisibility] = useState(false);
   const [movieGenre, setMovieGenre] = useState(null);
 
   const [page, setPage] = useState(1);
@@ -24,7 +25,9 @@ const MovieList = ({ category, display, genreId }) => {
 
   const getData = async () => {
     if (category === 'trending') {
-      const resp = await fetch(`${URL}${category}/movie/week${API_KEY}&page=${page}`);
+      const resp = await fetch(
+        `${URL}${category}/movie/week${API_KEY}&page=${page}`
+      );
       const json = await resp.json();
       const result = await json.results;
       setMovies(result);
@@ -41,14 +44,25 @@ const MovieList = ({ category, display, genreId }) => {
       const result = await json.results;
       setMovies(result);
       setPageQty(json.total_pages);
-      
-      
     } else if (category === 'similar') {
-      const resp = await fetch(`${URL}movie/${id}/${category}${API_KEY}&page=${page}}`);
+      const resp = await fetch(
+        `${URL}movie/${id}/${category}${API_KEY}&page=${page}}`
+      );
       const json = await resp.json();
       const result = await json.results;
       setMovies(result);
       setPageQty(json.total_pages);
+    } else if (category === 'search') {
+      const resp = await fetch(
+        `${URL}${category}/movie${API_KEY}&query=${movieTitle}&page=${page}`
+      );
+      const json = await resp.json();
+      const result = await json.results;
+      setMovies(result);
+      setPageQty(json.total_pages);
+
+      const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
+      setMovieGenre(currentMovieGenre[0].name);
     } else {
       const resp = await fetch(
         `${URL}${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`
@@ -65,7 +79,7 @@ const MovieList = ({ category, display, genreId }) => {
 
   useEffect(() => {
     getData();
-  }, [category, page]);
+  }, [category, page, movieTitle]);
 
   return (
     <div className='mx-auto max-w-[1360px] px-10'>
@@ -79,9 +93,10 @@ const MovieList = ({ category, display, genreId }) => {
             {movieCategories[category] || movieGenre}
           </p>
 
+          {/* code for displaying "see all movies" */}
           {display == 'carousel' && (
             <Link
-              to={`movies/${category}/${genreId ? genreId : null}`}
+              to={`movies/${category}/${genreId ? genreId : ''}`}
               className='flex items-center self-center'
             >
               {isShown && (
@@ -94,6 +109,7 @@ const MovieList = ({ category, display, genreId }) => {
             </Link>
           )}
         </div>
+
         {display === 'list-grid' && (
           <>
             <Stack spacing={2}>
@@ -101,7 +117,7 @@ const MovieList = ({ category, display, genreId }) => {
               <Pagination
                 count={pageQty}
                 page={page}
-                onChange={(_, numPage) => (setPage(numPage) )}
+                onChange={(_, numPage) => setPage(numPage)}
                 color='primary'
                 variant='outlined'
                 sx={{
@@ -120,7 +136,7 @@ const MovieList = ({ category, display, genreId }) => {
                 <>
                   {movie.poster_path && (
                     <MovieCard
-                    movie={movie}
+                      movie={movie}
                       key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
                       to={`/movies/${category}/${movie.id}/one`}
                       src={`${IMAGES_URL}${movie.poster_path}`}
@@ -136,12 +152,10 @@ const MovieList = ({ category, display, genreId }) => {
 
         {display === 'carousel' && (
           <AliceCarousel
-          autoHeight
-          animationType={'fadeout'}
-          controlsStrategy={'responsive'}
-          disableSlideInfo={false}
-          touchTracking
-          
+            autoHeight
+            animationType={'fadeout'}
+            controlsStrategy={'responsive'}
+            touchTracking
             mouseTracking
             infinite
             disableDotsControls

@@ -10,7 +10,7 @@ import Filters from '../ui/Movie/organisms/Filters';
 import { URL, IMAGES_URL } from '../utils/api';
 
 const Movies = () => {
-  const { category, genre_id } = useParams();
+  const { category, genre_id, movieTitle } = useParams();
 
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -62,7 +62,7 @@ const Movies = () => {
   };
 
   return (
-    <div className='mt-[150px] max-w-[1280px] mx-auto flex gap-8'>
+    <div className='mx-auto mt-[150px] flex max-w-[1280px] gap-8'>
       <Filters
         genres={genres}
         selectedGenres={selectedGenres}
@@ -77,10 +77,10 @@ const Movies = () => {
       />
       {movies.length === 0 && (
         <div className='text-[#b5cdf5]'>
-                   <MovieList
+          <MovieList
             category={category ? category : 'popular'}
             display='list-grid'
-            genreId={genre_id}
+            genreId={genre_id ? genre_id : movieTitle}
           />
         </div>
       )}

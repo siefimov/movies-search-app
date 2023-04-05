@@ -13,23 +13,18 @@ import RequireAuth from './hoc/RequireAuth';
 import AuthProvider from './hoc/AuthProvider'; // for redirect
 
 function App() {
-    return (
-        <AuthProvider>
-            <Routes>
-                <Route path='/' element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path='movies' element={<Movies />} />
-                    <Route path='movies/:category' element={<Movies />} />
-                    <Route
-                        path='movies/:category/:genre_id'
-                        element={<Movies />}
-                    />
-                    <Route
-                        path='movies/:category/:id/:one'
-                        element={<SingleMovie />}
-                    />
-                    <Route path='search' element={<MovieFilter />} />
-                    {/* <Route
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='movies' element={<Movies />} />
+          <Route path='movies/:category' element={<Movies />} />
+          <Route path='movies/:category/:movieTitle' element={<Movies />} />
+          <Route path='movies/:category/:genre_id' element={<Movies />} />
+          <Route path='movies/:category/:id/:one' element={<SingleMovie />} />
+          <Route path='search' element={<MovieFilter />} />
+          {/* <Route
                         path='user'
                         element={
                             <RequireAuth>
@@ -40,11 +35,11 @@ function App() {
                         }
                     />
                     <Route path='login' element={<Loginpage />} /> */}
-                    <Route path='*' element={<PageNotFound />} />
-                </Route>
-            </Routes>
-        </AuthProvider>
-    );
+          <Route path='*' element={<PageNotFound />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
+  );
 }
 
 export default App;
