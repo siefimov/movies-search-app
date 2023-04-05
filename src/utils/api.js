@@ -20,3 +20,6 @@ export const endpoints = {
 
 // *** search by genre ***
 // https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=27
+
+// * search by title
+// https://api.themoviedb.org/3/search/movie?api_key=83cb5904bd2f84699c28a99d9d4a0289&query=the+avengers
