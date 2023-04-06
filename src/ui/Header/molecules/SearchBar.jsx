@@ -1,23 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
-
-import SearchContext from '../../../context/SearchContext';
+import { AiOutlineCloseCircle, AiOutlineClose } from 'react-icons/ai';
 
 const SearchBar = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  // const [movieTitle, setMovieTitle] = useState('');
-
-  const { query, setQuery } = useContext(SearchContext);
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
-  };
-
-  const handleMovieTitle = () => {
-    setMovieTitle(inputValue);
   };
 
   const handleIsClicked = () => {
@@ -28,35 +19,42 @@ const SearchBar = () => {
     <div className='flex items-center '>
       <FiSearch
         onClick={handleIsClicked}
-        className='h-[32px] w-[30px] translate-x-8 cursor-pointer rounded-full border border-slate-500 bg-[#203048] px-2 py-1 text-[#b5cdf5]'
-        style={{ display: isClicked ? 'none' : 'block' }}
+        className='icon-search'
+        style={{
+          width: isClicked ? '0' : '34px',
+          opacity: isClicked ? '0' : '1',
+        }}
       />
       <AiOutlineCloseCircle
-        onClick={handleIsClicked}
+        onClick={() => setInputValue('')}
         className='h-[20px] w-[28px] translate-x-8 cursor-pointer  text-slate-500 hover:text-[#38bdf8]'
         style={{ display: isClicked ? 'block' : 'none' }}
       />
       <input
         type='text'
-        className='h-[35px] rounded-[10px] bg-[#203048] text-sm text-[#b5cdf5] outline-none transition-all duration-500 focus:w-[200px]'
+        className='input-search'
         style={{
-          width: isClicked ? '300px' : '0px',
+          width: isClicked ? '300px' : '0',
           paddingLeft: isClicked ? '40px' : '0',
         }}
         onChange={handleInputValue}
         value={inputValue}
       />
       <Link
-        className='h-[33px] w-[70px] translate-x-[-70px] cursor-pointer rounded-[10px] border border-slate-500 bg-[#203048] py-2 text-center text-sm leading-none text-[#b5cdf5] transition-all duration-500 hover:bg-[#0f172a]'
+        className='btn-search'
         style={{
-          width: isClicked ? '70px' : '0px',
+          width: isClicked ? '70px' : '0',
           opacity: isClicked ? '1' : '0',
         }}
         to={`movies/search/${inputValue}`}
-        // onClick={handleMovieTitle}
       >
         search
       </Link>
+      <AiOutlineClose
+        onClick={handleIsClicked}
+        className='translate-x-[-60px] cursor-pointer text-lg text-slate-200 hover:text-[#38bdf8]'
+        style={{ display: isClicked ? 'block' : 'none' }}
+      />
     </div>
   );
 };

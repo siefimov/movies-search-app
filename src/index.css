@@ -3,33 +3,41 @@
 @tailwind utilities;
 
 @layer components {
-    .list-scroll {
-        @apply flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll scrollbar-thin scrollbar-track-[#0f172a] scrollbar-thumb-[#b5cdf5];
-    }
-    .list-grid {
-        @apply flex flex-wrap justify-center gap-3;
-    }
-    .hero-button {
-        @apply mr-2 inline-flex items-center gap-2 max-w-fit cursor-pointer cursor-pointer rounded-2xl border-2 border-[#b5cdf5] px-6 py-2 font-bold text-[#b4c6ef] hover:bg-[#b5cdf5] hover:text-[#1e293b] hover:transition-all;
-    }
-    .active-genre {
-        @apply bg-sky-700;
-    }
-    .carouselPrevBtn {
-        @apply absolute left-[-50px] bottom-[50%] cursor-pointer rounded-full border-2 border-slate-700 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200;
-    }
-    .carouselNextBtn {
-        @apply absolute right-[0px] bottom-[50%] cursor-pointer rounded-full border-2 border-slate-700 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200;
-    }
+  .list-scroll {
+    @apply flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll scrollbar-thin scrollbar-track-[#0f172a] scrollbar-thumb-[#b5cdf5];
+  }
+  .list-grid {
+    @apply flex flex-wrap justify-center gap-3;
+  }
+  .hero-button {
+    @apply mr-2 inline-flex max-w-fit cursor-pointer cursor-pointer items-center gap-2 rounded-2xl border-2 border-[#b5cdf5] px-6 py-2 font-bold text-[#b4c6ef] hover:bg-[#b5cdf5] hover:text-[#1e293b] hover:transition-all;
+  }
+  .active-genre {
+    @apply bg-sky-700;
+  }
+  .carouselPrevBtn {
+    @apply absolute left-[-50px] bottom-[50%] cursor-pointer rounded-full border-2 border-slate-700 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200;
+  }
+  .carouselNextBtn {
+    @apply absolute right-[0px] bottom-[50%] cursor-pointer rounded-full border-2 border-slate-700 px-2 text-slate-700 hover:border-slate-200 hover:text-slate-200;
+  }
+  .input-search {
+    @apply h-[35px] rounded-[10px] bg-[#203048] text-sm text-[#b5cdf5] outline-none transition-all duration-500;
+  }
+  .btn-search {
+    @apply h-[33px] w-[70px] translate-x-[-70px] cursor-pointer rounded-[10px] border border-slate-500 bg-[#203048] py-2 text-center text-sm leading-none text-[#b5cdf5] transition-all duration-500 hover:bg-[#0f172a];
+  }
+  .icon-search {
+    @apply duration-1000 h-[32px]  w-[34px] cursor-pointer rounded-full border border-slate-500 bg-[#203048] px-2 py-1 text-[#b5cdf5] transition-all;
+  }
 }
 
-
-
+/* translate-x-8 */
 
 body {
-    background-color: #0f172a;
-    padding: 0;
-    margin: 0;
+  background-color: #0f172a;
+  padding: 0;
+  margin: 0;
 }
 /* 
 :root {

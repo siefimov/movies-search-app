@@ -93,7 +93,6 @@ const MovieList = ({ category, display, genreId }) => {
             {movieCategories[category] || movieGenre}
           </p>
 
-          {/* code for displaying "see all movies" */}
           {display == 'carousel' && (
             <Link
               to={`movies/${category}/${genreId ? genreId : ''}`}
