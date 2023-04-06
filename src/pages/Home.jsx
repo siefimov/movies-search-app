@@ -23,8 +23,7 @@ const Home = () => {
       <Hero
         movie={trending[Math.floor(Math.random() * trending.length)]}
         id={trending.id}
-      />
-      <Link to='user'> Edit User Profile </Link>
+      />      
       <MovieList category='trending' display='carousel' />
       <MovieList category='discover' display='carousel' genreId='35' />
       <MovieList category='discover' display='carousel' genreId='18' />
