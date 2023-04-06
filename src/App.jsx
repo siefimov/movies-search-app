@@ -24,7 +24,7 @@ function App() {
           <Route path='movies/:category/:genre_id' element={<Movies />} />
           <Route path='movies/:category/:id/:one' element={<SingleMovie />} />
           <Route path='search' element={<MovieFilter />} />
-          {/* <Route
+          <Route
                         path='user'
                         element={
                             <RequireAuth>
@@ -34,7 +34,7 @@ function App() {
                             </RequireAuth>
                         }
                     />
-                    <Route path='login' element={<Loginpage />} /> */}
+                    <Route path='login' element={<Loginpage />} />
           <Route path='*' element={<PageNotFound />} />
         </Route>
       </Routes>
