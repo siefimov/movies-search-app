@@ -1,6 +1,5 @@
 export const URL = 'https://api.themoviedb.org/3/';
 export const API_KEY = '?api_key=83cb5904bd2f84699c28a99d9d4a0289';
-// export const BASE_IMAGES_URL = 'https://www.themoviedb.org/t/p/original/';
 export const IMAGES_URL = 'https://image.tmdb.org/t/p/w300';
 
 export const endpoints = {

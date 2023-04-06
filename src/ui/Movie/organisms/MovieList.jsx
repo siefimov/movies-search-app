@@ -12,7 +12,6 @@ import MovieCard from '../molecules/MovieCard';
 import { URL, API_KEY, IMAGES_URL } from '../../../utils/api';
 import { movieCategories, genres } from '../../../utils/db_categories';
 
-//* COMPONENT
 const MovieList = ({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
   const [movies, setMovies] = useState([]);
