@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { Link, useParams } from 'react-router-dom';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-
 import { Pagination, Stack } from '@mui/material';
 
 import PropTypes from 'prop-types';
@@ -12,10 +11,13 @@ import MovieCard from '../molecules/MovieCard';
 import { URL, API_KEY, IMAGES_URL } from '../../../utils/api';
 import { movieCategories, genres } from '../../../utils/db_categories';
 
-const MovieList = ({ category, display, genreId }) => {
+const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
   const [movies, setMovies] = useState([]);
-  const [isShown, setIsShown] = useState(false);
+
+  const [isTitleHover, setIsTitleHover] = useState(false);
+  const [isListHover, setIsListHover] = useState(false);
+
   // const [arrowVisibility, setArrowVisibility] = useState(false);
   const [movieGenre, setMovieGenre] = useState(null);
 
@@ -82,13 +84,16 @@ const MovieList = ({ category, display, genreId }) => {
 
   return (
     <div className='mx-auto max-w-[1360px] px-10'>
-      <div>
+      <div
+        onMouseEnter={() => setIsListHover(true)}
+        onMouseLeave={() => setIsListHover(false)}
+      >
         <div
           className='inline-flex items-center'
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={() => setIsTitleHover(true)}
+          onMouseLeave={() => setIsTitleHover(false)}
         >
-          <p className='movie-genre cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
+          <p className=' movie-genre cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
             {movieCategories[category] || movieGenre}
           </p>
 
@@ -97,13 +102,27 @@ const MovieList = ({ category, display, genreId }) => {
               to={`movies/${category}/${genreId ? genreId : ''}`}
               className='flex items-center self-center'
             >
-              {isShown && (
-                <p className='pl-4 font-bold text-[#b5cdf5] hover:text-[#38bdf8] '>
-                  see all movies
-                </p>
-              )}
+              {/* {isTitleHover && ( */}
+              <p
+                className='overflow-hidden pl-4 font-bold text-[#b5cdf5] transition-all duration-500 hover:text-[#38bdf8] hover:underline'
+                style={{
+                  translate: isTitleHover ? '0px' : '-200px',
+                  display: isTitleHover ? 'block' : 'hodden',
+                  opacity: isTitleHover ? '1' : '0',
+                }}
+              >
+                {/* width: isTitleHover ? '160px' : '0px' , */}
+                {/* translate: isTitleHover ? '0px' : '-200px', */}
+                see all movies
+              </p>
+              {/* )} */}
 
-              <FiArrowRight className='text-xl font-bold text-[#38bdf8]' />
+              <>
+                <FiArrowRight
+                  className='text-xl font-bold text-[#38bdf8] transition-all duration-150'
+                  style={{ width: isListHover ? '20px' : '0' }}
+                />
+              </>
             </Link>
           )}
         </div>
@@ -181,7 +200,6 @@ const MovieList = ({ category, display, genreId }) => {
                 {movie.poster_path && (
                   <MovieCard
                     key={`${movie.id}_*_${Math.floor(Math.random() * 10)}`}
-                    // to={`/movies/${movie.id}`}
                     to={`/movies/${category}/${movie.id}/one`}
                     src={`${IMAGES_URL}${movie.poster_path}`}
                     alt={movie.title}
@@ -195,7 +213,7 @@ const MovieList = ({ category, display, genreId }) => {
       </div>
     </div>
   );
-};
+});
 
 MovieList.propTypes = {};
 

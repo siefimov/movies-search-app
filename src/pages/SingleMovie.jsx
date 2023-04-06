@@ -9,6 +9,7 @@ import ReactModal from 'react-modal';
 import MovieList from '../ui/Movie/organisms/MovieList';
 import HeroButton from '../ui/Hero/atoms/HeroButton';
 import { URL, API_KEY } from '../utils/api';
+import VideoModal from '../ui/components/VideoModal';
 
 const SingleMovie = () => {
   const { id } = useParams();
@@ -47,7 +48,7 @@ const SingleMovie = () => {
       {movie && (
         <>
           <div className='relative w-full bg-gradient-to-r from-slate-800 to-blue-900'>
-            <div className='mx-auto my-8 flex w-full max-w-[1280px] px-5 items-start gap-12'>
+            <div className='mx-auto my-8 flex w-full max-w-[1280px] items-start gap-12 px-5'>
               <img
                 src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.title}
@@ -102,17 +103,19 @@ const SingleMovie = () => {
                     User <br /> Score
                   </p>
 
-                 {movie.videos.results.length > 0 && <HeroButton
-                    onClick={() =>
-                      handleOpenModal(
-                        `https://www.youtube.com/watch?v=${movie.videos.results[0].key}`
-                      )
-                    }
-                    className='border-none'
-                  >
-                    <FaPlay />
-                    Play Trailer
-                  </HeroButton>}
+                  {movie.videos.results.length > 0 && (
+                    <HeroButton
+                      onClick={() =>
+                        handleOpenModal(
+                          `https://www.youtube.com/watch?v=${movie.videos.results[0].key}`
+                        )
+                      }
+                      className='border-none'
+                    >
+                      <FaPlay />
+                      Play Trailer
+                    </HeroButton>
+                  )}
                 </div>
                 <div className='font-bold italic text-slate-400'>
                   {movie.tagline}
@@ -129,7 +132,10 @@ const SingleMovie = () => {
                         (elem) => elem['known_for_department'] === 'Directing'
                       )
                       .map((item) => (
-                        <div key={item.id + Math.random()} className='text-xs text-slate-400'>
+                        <div
+                          key={item.id + Math.random()}
+                          className='text-xs text-slate-400'
+                        >
                           {item.name}
                         </div>
                       ))}
@@ -141,7 +147,10 @@ const SingleMovie = () => {
                         (elem) => elem['known_for_department'] === 'Production'
                       )
                       .map((item) => (
-                        <div key={item.id + Math.random()} className='text-xs text-slate-400'>
+                        <div
+                          key={item.id + Math.random()}
+                          className='text-xs text-slate-400'
+                        >
                           {item.name}
                         </div>
                       ))}
@@ -153,7 +162,10 @@ const SingleMovie = () => {
                         (elem) => elem['known_for_department'] === 'Writing'
                       )
                       .map((item) => (
-                        <div key={item.id + Math.random()} className='text-xs text-slate-400'>
+                        <div
+                          key={item.id + Math.random()}
+                          className='text-xs text-slate-400'
+                        >
                           {item.name}
                         </div>
                       ))}
@@ -162,6 +174,8 @@ const SingleMovie = () => {
               </div>
             </div>
           </div>
+
+          {/* CAST */}
           <div className='mx-auto mt-5 flex max-w-[1280px] flex-col px-5'>
             <div className='my-2 text-xl font-bold text-white'>Cast</div>
             <ul className='list-scroll shadow-[inset_-45px_0px_34px_0px_rgba(233,243,245,0.55);]'>
@@ -170,7 +184,7 @@ const SingleMovie = () => {
                   item.profile_path && (
                     <li
                       key={item.id + Math.random()}
-                      className='inline-block h-[275px] min-w-[140px] w-[140px] rounded-xl border border-slate-100 text-xs mb-5'
+                      className='mb-5 inline-block h-[275px] w-[140px] min-w-[140px] rounded-xl border border-slate-100 text-xs'
                     >
                       <img
                         src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
@@ -186,6 +200,8 @@ const SingleMovie = () => {
               )}
             </ul>
           </div>
+
+          {/* YOU MAY ALSO LIKE */}
           <div className='mx-auto mb-12 mt-10 w-full max-w-[1280px] px-5 text-slate-300 '>
             <h2 className='text-2xl'>You may also like</h2>
             <MovieList category='similar' display='carousel' />
@@ -199,34 +215,13 @@ const SingleMovie = () => {
         Go Back
       </Link>
 
-      <ReactModal
-        isOpen={isPlaying}
-        onRequestClose={handleCloseModal}
-        className='fixed top-0 left-0 flex h-[100%] w-[100%] flex-col items-center justify-center bg-[rgba(0,0,0,0.7)]'
-      >
-        <button
-          onClick={handleCloseModal}
-          className='mt-4 rounded-full border bg-[#1e293b] px-4 py-2 text-[#b5cdf5] hover:bg-[#303e54]'
-        >
-          X
-        </button>
-        <ReactPlayer
-          url={videoUrl}
-          controls={true}
-          playing={true}
-          width='65%'
-          height='80%'
-        />
-      </ReactModal>
+      <VideoModal
+        isPlaying={isPlaying}
+        handleCloseModal={handleCloseModal}
+        videoUrl={videoUrl}
+      />
     </div>
   );
 };
 
 export default SingleMovie;
-
-// https://api.themoviedb.org/3/movie/603692?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&append_to_response=credits
-// https://api.themoviedb.org/3/movie/1077280?api_key=83cb5904bd2f84699c28a99d9d4a0289&language=en-US&append_to_response=credits
-
-// 4,600,000.00
-//  90,000,000.00
-// 244,878,306.00

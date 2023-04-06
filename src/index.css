@@ -36,6 +36,9 @@
   .hero-close-modal {
     @apply mt-4 rounded-full border bg-[#1e293b] px-4 py-2 text-[#b5cdf5] hover:bg-[#303e54]
   }
+  .video-modal {
+    @apply fixed top-0 left-0 flex h-[100%] w-[100%] flex-col items-center justify-center bg-[rgba(0,0,0,0.7)]
+  }
 }
 
 /* translate-x-8 */

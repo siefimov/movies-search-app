@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactPlayer from 'react-player';
-import ReactModal from 'react-modal';
 import { FaPlay } from 'react-icons/fa';
 
 import HeroContainer from '../molecules/HeroContainer';
@@ -8,6 +6,7 @@ import HeroContentContainer from '../molecules/HeroContentContainer';
 import HeroTitle from '../atoms/HeroTitle';
 import HeroDescription from '../atoms/HeroDescription';
 import HeroButton from '../atoms/HeroButton';
+import VideoModal from '../../components/VideoModal';
 
 import { URL, API_KEY } from '../../../utils/api';
 
@@ -54,25 +53,12 @@ const Hero = ({ movie }) => {
           Details
         </HeroButton>
       </HeroContentContainer>
-      <ReactModal
-        isOpen={isPlaying}
-        onRequestClose={handleCloseModal}
-        className='hero-modal'
-      >
-        <button
-          onClick={handleCloseModal}
-          className='hero-close-modal'
-        >
-          X
-        </button>
-        <ReactPlayer
-          url={videoUrl}
-          controls={true}
-          playing={true}
-          width='65%'
-          height='80%'
-        />
-      </ReactModal>
+
+      <VideoModal
+        isPlaying={isPlaying}
+        handleCloseModal={handleCloseModal}
+        videoUrl={videoUrl}
+      />
     </HeroContainer>
   );
 };
