@@ -39,6 +39,12 @@
   .video-modal {
     @apply fixed top-0 left-0 flex h-[100%] w-[100%] flex-col items-center justify-center bg-[rgba(0,0,0,0.7)]
   }
+  .cast-card {
+    @apply mb-5 inline-block h-[275px] w-[140px] min-w-[140px] rounded-xl border border-slate-100 text-xs
+  }
+  .go-back-btn {
+    @apply mx-auto rounded-xl border py-2 px-8 font-bold text-[#b5cdf5] hover:border-sky-600
+  }
 }
 
 /* translate-x-8 */
