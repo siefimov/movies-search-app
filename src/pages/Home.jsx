@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import Hero from '../ui/Hero/organisms/Hero';
 import MovieList from '../ui/Movie/organisms/MovieList';

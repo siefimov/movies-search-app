@@ -19,8 +19,8 @@ import MovieCrew from '../ui/Movie/molecules/MovieCrew';
 const SingleMovie = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState(null);
 
+  const [movie, setMovie] = useState(null);
   const [videoUrl, setVideoUrl] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
 

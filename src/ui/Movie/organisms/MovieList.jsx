@@ -1,6 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
-import { FiArrowRight } from 'react-icons/fi';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Pagination, Stack } from '@mui/material';
@@ -8,19 +7,20 @@ import { Pagination, Stack } from '@mui/material';
 import PropTypes from 'prop-types';
 
 import MovieCard from '../molecules/MovieCard';
+import MovieListWrapper from '../atoms/MovieListWrapper';
+import MovieListTitle from '../molecules/MovieListTitle';
+import ListGrid from './ListGrid';
+
 import { URL, API_KEY, IMAGES_URL } from '../../../utils/api';
 import { movieCategories, genres } from '../../../utils/db_categories';
 
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
-  const [movies, setMovies] = useState([]);
 
+  const [movies, setMovies] = useState([]);
   const [isTitleHover, setIsTitleHover] = useState(false);
   const [isListHover, setIsListHover] = useState(false);
-
-  // const [arrowVisibility, setArrowVisibility] = useState(false);
   const [movieGenre, setMovieGenre] = useState(null);
-
   const [page, setPage] = useState(1);
   const [pageQty, setPageQty] = useState(0);
 
@@ -83,123 +83,57 @@ const MovieList = memo(({ category, display, genreId }) => {
   }, [category, page, movieTitle]);
 
   return (
-    <div className='mx-auto max-w-[1360px] px-10'>
-      <div
-        onMouseEnter={() => setIsListHover(true)}
-        onMouseLeave={() => setIsListHover(false)}
-      >
-        <div
-          className='inline-flex items-center'
-          onMouseEnter={() => setIsTitleHover(true)}
-          onMouseLeave={() => setIsTitleHover(false)}
-        >
-          <p className=' movie-genre cursor-pointer py-4 text-2xl font-bold text-[#b5cdf5]'>
-            {movieCategories[category] || movieGenre}
-          </p>
+    <MovieListWrapper
+      onMouseEnter={() => setIsListHover(true)}
+      onMouseLeave={() => setIsListHover(false)}
+    >
+      <MovieListTitle
+        onMouseEnter={() => setIsTitleHover(true)}
+        onMouseLeave={() => setIsTitleHover(false)}
+        movieCategories={movieCategories}
+        category={category}
+        movieGenre={movieGenre}
+        display={display}
+        genreId={genreId}
+        isListHover={isListHover}
+        isTitleHover={isTitleHover}
+      />
 
-          {display == 'carousel' && (
-            <Link
-              to={`movies/${category}/${genreId ? genreId : ''}`}
-              className='flex items-center self-center'
-            >
-              {/* {isTitleHover && ( */}
-              <p
-                className='overflow-hidden pl-4 font-bold text-[#b5cdf5] transition-all duration-500 hover:text-[#38bdf8] hover:underline'
-                style={{
-                  translate: isTitleHover ? '0px' : '-200px',
-                  display: isTitleHover ? 'block' : 'hodden',
-                  opacity: isTitleHover ? '1' : '0',
-                }}
-              >
-                {/* width: isTitleHover ? '160px' : '0px' , */}
-                {/* translate: isTitleHover ? '0px' : '-200px', */}
-                see all movies
-              </p>
-              {/* )} */}
+      <ListGrid
+        display={display}
+        pageQty={pageQty}
+        page={page}
+        movies={movies}
+        category={category}
+        setPage={setPage}
+      />
 
-              <>
-                <FiArrowRight
-                  className='text-xl font-bold text-[#38bdf8] transition-all duration-150'
-                  style={{ width: isListHover ? '20px' : '0' }}
-                />
-              </>
-            </Link>
-          )}
-        </div>
+      {/* {display === 'list-grid' && (
+        <>
+          <Stack spacing={2}>
+            <Pagination
+              count={pageQty}
+              page={page}
+              onChange={(_, numPage) => setPage(numPage)}
+              color='primary'
+              variant='outlined'
+              sx={{
+                button: { color: '#ffffff' },
+                ul: {
+                  justifyContent: 'center',
+                  marginBottom: '20px',
+                },
+              }}
+            />
+          </Stack>
 
-        {display === 'list-grid' && (
-          <>
-            <Stack spacing={2}>
-              {/* {!!pageQty && ( */}
-              <Pagination
-                count={pageQty}
-                page={page}
-                onChange={(_, numPage) => setPage(numPage)}
-                color='primary'
-                variant='outlined'
-                sx={{
-                  button: { color: '#ffffff' },
-                  ul: {
-                    justifyContent: 'center',
-                    marginBottom: '20px',
-                  },
-                }}
-              />
-              {/* )} */}
-            </Stack>
-
-            <ul className={display}>
-              {movies.map((movie) => (
-                <>
-                  {movie.poster_path && (
-                    <MovieCard
-                      movie={movie}
-                      key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
-                      to={`/movies/${category}/${movie.id}/one`}
-                      src={`${IMAGES_URL}${movie.poster_path}`}
-                      alt={movie.title}
-                      title={movie.title}
-                    />
-                  )}
-                </>
-              ))}
-            </ul>
-          </>
-        )}
-
-        {display === 'carousel' && (
-          <AliceCarousel
-            autoHeight
-            animationType={'fadeout'}
-            controlsStrategy={'responsive'}
-            touchTracking
-            mouseTracking
-            infinite
-            disableDotsControls
-            renderPrevButton={() => (
-              <div className=' carousel-arrow carousel-arrow-left carouselPrevBtn'>
-                &#60;
-              </div>
-            )}
-            renderNextButton={() => (
-              <div className='carousel-arrow carousel-arrow-right carouselNextBtn'>
-                &#62;
-              </div>
-            )}
-            responsive={{
-              0: { items: 1 },
-              576: { items: 2 },
-              768: { items: 3 },
-              840: { items: 4 },
-              992: { items: 5, itemsFit: 'contain' },
-              1200: { items: 6 },
-            }}
-          >
+          <ul className={display}>
             {movies.map((movie) => (
               <>
                 {movie.poster_path && (
                   <MovieCard
-                    key={`${movie.id}_*_${Math.floor(Math.random() * 10)}`}
+                    movie={movie}
+                    key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
                     to={`/movies/${category}/${movie.id}/one`}
                     src={`${IMAGES_URL}${movie.poster_path}`}
                     alt={movie.title}
@@ -208,10 +142,54 @@ const MovieList = memo(({ category, display, genreId }) => {
                 )}
               </>
             ))}
-          </AliceCarousel>
-        )}
-      </div>
-    </div>
+          </ul>
+        </>
+      )} */}
+
+      {display === 'carousel' && (
+        <AliceCarousel
+          autoHeight
+          animationType={'fadeout'}
+          controlsStrategy={'responsive'}
+          touchTracking
+          mouseTracking
+          infinite
+          disableDotsControls
+          renderPrevButton={() => (
+            <div className=' carousel-arrow carousel-arrow-left carouselPrevBtn'>
+              &#60;
+            </div>
+          )}
+          renderNextButton={() => (
+            <div className='carousel-arrow carousel-arrow-right carouselNextBtn'>
+              &#62;
+            </div>
+          )}
+          responsive={{
+            0: { items: 1 },
+            576: { items: 2 },
+            768: { items: 3 },
+            840: { items: 4 },
+            992: { items: 5, itemsFit: 'contain' },
+            1200: { items: 6 },
+          }}
+        >
+          {movies.map((movie) => (
+            <>
+              {movie.poster_path && (
+                <MovieCard
+                  key={`${movie.id}_*_${Math.floor(Math.random() * 10)}`}
+                  to={`/movies/${category}/${movie.id}/one`}
+                  src={`${IMAGES_URL}${movie.poster_path}`}
+                  alt={movie.title}
+                  title={movie.title}
+                />
+              )}
+            </>
+          ))}
+        </AliceCarousel>
+      )}
+    </MovieListWrapper>
   );
 });
 
