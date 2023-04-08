@@ -37,7 +37,7 @@ const Filters = ({
             </div>
             <div className='flex flex-col gap-2 border-b border-slate-300 py-4'>
                 <h2 className='text-[#b5cdf5]'>Release Dates</h2>
-                <div className='flex'>
+                <div className='flex items-center'>
                     <label
                         htmlFor='from-year'
                         className='w-12 text-[12px] text-slate-300'
@@ -46,14 +46,14 @@ const Filters = ({
                     </label>
                     <input
                         name='from-year'
-                        className='rounded px-2'
+                        className='rounded px-2 text-xs py-2'
                         type='text'
-                        placeholder='From year'
+                        placeholder='year'
                         value={selectedYearFrom}
                         onChange={(e) => setSelectedYearFrom(e.target.value)}
                     />
                 </div>
-                <div className='flex'>
+                <div className='flex items-center'>
                     <label
                         htmlFor='to-year'
                         className='w-12 text-[12px] text-slate-300'
@@ -61,10 +61,10 @@ const Filters = ({
                         to
                     </label>
                     <input
-                        className='rounded px-2'
+                        className='rounded px-2 text-xs py-2'
                         name='to-year'
                         type='text'
-                        placeholder='To year'
+                        placeholder='year'
                         value={selectedYearTo}
                         onChange={(e) => setSelectedYearTo(e.target.value)}
                     />
@@ -73,7 +73,7 @@ const Filters = ({
             <div className='py-4'>
                 <h2 className='mb-2 text-[#b5cdf5]'>User Score</h2>
                 <input
-                    className='rounded px-2'
+                    className='rounded px-2 text-xs py-2'
                     type='text'
                     placeholder='Score'
                     value={selectedScore}

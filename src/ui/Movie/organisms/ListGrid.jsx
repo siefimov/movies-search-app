@@ -38,6 +38,9 @@ const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
                     src={`${IMAGES_URL}${movie.poster_path}`}
                     alt={movie.title}
                     title={movie.title}
+                    release_date={movie.release_date}
+                    vote_average={movie.vote_average}
+                    genre_ids={movie.genre_ids}
                   />
                 )}
               </>

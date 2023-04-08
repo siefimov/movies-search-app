@@ -12,10 +12,10 @@ const ListCarousel = ({ display, movies, category }) => {
         <AliceCarousel
           // autoHeight
           // autoWidth
-          
+
           animationType={'fadeout'}
           controlsStrategy={'responsive'}
-          touchTracking          
+          touchTracking
           infinite
           disableDotsControls
           renderPrevButton={() => (
@@ -29,7 +29,7 @@ const ListCarousel = ({ display, movies, category }) => {
             </div>
           )}
           responsive={{
-            0: { items: 2, itemsFit: 'contain'},
+            0: { items: 2, itemsFit: 'contain' },
             576: { items: 2 },
             768: { items: 3 },
             840: { items: 4 },
@@ -48,7 +48,7 @@ const ListCarousel = ({ display, movies, category }) => {
                   title={movie.title}
                   release_date={movie.release_date}
                   vote_average={movie.vote_average}
-                  // genres={movie.genres}
+                  genre_ids={movie.genre_ids}
                 />
               )}
             </>
