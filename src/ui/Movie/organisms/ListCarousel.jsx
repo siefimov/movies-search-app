@@ -10,15 +10,16 @@ const ListCarousel = ({ display, movies, category }) => {
     <>
       {display === 'carousel' && (
         <AliceCarousel
-          autoHeight
+          // autoHeight
+          // autoWidth
+          
           animationType={'fadeout'}
           controlsStrategy={'responsive'}
-          touchTracking
-          mouseTracking
+          touchTracking          
           infinite
           disableDotsControls
           renderPrevButton={() => (
-            <div className=' carousel-arrow carousel-arrow-left carouselPrevBtn'>
+            <div className='carousel-arrow carousel-arrow-left carouselPrevBtn'>
               &#60;
             </div>
           )}
@@ -28,11 +29,11 @@ const ListCarousel = ({ display, movies, category }) => {
             </div>
           )}
           responsive={{
-            0: { items: 1 },
+            0: { items: 2, itemsFit: 'contain'},
             576: { items: 2 },
             768: { items: 3 },
             840: { items: 4 },
-            992: { items: 5, itemsFit: 'contain' },
+            992: { items: 5, itemsFit: 'fill' },
             1200: { items: 6 },
           }}
         >
@@ -45,6 +46,9 @@ const ListCarousel = ({ display, movies, category }) => {
                   src={`${IMAGES_URL}${movie.poster_path}`}
                   alt={movie.title}
                   title={movie.title}
+                  release_date={movie.release_date}
+                  vote_average={movie.vote_average}
+                  // genres={movie.genres}
                 />
               )}
             </>

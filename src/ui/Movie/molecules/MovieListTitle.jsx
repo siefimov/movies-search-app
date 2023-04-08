@@ -16,18 +16,18 @@ function MovieListTitle({
 }) {
   return (
     <div
-      className='inline-flex items-center '
+      className='inline-flex items-center justify-start'
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <p className=' movie-genre cursor-pointer bg-[#0f172a] py-4 text-2xl font-bold text-[#b5cdf5]'>
+      <p className=' movie-genre cursor-pointer bg-[#0f172a] pb-2 pt-4 text-2xl font-bold text-[#b5cdf5]'>
         {movieCategories[category] || movieGenre}
       </p>
 
       {display == 'carousel' && (
         <Link
           to={`movies/${category}/${genreId ? genreId : ''}`}
-          className='flex items-center self-center'
+          className='flex items-center self-center pb-2 pt-5'
         >
           <>
             <FiArrowRight

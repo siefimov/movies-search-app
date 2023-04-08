@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 function MovieListWrapper({ children, onMouseEnter, onMouseLeave }) {
   return (
-    <div className='mx-auto max-w-[1360px] px-10 '>
+    <div className='mx-auto max-w-[1315px] px-5'>
       <div
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        className='gallery'
       >
         {children}
       </div>
@@ -17,7 +18,7 @@ function MovieListWrapper({ children, onMouseEnter, onMouseLeave }) {
 MovieListWrapper.propTypes = {
   // children: PropTypes.element.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default MovieListWrapper;
