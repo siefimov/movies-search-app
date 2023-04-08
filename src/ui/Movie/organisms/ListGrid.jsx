@@ -53,7 +53,7 @@ ListGrid.propTypes = {
   display: PropTypes.string.isRequired,
   pageQty: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
-  movies: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired,
   category: PropTypes.string.isRequired,
   setPage: PropTypes.func.isRequired,
 };

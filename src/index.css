@@ -45,6 +45,9 @@
   .go-back-btn {
     @apply mx-auto rounded-xl border py-2 px-8 font-bold text-[#b5cdf5] hover:border-sky-600
   }
+  .movie-card-link{
+    @apply relative inline-flex h-[260px] w-[172px] flex-col items-center justify-center  text-white shadow-info-50 transition delay-300 duration-200 ease-in-out
+  }
 }
 
 /* translate-x-8 */
