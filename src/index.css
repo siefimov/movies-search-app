@@ -48,6 +48,12 @@
   .movie-card-link {
     @apply relative inline-flex h-[260px] w-[172px] flex-col items-center justify-center  text-white shadow-info-50 transition delay-300 duration-200 ease-in-out;
   }
+  .footer{
+    @apply mt-20 border-t-2 border-t-[#1e293b] bg-[#151f36] py-16 px-4 text-gray-300
+  }
+  .footer-container{
+    @apply mx-auto flex max-w-[1192px] flex-wrap items-center justify-between px-5
+  }
 }
 
 /* translate-x-8 */
