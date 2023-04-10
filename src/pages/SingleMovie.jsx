@@ -30,12 +30,10 @@ const SingleMovie = () => {
   const getMovieData = async () => {
     const response = await axios.get(
       `${URL}movie/${id}${API_KEY}&append_to_response=credits,images,videos`
-    );  
+    );
     setMovie(response.data);
   };
-
-  console.log(movie);
-
+  
   useEffect(() => {
     getMovieData();
   }, [id]);

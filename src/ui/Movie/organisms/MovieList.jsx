@@ -76,7 +76,7 @@ const MovieList = memo(({ category, display, genreId }) => {
       onMouseEnter={() => setIsListHover(true)}
       onMouseLeave={() => setIsListHover(false)}
     >
-      <MovieListTitle
+    { movies.length > 0 ? <MovieListTitle
         onMouseEnter={() => setIsTitleHover(true)}
         onMouseLeave={() => setIsTitleHover(false)}
         movieCategories={movieCategories}
@@ -86,7 +86,7 @@ const MovieList = memo(({ category, display, genreId }) => {
         genreId={genreId}
         isListHover={isListHover}
         isTitleHover={isTitleHover}
-      />
+      /> : ""}
 
       <ListGrid
         display={display}

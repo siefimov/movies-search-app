@@ -39,6 +39,7 @@ const SearchBar = () => {
         }}
         onChange={handleInputValue}
         value={inputValue}
+        placeholder='movie title...'
       />
       <Link
         className='btn-search'

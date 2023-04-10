@@ -79,13 +79,13 @@ const MovieCard = ({
           </div>
         </div>
         <div className='relative flex w-2/5 flex-col justify-center p-3'>
-          <h3 className='mt-2 text-base text-[#38bdf8]'>{title}</h3>
+          <h3 className='mt-2 text-[16px] text-[#38bdf8]'>{title}</h3>
           <p className='my-2 text-[10px] text-[#8498bb]'>{release_date}</p>
           <span>
             {genre_ids?.map((genre_id) => (
               <p
                 key={Math.random()}
-                className='mt-1 rounded text-[10px] text-[#b4cbef]'
+                className='mt-0 rounded text-[10px] text-[#b4cbef]'
               >
                 {genres
                   .filter((genre) => genre.id === genre_id)

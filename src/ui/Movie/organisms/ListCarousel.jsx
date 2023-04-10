@@ -9,10 +9,8 @@ const ListCarousel = ({ display, movies, category }) => {
   return (
     <>
       {display === 'carousel' && (
-        <AliceCarousel
-          // autoHeight
-          // autoWidth
-
+        movies.length > 0 ?
+        <AliceCarousel   
           animationType={'fadeout'}
           controlsStrategy={'responsive'}
           touchTracking
@@ -47,13 +45,14 @@ const ListCarousel = ({ display, movies, category }) => {
                   alt={movie.title}
                   title={movie.title}
                   release_date={movie.release_date}
-                  vote_average={movie.vote_average}
+                  vote_average={movie.vote_average.toFixed(1)}
                   genre_ids={movie.genre_ids}
                 />
               )}
             </>
           ))}
-        </AliceCarousel>
+        </AliceCarousel> 
+        : <p className='mt-3'>Sorry, API cannot provide any similar movies &#128543;</p>
       )}
     </>
   );
@@ -64,5 +63,6 @@ ListCarousel.propTypes = {
   category: PropTypes.string.isRequired,
   movies: PropTypes.array.isRequired,
 };
+
 
 export default ListCarousel;

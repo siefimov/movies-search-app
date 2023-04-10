@@ -116,6 +116,9 @@ const Movies = () => {
                       src={`${IMAGES_URL}${movie.poster_path}`}
                       alt={movie.title}
                       title={movie.title}
+                      release_date={movie.release_date}
+                      vote_average={movie.vote_average.toFixed(1)}
+                      genre_ids={movie.genre_ids}
                     />
                   )}
                 </>
