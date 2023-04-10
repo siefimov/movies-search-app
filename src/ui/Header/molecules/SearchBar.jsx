@@ -16,7 +16,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className='flex items-center '>
+    <div className='flex items-center mr-2'>
       <FiSearch
         onClick={handleIsClicked}
         className='icon-search'
