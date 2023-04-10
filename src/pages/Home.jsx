@@ -13,17 +13,11 @@ const Home = () => {
       URL + endpoints.trending + API_KEY
     );
     setTrending(responseTrending.data.results);
-
-    // const responseTrending = await fetch(URL + endpoints.trending + API_KEY);
-    // const jsonTrending = await responseTrending.json();
-    // setTrending(jsonTrending.results);
   };
 
   useEffect(() => {
     handleTrendings();
-  }, []);
-
-  console.log(trending);
+  }, []);  
 
   return (
     <>

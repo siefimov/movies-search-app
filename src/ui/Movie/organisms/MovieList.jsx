@@ -1,6 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
 import { useParams } from 'react-router-dom';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import axios from 'axios';
 
 import PropTypes from 'prop-types';
 
@@ -24,52 +25,42 @@ const MovieList = memo(({ category, display, genreId }) => {
 
   const getData = async () => {
     if (category === 'trending') {
-      const resp = await fetch(
+      const response = await axios.get(
         `${URL}${category}/movie/week${API_KEY}&page=${page}`
       );
-      const json = await resp.json();
-      const result = await json.results;
-      setMovies(result);
-      setPageQty(json.total_pages);
+      setPageQty(response.data.total_pages);
+      setMovies(response.data.results);
     } else if (
       category === 'popular' ||
       category === 'top_rated' ||
       category === 'upcoming'
     ) {
-      const resp = await fetch(
+      const response = await axios.get(
         `${URL}movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null&page=${page}`
       );
-      const json = await resp.json();
-      const result = await json.results;
-      setMovies(result);
-      setPageQty(json.total_pages);
+      setMovies(response.data.results);
+      setPageQty(response.data.total_pages);
     } else if (category === 'similar') {
-      const resp = await fetch(
+      const response = await axios.get(
         `${URL}movie/${id}/${category}${API_KEY}&page=${page}}`
       );
-      const json = await resp.json();
-      const result = await json.results;
-      setMovies(result);
-      setPageQty(json.total_pages);
+      setMovies(response.data.results);
+      setPageQty(response.data.total_pages);
     } else if (category === 'search') {
-      const resp = await fetch(
+      const response = await axios.get(
         `${URL}${category}/movie${API_KEY}&query=${movieTitle}&page=${page}`
       );
-      const json = await resp.json();
-      const result = await json.results;
-      setMovies(result);
-      setPageQty(json.total_pages);
+      setMovies(response.data.results);
+      setPageQty(response.data.total_pages);
 
       const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
       setMovieGenre(currentMovieGenre[0].name);
     } else {
-      const resp = await fetch(
+      const response = await axios.get(
         `${URL}${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`
       );
-      const json = await resp.json();
-      const result = await json.results;
-      setMovies(result);
-      setPageQty(json.total_pages);
+      setMovies(response.data.results);
+      setPageQty(response.data.total_pages);
 
       const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
       setMovieGenre(currentMovieGenre[0].name);
@@ -106,12 +97,7 @@ const MovieList = memo(({ category, display, genreId }) => {
         setPage={setPage}
       />
 
-      <ListCarousel 
-       display={display}
-       movies={movies}
-       category={category}
-      />
-
+      <ListCarousel display={display} movies={movies} category={category} />
     </MovieListWrapper>
   );
 });

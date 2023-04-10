@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import MovieList from '../ui/Movie/organisms/MovieList';
 import { URL, API_KEY } from '../utils/api';
@@ -27,12 +28,13 @@ const SingleMovie = () => {
   const goBack = () => navigate(-1);
 
   const getMovieData = async () => {
-    const resp = await fetch(
+    const response = await axios.get(
       `${URL}movie/${id}${API_KEY}&append_to_response=credits,images,videos`
-    );
-    const json = await resp.json();
-    setMovie(json);
+    );  
+    setMovie(response.data);
   };
+
+  console.log(movie);
 
   useEffect(() => {
     getMovieData();
