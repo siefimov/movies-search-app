@@ -62,7 +62,7 @@ const Movies = () => {
   };
 
   return (
-    <div className='mx-auto mt-[150px] flex max-w-[1280px] gap-8'>
+    <div className='mx-auto mt-[150px] px-5 flex min-[768px]:flex-row min-[320px]:flex-col max-w-[1280px] gap-8'>
       <Filters
         genres={genres}
         selectedGenres={selectedGenres}

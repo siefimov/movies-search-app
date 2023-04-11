@@ -18,6 +18,12 @@ const Filters = ({
   setSelectedScore,
   handleSearch,
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const [isFilterSelected, setIsFilterSelected] = useState(false);
 
   useEffect(() => {
@@ -30,32 +36,44 @@ const Filters = ({
     setIsFilterSelected(hasSelectedFilter);
   }, [selectedGenres, selectedYearFrom, selectedYearTo, selectedScore]);
 
-  console.log(isFilterSelected);
-
   return (
-    <div className='mx-4 box-border flex h-fit max-w-[300px] flex-col rounded bg-[#203048] p-4 shadow shadow-slate-600'>
-      <h2 className='mb-4 border-b py-4 text-center font-bold uppercase tracking-widest text-[#38bdf8]'>
-        Filters
-      </h2>
+    <div className='box-border flex h-fit w-full flex-col rounded bg-[#203048] p-4 shadow shadow-slate-600 min-[768px]:max-w-[300px]'>
+      <button
+        className='mb-4 border-b py-4 text-center font-bold uppercase tracking-widest text-[#38bdf8]'
+        onClick={toggleExpanded}
+      >
+        Filter {isExpanded ? '▲' : '▼'}
+      </button>
 
-      <GenresFilter
-        genres={genres}
-        selectedGenres={selectedGenres}
-        handleGenreClick={(genreId) => {
-          handleGenreClick(genreId);
-        }}
-      />
-      <ReleaseDateFilter
-        selectedYearFrom={selectedYearFrom}
-        selectedYearTo={selectedYearTo}
-        setSelectedYearFrom={setSelectedYearFrom}
-        setSelectedYearTo={setSelectedYearTo}
-      />
-      <UserScoreFilter
-        selectedScore={selectedScore}
-        setSelectedScore={setSelectedScore}
-      />
-      <FilterButton handleSearch={handleSearch} disabled={!isFilterSelected} />
+      {/* <h2 className='mb-4 border-b py-4 text-center font-bold uppercase tracking-widest text-[#38bdf8]'>
+        Filters
+      </h2> */}
+
+      {isExpanded && (
+        <>
+          <GenresFilter
+            genres={genres}
+            selectedGenres={selectedGenres}
+            handleGenreClick={(genreId) => {
+              handleGenreClick(genreId);
+            }}
+          />
+          <ReleaseDateFilter
+            selectedYearFrom={selectedYearFrom}
+            selectedYearTo={selectedYearTo}
+            setSelectedYearFrom={setSelectedYearFrom}
+            setSelectedYearTo={setSelectedYearTo}
+          />
+          <UserScoreFilter
+            selectedScore={selectedScore}
+            setSelectedScore={setSelectedScore}
+          />
+          <FilterButton
+            handleSearch={handleSearch}
+            disabled={!isFilterSelected}
+          />
+        </>
+      )}
     </div>
   );
 };
