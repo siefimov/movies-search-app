@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <HeaderContainer bgColor={isScrolled}>
-      <div className='mx-auto flex w-full max-w-[1240px] items-center justify-between'>
+      <div className='mx-auto flex w-full max-w-[1240px] items-center justify-between relative'>
         <Logo />
         <MenuList>
           <MenuItem to={'/'} value='Home' />

@@ -16,7 +16,13 @@ const SearchBar = () => {
   };
 
   return (
-    <div className='flex items-center mr-2'>
+    <div
+      className='mr-2 flex items-center transition-all duration-1000 min-[320px]:top-[50px] sm:top-0'
+      style={{
+        position: isClicked ? 'absolute' : 'static',
+        right: isClicked ? '2%' : 'none',
+      }}
+    >
       <FiSearch
         onClick={handleIsClicked}
         className='icon-search'
@@ -27,19 +33,19 @@ const SearchBar = () => {
       />
       <AiOutlineCloseCircle
         onClick={() => setInputValue('')}
-        className='h-[20px] w-[28px] translate-x-8 cursor-pointer  text-slate-500 hover:text-[#38bdf8]'
+        className='h-[20px] w-[28px] translate-x-8 cursor-pointer text-slate-500 hover:text-[#38bdf8]'
         style={{ display: isClicked ? 'block' : 'none' }}
       />
       <input
         type='text'
-        className='input-search'
+        className='input-search '
         style={{
           width: isClicked ? '300px' : '0',
           paddingLeft: isClicked ? '40px' : '0',
         }}
         onChange={handleInputValue}
         value={inputValue}
-        placeholder='movie title...'
+        placeholder='search movie...'
       />
       <Link
         className='btn-search'
@@ -52,7 +58,9 @@ const SearchBar = () => {
         search
       </Link>
       <AiOutlineClose
-        onClick={handleIsClicked}
+        onClick={() => {
+          handleIsClicked(), setInputValue('');
+        }}
         className='translate-x-[-60px] cursor-pointer text-lg text-slate-200 hover:text-[#38bdf8]'
         style={{ display: isClicked ? 'block' : 'none' }}
       />
