@@ -111,7 +111,7 @@ const Movies = () => {
                 <>
                   {movie.poster_path && (
                     <MovieCard
-                      key={`${movie.id}-${Math.floor(Math.random() * 10)}`}
+                      key={`${movie.id}-${Math.floor(Math.random())}`}
                       to={`/movies/${category}/${movie.id}/one`}
                       src={`${IMAGES_URL}${movie.poster_path}`}
                       alt={movie.title}
@@ -124,6 +124,24 @@ const Movies = () => {
                 </>
               ))}
             </ul>
+            <Stack spacing={2}>
+              {!!pageQty && (
+                <Pagination
+                  count={pageQty}
+                  page={page}
+                  onChange={(_, numPage) => (setPage(numPage), handleSearch())}
+                  color='primary'
+                  variant='outlined'
+                  sx={{
+                    button: { color: '#ffffff' },
+                    ul: {
+                      justifyContent: 'center',
+                      marginBottom: '20px',
+                    },
+                  }}
+                />
+              )}
+            </Stack>
           </div>
         </>
       )}

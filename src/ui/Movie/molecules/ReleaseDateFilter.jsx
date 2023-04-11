@@ -41,8 +41,8 @@ const ReleaseDateFilter = ({
 };
 
 ReleaseDateFilter.propTypes = {
-  selectedYearFrom: PropTypes.number,
-  selectedYearTo: PropTypes.number,
+  selectedYearFrom: PropTypes.string,
+  selectedYearTo: PropTypes.string,
   setSelectedYearFrom: PropTypes.func,
   setSelectedYearTo: PropTypes.func,
 };

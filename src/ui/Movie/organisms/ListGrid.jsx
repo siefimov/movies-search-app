@@ -24,6 +24,7 @@ const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
                   marginBottom: '20px',
                 },
               }}
+              key={pageQty + Math.random()}
             />
           </Stack>
 
@@ -33,7 +34,7 @@ const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
                 {movie.poster_path && (
                   <MovieCard
                     movie={movie}
-                    key={`${movie.id} * ${Math.floor(Math.random() * 10)}`}
+                    key={`${movie.id} + ${Math.random()}`}
                     to={`/movies/${category}/${movie.id}/one`}
                     src={`${IMAGES_URL}${movie.poster_path}`}
                     alt={movie.title}

@@ -104,8 +104,8 @@ MovieCard.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  release_date: PropTypes.number,
-  vote_average: PropTypes.string,
+  release_date: PropTypes.string,
+  vote_average: PropTypes.number,
   genre_ids: PropTypes.array,
 };
 

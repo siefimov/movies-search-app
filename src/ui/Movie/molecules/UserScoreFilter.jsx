@@ -17,7 +17,7 @@ const UserScoreFilter = ({ selectedScore, setSelectedScore }) => {
 };
 
 UserScoreFilter.propTypes = {
-  selectedScore: PropTypes.number,
+  selectedScore: PropTypes.string,
   setSelectedScore: PropTypes.func,
 };
 

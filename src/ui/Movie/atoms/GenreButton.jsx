@@ -16,7 +16,7 @@ const GenreButton = ({ genre, selectedGenres, handleGenreClick }) => {
 };
 
 GenreButton.propTypes = {
-  genre: PropTypes.string.isRequired,
+  genre: PropTypes.object.isRequired,
   selectedGenres: PropTypes.array.isRequired,
   handleGenreClick: PropTypes.func.isRequired,
 };
