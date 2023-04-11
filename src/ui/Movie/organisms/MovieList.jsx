@@ -105,7 +105,7 @@ const MovieList = memo(({ category, display, genreId }) => {
 MovieList.propTypes = {
   category: PropTypes.string.isRequired,
   display: PropTypes.string.isRequired,
-  genreId: PropTypes.number,
+  genreId: PropTypes.string,
 };
 
 export default MovieList;

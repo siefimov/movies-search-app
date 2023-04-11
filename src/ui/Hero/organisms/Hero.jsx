@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { FaPlay } from 'react-icons/fa';
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ const Hero = ({ movie }) => {
   const fetchVideo = async () => {
     const response = await axios.get(
       `${URL}movie/${movie.id}/videos${API_KEY}`
-    );    
+    );
     setVideoKey(response.data.results[0]?.key);
   };
 
@@ -65,4 +66,7 @@ const Hero = ({ movie }) => {
   );
 };
 
+Hero.propTypes = {
+  movie: PropTypes.object.isRequired,  
+};
 export default Hero;

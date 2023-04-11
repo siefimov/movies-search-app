@@ -9,7 +9,7 @@ const SingleMoviePageWrapper = ({ children }) => {
 };
 
 SingleMoviePageWrapper.propTypes = {
-  children: PropTypes.node,
+  // children: PropTypes.node,
 };
 
 export default SingleMoviePageWrapper;

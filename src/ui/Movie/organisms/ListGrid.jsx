@@ -46,6 +46,23 @@ const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
               </>
             ))}
           </ul>
+
+          <Stack spacing={2}>
+            <Pagination
+              count={pageQty}
+              page={page}
+              onChange={(_, numPage) => setPage(numPage)}
+              color='primary'
+              variant='outlined'
+              sx={{
+                button: { color: '#ffffff' },
+                ul: {
+                  justifyContent: 'center',
+                  marginBottom: '20px',
+                },
+              }}
+            />
+          </Stack>
         </>
       )}
     </>

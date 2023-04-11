@@ -64,7 +64,11 @@ body {
   padding: 0;
   margin: 0;
 }
-
+*:disabled {
+  background-color: #696969;
+  color: linen;
+  opacity: 1;
+}
 .gallery {
   position: relative;
   overflow: hidden;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import { genres } from '../../../utils/db_categories';
 
 const MovieCard = ({
-  movie,
   to,
   src,
   alt,
@@ -97,6 +97,16 @@ const MovieCard = ({
       </div>
     </Link>
   );
+};
+
+MovieCard.propTypes = {
+  to: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  release_date: PropTypes.number,
+  vote_average: PropTypes.string,
+  genre_ids: PropTypes.array,
 };
 
 export default MovieCard;
