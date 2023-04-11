@@ -6,7 +6,7 @@ import GenreButton from '../atoms/GenreButton';
 const GenresFilter = ({ genres, selectedGenres, handleGenreClick }) => {
   return (
     <div className='border-b border-slate-300 pb-4'>
-      <h2 className='mb-3 text-[#b5cdf5]'>GenresFilter</h2>
+      <h2 className='mb-3 text-[#b5cdf5]'>Genres</h2>
       <div className='text-white'>
         {genres.map((genre) => (
           <GenreButton
