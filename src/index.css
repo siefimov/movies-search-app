@@ -16,10 +16,10 @@
     @apply bg-sky-700;
   }
   .carouselPrevBtn {
-    @apply absolute left-[0px] bottom-[50%] z-20 cursor-pointer rounded-full border-2 border-slate-200 px-2 text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8] w-[40px] h-[40px] flex justify-center items-center text-2xl font-bold bg-slate-700;
+    @apply absolute left-[0px] bottom-[50%] z-20 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-slate-700 px-2 text-2xl font-bold text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8];
   }
   .carouselNextBtn {
-    @apply absolute right-[35px] bottom-[50%] cursor-pointer rounded-full border-2 border-slate-200 px-2 text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8] w-[40px] h-[40px] flex justify-center items-center text-2xl font-bold bg-slate-700;
+    @apply absolute right-[35px] bottom-[50%] flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-slate-700 px-2 text-2xl font-bold text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8];
   }
   .input-search {
     @apply h-[35px] rounded-[10px] bg-[#203048] text-sm text-[#b5cdf5] outline-none transition-all duration-500;
@@ -43,8 +43,9 @@
     @apply mb-5 inline-block h-[275px] w-[140px] min-w-[140px] rounded-xl border border-slate-100 text-xs;
   }
   .go-back-btn {
-    @apply mx-auto rounded-xl border py-2 px-8 font-bold text-[#b5cdf5] hover:border-sky-600;
+    @apply px-8 font-bold text-[#f5b5df] hover:text-[#38bdf8];
   }
+  /* mx-auto rounded-xl border */
   .movie-card-link {
     @apply relative inline-flex h-[260px] w-[172px] flex-col items-center justify-center  text-white shadow-info-50 transition delay-300 duration-200 ease-in-out;
   }

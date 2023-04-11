@@ -33,7 +33,7 @@ const SingleMovie = () => {
     );
     setMovie(response.data);
   };
-  
+
   useEffect(() => {
     getMovieData();
   }, [id]);
@@ -50,9 +50,10 @@ const SingleMovie = () => {
 
   return (
     <SingleMoviePageWrapper>
+      <GoBackButton goBack={goBack} />
       {movie && (
         <>
-          <MainBlockWrapper>
+          <MainBlockWrapper>          
             <Poster movie={movie} />
             <div className='flex flex-col gap-3 pr-6 text-slate-100'>
               <TitleAndYear movie={movie} />
@@ -75,7 +76,6 @@ const SingleMovie = () => {
         </>
       )}
 
-      <GoBackButton goBack={goBack} />
       <VideoModal
         isPlaying={isPlaying}
         handleCloseModal={handleCloseModal}

@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 
 const GoBackButton = ({ goBack }) => {
   return (
-    <Link onClick={goBack} className='go-back-btn'>
-      Go Back
-    </Link>
+    <div className='max-w-[1280px] w-full mx-auto px-5 pb-2'>
+      <Link onClick={goBack} className='go-back-btn'>
+        &#x2190; Go Back
+      </Link>
+    </div>
   );
 };
 
 GoBackButton.propTypes = {
-  goBack: PropTypes.func.isRequired
+  goBack: PropTypes.func.isRequired,
 };
 
 export default GoBackButton;
