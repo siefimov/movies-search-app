@@ -7,7 +7,7 @@ const Poster = ({ movie }) => {
       <img
         src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
         alt={movie.title}
-        className='w-[300px] rounded-xl '
+        className='w-[300px] rounded-xl self-center'
       />
     </>
   );

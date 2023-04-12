@@ -7,7 +7,7 @@
     @apply flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll scrollbar-thin scrollbar-track-[#0f172a] scrollbar-thumb-[#b5cdf5];
   }
   .list-grid {
-    @apply flex flex-wrap justify-center gap-3 mb-6;
+    @apply mb-6 flex flex-wrap justify-center gap-3;
   }
   .hero-button {
     @apply mr-2 inline-flex max-w-fit cursor-pointer items-center gap-2 rounded-2xl border-2 border-[#b5cdf5] bg-[#b5cdf5] px-6 py-2 font-bold text-[#1e293b] hover:bg-[#38bdf8] hover:transition-all;
@@ -16,8 +16,9 @@
     @apply bg-sky-700;
   }
   .carouselPrevBtn {
-    @apply absolute left-[0px] bottom-[50%] z-20 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-slate-700 px-2 text-2xl font-bold text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8];
+    @apply absolute left-[0px] bottom-[50%] flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-slate-700 px-2 text-2xl font-bold text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8];
   }
+  /* z-20 */
   .carouselNextBtn {
     @apply absolute right-[35px] bottom-[50%] flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-slate-700 px-2 text-2xl font-bold text-slate-200 hover:border-[#38bdf8] hover:text-[#38bdf8];
   }
@@ -37,17 +38,17 @@
     @apply mt-4 rounded-full border bg-[#1e293b] px-4 py-2 text-[#b5cdf5] hover:bg-[#303e54];
   }
   .video-modal {
-    @apply fixed top-0 left-0 flex h-[100%] w-[100%] flex-col items-center justify-center bg-[rgba(0,0,0,0.7)];
+    @apply fixed top-[15%] flex flex-col items-center justify-center bg-[rgba(0,0,0,0.7)] min-[220px]:h-[50%] min-[220px]:w-[100%] min-[1024px]:h-[75%] min-[1024px]:w-[75%] min-[1024px]:translate-x-[17%];
   }
   .cast-card {
-    @apply mb-5 inline-block h-[275px] w-[140px] min-w-[140px] rounded-xl border border-slate-100 text-xs;
+    @apply mb-5 inline-block h-[275px] w-[140px] min-w-[140px] overflow-hidden rounded-xl border border-slate-100 text-xs;
   }
   .go-back-btn {
     @apply px-8 font-bold text-[#f5b5df] hover:text-[#38bdf8];
   }
   /* mx-auto rounded-xl border */
   .movie-card-link {
-    @apply relative inline-flex h-[260px] w-[172px] flex-col items-center justify-center  text-white shadow-info-50 transition delay-300 duration-200 ease-in-out;
+    @apply relative inline-flex h-[280px] w-[230px] flex-col items-center justify-center text-white shadow-info-50  transition delay-300 duration-200 ease-in-out min-[380px]:h-[260px] min-[380px]:w-[172px];
   }
   .footer {
     @apply mt-20 border-t-2 border-t-[#1e293b] bg-[#151f36] py-16 px-4 text-gray-300;
@@ -69,7 +70,7 @@ body {
   color: linen;
   opacity: 1;
 }
-::placeholder{
+::placeholder {
   font-style: italic;
 }
 .gallery {
@@ -87,7 +88,6 @@ body {
   position: relative;
   z-index: -1;
 }
-
 /* remove the overflow:hidden style from the carousel */
 .alice-carousel__wrapper {
   overflow: visible !important;
@@ -96,4 +96,17 @@ body {
 .alice-carousel__stage {
   padding-left: 50%;
   padding-right: 50%;
+}
+
+@media (min-width: 220px) {
+  .alice-carousel__stage {
+    padding-left: 8%;
+    padding-right: 5%;
+  }
+}
+@media (min-width: 380px) {
+  .alice-carousel__stage {
+    padding-left: 50%;
+    padding-right: 50%;
+  }
 }

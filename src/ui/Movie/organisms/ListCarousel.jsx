@@ -27,11 +27,12 @@ const ListCarousel = ({ display, movies, category }) => {
               </div>
             )}
             responsive={{
-              0: { items: 2, itemsFit: 'contain' },
+              0: { items: 1 },
+              380: { items: 2 },
               576: { items: 2 },
               768: { items: 3 },
               840: { items: 4 },
-              992: { items: 5, itemsFit: 'fill' },
+              992: { items: 5 },
               1200: { items: 6 },
             }}
           >

@@ -24,7 +24,7 @@ const MobileMenuBar = () => {
             <div
                 className={
                     nav
-                        ? `fixed left-0 top-0 h-full w-[60%] border-r border-r-[#1e293b] bg-[#0f172a] ease-in-out duration-500`
+                        ? `fixed left-0 top-0 h-full w-[80%] border-r border-r-[#1e293b] bg-[#0f172a] ease-in-out duration-500`
                         : 'fixed left-[-100%]'
                 }
             >

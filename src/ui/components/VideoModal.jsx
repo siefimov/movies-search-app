@@ -20,8 +20,8 @@ const VideoModal = ({ isPlaying, handleCloseModal, videoUrl }) => {
         url={videoUrl}
         controls={true}
         playing={true}
-        width='65%'
-        height='80%'
+        width='100%'
+        height='100%'
       />
     </ReactModal>
   );

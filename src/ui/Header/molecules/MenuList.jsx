@@ -7,7 +7,7 @@ const MenuList = ({ isMobile, children }) => {
             className={`flex gap-8 flex-auto  ${
                 isMobile
                     ? 'flex-col pt-24 uppercase pl-12'
-                    : 'pl-40 hidden md:flex '
+                    : 'pl-28 hidden md:flex'
             }`}
         >
             {children}

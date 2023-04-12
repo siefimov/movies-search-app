@@ -17,18 +17,19 @@ const SearchBar = () => {
 
   return (
     <div
-      className='mr-2 flex items-center transition-all duration-1000 min-[320px]:top-[50px] sm:top-0'
+      className='flex items-center pr-2 transition-all duration-1000 min-[320px]:top-[50px] sm:top-0 sm:right-0'
       style={{
         position: isClicked ? 'absolute' : 'static',
-        right: isClicked ? '2%' : 'none',
+        // right: isClicked ? '1px' : 'none',
       }}
     >
       <FiSearch
         onClick={handleIsClicked}
         className='icon-search'
         style={{
-          width: isClicked ? '0' : '34px',
-          opacity: isClicked ? '0' : '1',
+          // width: isClicked ? '0' : '34px',
+          // opacity: isClicked ? '0' : '1',
+          display: isClicked ? 'none' : 'block',
         }}
       />
       <AiOutlineCloseCircle
@@ -38,11 +39,9 @@ const SearchBar = () => {
       />
       <input
         type='text'
-        className='input-search '
-        style={{
-          width: isClicked ? '300px' : '0',
-          paddingLeft: isClicked ? '40px' : '0',
-        }}
+        className={`input-search ${
+          isClicked ? 'w-[230px] pl-[40px] min-[380px]:w-[300px]' : 'w-0 pl-0'
+        }`}
         onChange={handleInputValue}
         value={inputValue}
         placeholder='search movie...'

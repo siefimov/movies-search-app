@@ -106,7 +106,7 @@ const Movies = () => {
               )}
             </Stack>
 
-            <ul className='flex flex-wrap justify-center gap-4'>
+            <ul className='mb-6 flex flex-wrap justify-center gap-4'>
               {movies.map((movie) => (
                 <>
                   {movie.poster_path && (
