@@ -5,7 +5,7 @@ const HeaderContainer = ({ bgColor, children }) => {
 
     return (
         <header
-            className={`fixed top-0 z-20 flex w-full items-center justify-between p-4 transition-all duration-500 ease-in-out bg-[${setBgColor}] bg-gradient-to-t from-[transparent] to-[rgb(0,0,0,0.8)]`}
+            className={`fixed top-0 z-20 w-full items-center justify-between p-4 transition-all duration-500 ease-in-out bg-[${setBgColor}] bg-gradient-to-t from-[transparent] to-[rgb(0,0,0,0.8)]`}
         >
             {children}
         </header>
