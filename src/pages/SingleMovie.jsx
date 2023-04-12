@@ -53,7 +53,7 @@ const SingleMovie = () => {
       <GoBackButton goBack={goBack} />
       {movie && (
         <>
-          <MainBlockWrapper>          
+          <MainBlockWrapper>
             <Poster movie={movie} />
             <div className='flex flex-col gap-3 pr-6 text-slate-100'>
               <TitleAndYear movie={movie} />
@@ -69,7 +69,7 @@ const SingleMovie = () => {
 
           <CastList movie={movie} />
 
-          <div className='mx-auto mb-12 mt-10 w-full max-w-[1280px] px-5 text-slate-300 '>
+          <div className='mx-auto mb-12 mt-10 w-full max-w-[1315px] px-5 text-slate-300 '>
             <h2 className='text-2xl'>You may also like</h2>
             <MovieList category='similar' display='carousel' />
           </div>

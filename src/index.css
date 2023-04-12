@@ -4,7 +4,7 @@
 
 @layer components {
   .list-scroll {
-    @apply flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll scrollbar-thin scrollbar-track-[#0f172a] scrollbar-thumb-[#b5cdf5];
+    @apply flex max-w-[1240px] snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll scrollbar-thin scrollbar-track-[#0f172a] scrollbar-thumb-[#b5cdf5];
   }
   .list-grid {
     @apply mb-6 flex flex-wrap justify-center gap-3;
