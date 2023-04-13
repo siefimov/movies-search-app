@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
-import MenuItem from '../atoms/MenuItem';
 import MenuList from '../molecules/MenuList';
-import SubMenuItem from '../atoms/SubMenuItem';
-import SubMenuList from '../molecules/SubMenuList';
 import Logo from '../atoms/Logo';
 
 const MobileMenuBar = () => {
   const [nav, setNav] = useState(false);
+
   const hadleNav = () => {
     setNav(!nav);
   };
@@ -25,17 +23,7 @@ const MobileMenuBar = () => {
         }
       >
         <Logo isMobile />
-        <MenuList isMobile>
-          <MenuItem to={'/'} value='Home' />
-          <div className='relative flex flex-col'>
-            <MenuItem to='/movies' value='Movies' peer='peer' />
-            <SubMenuList>
-              <SubMenuItem to={`/movies/popular`} value='Popular' />
-              <SubMenuItem to={`/movies/upcoming`} value='Upcoming' />
-              <SubMenuItem to={`/movies/top_rated`} value='Top Rated' />
-            </SubMenuList>
-          </div>
-        </MenuList>
+        <MenuList isMobile />
       </div>
     </>
   );
