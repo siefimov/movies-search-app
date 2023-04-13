@@ -14,7 +14,7 @@ function DateGenresRuntime({ movie }) {
           {movie.genres.map((genre) => (
             <span
               key={Math.random()}
-              className='mr-2 bg-yellow-600 px-1 text-white rounded'
+              className='mr-2 mb-1 bg-yellow-600 px-1 text-white rounded inline-block'
             >
               {genre.name}
             </span>

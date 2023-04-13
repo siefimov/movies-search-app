@@ -6,7 +6,9 @@ const CastList = ({ movie }) => {
     <>
       {movie.credits.cast.length > 0 ? (
         <div className='relative mx-auto mt-5 flex max-w-[1280px] flex-col overflow-hidden px-5'>
-          <div className='my-2 text-xl font-bold text-white'>Cast List</div>
+          <div className='my-2 text-xl font-bold text-white'>
+            Top Billed Cast
+          </div>
           <ul className='flex flex-wrap justify-center gap-4'>
             {movie.credits.cast.slice(0, 7).map(
               (actor) =>

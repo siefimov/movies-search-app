@@ -33,7 +33,7 @@ const ScorePlayBtn = ({ movie, handleOpenModal }) => {
           className='border-none'
         >
           <FaPlay />
-          Play Trailer
+          Play
         </HeroButton>
       )}
     </div>
