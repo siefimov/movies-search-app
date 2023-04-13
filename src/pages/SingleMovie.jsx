@@ -11,9 +11,6 @@ import TitleAndYear from '../ui/molecules/TitleAndYear';
 import DateGenresRuntime from '../ui/molecules/DateGenresRuntime';
 import ScorePlayBtn from '../ui/molecules/ScorePlayBtn';
 import MovieCrew from '../ui/molecules/MovieCrew';
-
-import SingleMoviePageWrapper from '../ui/atoms/SingleMoviePageWrapper';
-import MainBlockWrapper from '../ui/atoms/MainBlockWrapper';
 import Poster from '../ui/atoms/Poster';
 import Overview from '../ui/atoms/Overview';
 import Tagline from '../ui/atoms/Tagline';
@@ -50,23 +47,25 @@ const SingleMovie = () => {
   };
 
   return (
-    <SingleMoviePageWrapper>
+    <div className='mx-auto mt-[73px] flex max-w-[1240px] flex-col justify-center py-10'>
       <GoBackButton goBack={goBack} />
       {movie && (
         <>
-          <MainBlockWrapper>
-            <Poster movie={movie} />
-            <div className='flex flex-col gap-3 pr-6 text-slate-100'>
-              <TitleAndYear movie={movie} />
-              <DateGenresRuntime movie={movie} />
+          <div className='relative w-full bg-gradient-to-r from-slate-800 to-blue-900'>
+            <div className='mx-auto my-8 flex w-full max-w-[1280px] flex-col items-start gap-12 px-5 md:flex-row'>
+              <Poster movie={movie} />
+              <div className='flex flex-col gap-3 pr-6 text-slate-100'>
+                <TitleAndYear movie={movie} />
+                <DateGenresRuntime movie={movie} />
 
-              <ScorePlayBtn movie={movie} handleOpenModal={handleOpenModal} />
+                <ScorePlayBtn movie={movie} handleOpenModal={handleOpenModal} />
 
-              <Tagline movie={movie} />
-              <Overview movie={movie} />
-              <MovieCrew movie={movie} />
+                <Tagline movie={movie} />
+                <Overview movie={movie} />
+                <MovieCrew movie={movie} />
+              </div>
             </div>
-          </MainBlockWrapper>
+          </div>
 
           <CastList movie={movie} />
 
@@ -82,7 +81,7 @@ const SingleMovie = () => {
         handleCloseModal={handleCloseModal}
         videoUrl={videoUrl}
       />
-    </SingleMoviePageWrapper>
+    </div>
   );
 };
 

@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import PropTypes from 'prop-types';
 
-import MovieListWrapper from '../atoms/MovieListWrapper';
 import MovieListTitle from '../molecules/MovieListTitle';
 import ListGrid from './ListGrid';
 import ListCarousel from './ListCarousel';
@@ -72,33 +71,40 @@ const MovieList = memo(({ category, display, genreId }) => {
   }, [category, page, movieTitle]);
 
   return (
-    <MovieListWrapper
-      onMouseEnter={() => setIsListHover(true)}
-      onMouseLeave={() => setIsListHover(false)}
-    >
-    { movies.length > 0 ? <MovieListTitle
-        onMouseEnter={() => setIsTitleHover(true)}
-        onMouseLeave={() => setIsTitleHover(false)}
-        movieCategories={movieCategories}
-        category={category}
-        movieGenre={movieGenre}
-        display={display}
-        genreId={genreId}
-        isListHover={isListHover}
-        isTitleHover={isTitleHover}
-      /> : ""}
+    <div className='mx-auto max-w-[1315px] px-5'>
+      <div
+        onMouseEnter={() => setIsListHover(true)}
+        onMouseLeave={() => setIsListHover(false)}
+        className='gallery'
+      >
+        {movies.length > 0 ? (
+          <MovieListTitle
+            onMouseEnter={() => setIsTitleHover(true)}
+            onMouseLeave={() => setIsTitleHover(false)}
+            movieCategories={movieCategories}
+            category={category}
+            movieGenre={movieGenre}
+            display={display}
+            genreId={genreId}
+            isListHover={isListHover}
+            isTitleHover={isTitleHover}
+          />
+        ) : (
+          ''
+        )}
 
-      <ListGrid
-        display={display}
-        pageQty={pageQty}
-        page={page}
-        movies={movies}
-        category={category}
-        setPage={setPage}
-      />
+        <ListGrid
+          display={display}
+          pageQty={pageQty}
+          page={page}
+          movies={movies}
+          category={category}
+          setPage={setPage}
+        />
 
-      <ListCarousel display={display} movies={movies} category={category} />
-    </MovieListWrapper>
+        <ListCarousel display={display} movies={movies} category={category} />
+      </div>
+    </div>
   );
 });
 
