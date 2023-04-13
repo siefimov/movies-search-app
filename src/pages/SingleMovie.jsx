@@ -12,8 +12,6 @@ import ScorePlayBtn from '../ui/molecules/ScorePlayBtn';
 import MovieCrew from '../ui/molecules/MovieCrew';
 import GoBackButton from '../ui/atoms/GoBackButton';
 import Poster from '../ui/atoms/Poster';
-import Overview from '../ui/atoms/Overview';
-import Tagline from '../ui/atoms/Tagline';
 
 const SingleMovie = () => {
   const { id } = useParams();
@@ -60,8 +58,14 @@ const SingleMovie = () => {
 
                 <ScorePlayBtn movie={movie} handleOpenModal={handleOpenModal} />
 
-                <Tagline movie={movie} />
-                <Overview movie={movie} />
+                <div className='font-bold italic text-slate-400'>
+                  {movie.tagline}
+                </div>
+                <div className='mb-5 flex flex-col'>
+                  <span className='mb-2 text-2xl font-semibold'>Overview</span>
+                  {movie.overview}
+                </div>
+
                 <MovieCrew movie={movie} />
               </div>
             </div>

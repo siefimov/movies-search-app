@@ -1,6 +1,8 @@
 export const URL = 'https://api.themoviedb.org/3/';
 export const API_KEY = '?api_key=83cb5904bd2f84699c28a99d9d4a0289';
 export const IMAGES_URL = 'https://image.tmdb.org/t/p/w300';
+export const IMAGES_URL_ORIGINAL = 'https://image.tmdb.org/t/p/original/';
+export const YOUTUBE = 'https://www.youtube.com/watch?v=';
 
 export const endpoints = {
   trending: '/trending/all/week',
@@ -11,4 +13,3 @@ export const endpoints = {
   originals: 'discover/tv',
   latest: '/movie/latest',
 };
-

@@ -13,9 +13,11 @@ const ScorePlayBtn = ({ movie, handleOpenModal }) => {
         <CircularProgressbar
           value={movie.vote_average}
           maxValue={10}
-          text={`${movie.vote_average}`}
+          text={`${movie.vote_average.toFixed(2)}`}
           styles={buildStyles({
             pathColor: 'green',
+            textColor: '#f34e06',
+            textSize: '32px',
           })}
         />
       </div>
