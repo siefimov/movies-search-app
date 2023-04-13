@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function MovieListWrapper({ children, onMouseEnter, onMouseLeave }) {
+const MovieListWrapper = ({ children, onMouseEnter, onMouseLeave }) => {
   return (
     <div className='mx-auto max-w-[1315px] px-5'>
       <div
@@ -13,7 +13,7 @@ function MovieListWrapper({ children, onMouseEnter, onMouseLeave }) {
       </div>
     </div>
   );
-}
+};
 
 MovieListWrapper.propTypes = {
   // children: PropTypes.element.isRequired,

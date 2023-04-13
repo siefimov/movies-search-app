@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
-function MovieListTitle({
+const MovieListTitle = ({
   movieCategories,
   category,
   movieGenre,
@@ -13,7 +13,7 @@ function MovieListTitle({
   isTitleHover,
   onMouseEnter,
   onMouseLeave,
-}) {
+}) => {
   return (
     <div
       className='inline-flex items-center justify-start'

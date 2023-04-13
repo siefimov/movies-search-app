@@ -25,15 +25,15 @@ const MovieCard = ({
     };
   }, [timerId]);
 
-  function handleMouseEnter() {
+  const handleMouseEnter = () => {
     const id = setTimeout(() => setIsHovering(true), 500);
     setTimerId(id);
-  }
+  };
 
-  function handleMouseLeave() {
+  const handleMouseLeave = () => {
     clearTimeout(timerId);
     setIsHovering(false);
-  }
+  };
 
   return (
     <Link
@@ -45,7 +45,7 @@ const MovieCard = ({
       <img
         src={src}
         alt={alt}
-        className='h-[260px] w-[180px] rounded-xl min-[380px]:h-[260px] min-[380px]:max-w-[172px] shadow-md shadow-info-500'
+        className='h-[260px] w-[180px] rounded-xl shadow-md shadow-info-500 min-[380px]:h-[260px] min-[380px]:max-w-[172px]'
       />
 
       <div

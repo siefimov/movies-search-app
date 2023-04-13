@@ -6,7 +6,7 @@ import SingleMovie from './pages/SingleMovie';
 import PageNotFound from './pages/PageNotFound';
 import Layout from './ui/templates/Layout';
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
@@ -20,6 +20,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;
