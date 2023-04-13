@@ -14,20 +14,20 @@ const DateGenresRuntime = ({ movie }) => {
           {movie.genres.map((genre) => (
             <span
               key={Math.random()}
-              className='mr-2 mb-1 bg-yellow-600 px-1 text-white rounded inline-block'
+              className='mr-2 mb-1 inline-block rounded bg-yellow-600 px-1 text-white'
             >
               {genre.name}
             </span>
           ))}
         </span>
         &#9900;
-        <span >
+        <span>
           {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
         </span>
       </div>
     </>
   );
-}
+};
 
 DateGenresRuntime.propTypes = {
   movie: PropTypes.object.isRequired,

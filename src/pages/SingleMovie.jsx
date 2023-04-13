@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import MovieList from '../ui/organisms/MovieList';
 import { URL, API_KEY } from '../utils/api';
-import VideoModal from '../ui/molecules/VideoModal';
+import MovieList from '../ui/organisms/MovieList';
 import CastList from '../ui/organisms/CastList';
-import GoBackButton from '../ui/atoms/GoBackButton';
+import VideoModal from '../ui/molecules/VideoModal';
 import TitleAndYear from '../ui/molecules/TitleAndYear';
 import DateGenresRuntime from '../ui/molecules/DateGenresRuntime';
 import ScorePlayBtn from '../ui/molecules/ScorePlayBtn';
 import MovieCrew from '../ui/molecules/MovieCrew';
+import GoBackButton from '../ui/atoms/GoBackButton';
 import Poster from '../ui/atoms/Poster';
 import Overview from '../ui/atoms/Overview';
 import Tagline from '../ui/atoms/Tagline';

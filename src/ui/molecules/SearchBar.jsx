@@ -20,15 +20,12 @@ const SearchBar = () => {
       className='flex items-center pr-2 transition-all duration-1000 min-[320px]:top-[50px] sm:top-0 sm:right-0'
       style={{
         position: isClicked ? 'absolute' : 'static',
-        // right: isClicked ? '1px' : 'none',
       }}
     >
       <FiSearch
         onClick={handleIsClicked}
         className='icon-search'
         style={{
-          // width: isClicked ? '0' : '34px',
-          // opacity: isClicked ? '0' : '1',
           display: isClicked ? 'none' : 'block',
         }}
       />

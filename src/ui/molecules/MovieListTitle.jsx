@@ -51,7 +51,7 @@ const MovieListTitle = ({
       )}
     </div>
   );
-}
+};
 
 MovieListTitle.propTypes = {
   movieCategories: PropTypes.object.isRequired,

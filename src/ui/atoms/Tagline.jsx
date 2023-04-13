@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Tagline = ({movie}) => {
+const Tagline = ({ movie }) => {
   return (
     <>
       <div className='font-bold italic text-slate-400'>{movie.tagline}</div>

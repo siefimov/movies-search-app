@@ -1,11 +1,11 @@
 import React from 'react';
 
 const HeroDescription = ({ children }) => {
-    return (
-        <div className='mb-12 w-[45rem] max-w-[80vw] te min-[380px]:text-lg font-medium leading-[1.3] text-white bg-[rgba(0,0,0,0.3)] '>
-            {children}
-        </div>
-    );
+  return (
+    <div className='te mb-12 w-[45rem] max-w-[80vw] bg-[rgba(0,0,0,0.3)] font-medium leading-[1.3] text-white min-[380px]:text-lg '>
+      {children}
+    </div>
+  );
 };
 
 export default HeroDescription;

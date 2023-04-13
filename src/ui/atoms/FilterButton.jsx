@@ -6,7 +6,7 @@ const FilterButton = ({ handleSearch, disabled }) => {
     <button
       onClick={handleSearch}
       className='mt-4 rounded-xl border bg-[#0f172a] px-2 py-1 text-white hover:bg-[#02587d] disabled:hover:bg-[#696969]'
-      disabled={disabled}      
+      disabled={disabled}
     >
       Search
     </button>
