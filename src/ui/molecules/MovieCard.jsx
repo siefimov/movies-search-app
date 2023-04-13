@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import { genres } from '../../../utils/db_categories';
+import { genres } from '../../utils/db_categories';
 
 const MovieCard = ({
   to,

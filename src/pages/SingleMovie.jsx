@@ -2,20 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import MovieList from '../ui/Movie/organisms/MovieList';
+import MovieList from '../ui/organisms/MovieList';
 import { URL, API_KEY } from '../utils/api';
-import VideoModal from '../ui/components/VideoModal';
-import CastList from '../ui/Movie/organisms/CastList';
-import GoBackButton from '../ui/components/GoBackButton';
-import SingleMoviePageWrapper from '../ui/Movie/atoms/SingleMoviePageWrapper';
-import MainBlockWrapper from '../ui/Movie/atoms/MainBlockWrapper';
-import Poster from '../ui/Movie/atoms/Poster';
-import TitleAndYear from '../ui/Movie/molecules/TitleAndYear';
-import DateGenresRuntime from '../ui/Movie/molecules/DateGenresRuntime';
-import Overview from '../ui/Movie/atoms/Overview';
-import Tagline from '../ui/Movie/atoms/Tagline';
-import ScorePlayBtn from '../ui/Movie/molecules/ScorePlayBtn';
-import MovieCrew from '../ui/Movie/molecules/MovieCrew';
+import VideoModal from '../ui/molecules/VideoModal';
+import CastList from '../ui/organisms/CastList';
+import GoBackButton from '../ui/atoms/GoBackButton';
+import TitleAndYear from '../ui/molecules/TitleAndYear';
+import DateGenresRuntime from '../ui/molecules/DateGenresRuntime';
+import ScorePlayBtn from '../ui/molecules/ScorePlayBtn';
+import MovieCrew from '../ui/molecules/MovieCrew';
+
+import SingleMoviePageWrapper from '../ui/atoms/SingleMoviePageWrapper';
+import MainBlockWrapper from '../ui/atoms/MainBlockWrapper';
+import Poster from '../ui/atoms/Poster';
+import Overview from '../ui/atoms/Overview';
+import Tagline from '../ui/atoms/Tagline';
 
 const SingleMovie = () => {
   const { id } = useParams();

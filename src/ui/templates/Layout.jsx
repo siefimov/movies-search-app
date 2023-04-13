@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Header from '../Header/organisms/Header';
-import Footer from '../Footer/Footer';
+import Header from '../organisms/Header';
+import Footer from '../organisms/Footer';
 
 const Layout = () => {
   return (

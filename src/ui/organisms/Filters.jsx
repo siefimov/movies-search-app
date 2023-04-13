@@ -44,11 +44,6 @@ const Filters = ({
       >
         Filter {isExpanded ? '▲' : '▼'}
       </button>
-
-      {/* <h2 className='mb-4 border-b py-4 text-center font-bold uppercase tracking-widest text-[#38bdf8]'>
-        Filters
-      </h2> */}
-
       {isExpanded && (
         <>
           <GenresFilter

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Logo from '../Header/atoms/Logo';
-import Blockquote from './atoms/Blockquote';
-import SocialIcons from './molecules/SocialIcons';
+import Logo from '../atoms/Logo';
+import Blockquote from '../atoms/Blockquote';
+import SocialIcons from '../molecules/SocialIcons';
 
 const Footer = () => {
   return (

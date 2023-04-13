@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Hero from '../ui/Hero/organisms/Hero';
-import MovieList from '../ui/Movie/organisms/MovieList';
+import Hero from '../ui/organisms/Hero';
+import MovieList from '../ui/organisms/MovieList';
 import { URL, API_KEY, endpoints } from '../../src/utils/api';
 
 const Home = () => {

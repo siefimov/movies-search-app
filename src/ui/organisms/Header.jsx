@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
 
-import HeaderContainer from './HeaderContainer';
+import HeaderContainer from '../organisms/HeaderContainer';
 import Logo from '../atoms/Logo';
-import MenuList from '../molecules/MenuList';
 import MenuItem from '../atoms/MenuItem';
-import SubMenuList from '../molecules/SubMenuList';
 import SubMenuItem from '../atoms/SubMenuItem';
+
+import MenuList from '../molecules/MenuList';
+import SubMenuList from '../molecules/SubMenuList';
 import SearchBar from '../molecules/SearchBar';
 import MobileMenuBar from '../molecules/MobileMenuBar';
 
@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <HeaderContainer bgColor={isScrolled}>
-      <div className='mx-auto flex w-full max-w-[1240px] items-center justify-between relative'>
+      <div className='relative mx-auto flex w-full max-w-[1240px] items-center justify-between'>
         <Logo />
         <MenuList>
           <MenuItem to={'/'} value='Home' />

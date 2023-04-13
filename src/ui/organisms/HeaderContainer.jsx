@@ -13,4 +13,4 @@ const HeaderContainer = ({ bgColor, children }) => {
 };
 
 export default HeaderContainer;
-// bg-gradient-to-t from-[transparent] to-[rgb(0,0,0,0.8)]
+

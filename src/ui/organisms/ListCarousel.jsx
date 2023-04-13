@@ -3,7 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 import PropTypes from 'prop-types';
 
 import MovieCard from '../molecules/MovieCard';
-import { IMAGES_URL } from '../../../utils/api';
+import { IMAGES_URL } from '../../utils/api';
 
 const ListCarousel = ({ display, movies, category }) => {
   return (

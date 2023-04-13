@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { FaPlay } from 'react-icons/fa';
 import axios from 'axios';
 
-import HeroContainer from '../molecules/HeroContainer';
-import HeroContentContainer from '../molecules/HeroContentContainer';
+import HeroContainer from '../../ui/molecules/HeroContainer';
+import HeroContentContainer from '../../ui/molecules/HeroContentContainer';
 import HeroTitle from '../atoms/HeroTitle';
 import HeroDescription from '../atoms/HeroDescription';
 import HeroButton from '../atoms/HeroButton';
-import VideoModal from '../../components/VideoModal';
+import VideoModal from '../molecules/VideoModal';
 
-import { URL, API_KEY } from '../../../utils/api';
+import { URL, API_KEY } from '../../utils/api';
 
 const Hero = ({ movie }) => {
   const [videoKey, setVideoKey] = useState(null);
@@ -67,6 +67,6 @@ const Hero = ({ movie }) => {
 };
 
 Hero.propTypes = {
-  movie: PropTypes.object.isRequired,  
+  movie: PropTypes.object.isRequired,
 };
 export default Hero;

@@ -3,7 +3,7 @@ import { Pagination, Stack } from '@mui/material';
 import PropTypes from 'prop-types';
 
 import MovieCard from '../molecules/MovieCard';
-import { IMAGES_URL } from '../../../utils/api';
+import { IMAGES_URL } from '../../utils/api';
 
 const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
   return (

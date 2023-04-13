@@ -4,7 +4,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { FaPlay } from 'react-icons/fa';
 
-import HeroButton from '../../Hero/atoms/HeroButton';
+import HeroButton from '../atoms/HeroButton';
 
 const ScorePlayBtn = ({ movie, handleOpenModal }) => {
   return (

@@ -10,8 +10,8 @@ import MovieListTitle from '../molecules/MovieListTitle';
 import ListGrid from './ListGrid';
 import ListCarousel from './ListCarousel';
 
-import { URL, API_KEY } from '../../../utils/api';
-import { movieCategories, genres } from '../../../utils/db_categories';
+import { URL, API_KEY } from '../../utils/api';
+import { movieCategories, genres } from '../../utils/db_categories';
 
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
