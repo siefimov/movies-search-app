@@ -56,6 +56,12 @@
   .footer-container {
     @apply mx-auto flex max-w-[1192px] flex-wrap items-center justify-between px-5;
   }
+  .all-movies-link {
+    @apply translate-x-[-200px] opacity-0;
+  }
+  .all-movies-link-mobile {
+    @apply translate-x-[0px] underline opacity-[1];
+  }
 }
 
 /* translate-x-8 */

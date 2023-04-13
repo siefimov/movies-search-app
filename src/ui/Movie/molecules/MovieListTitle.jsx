@@ -27,11 +27,11 @@ function MovieListTitle({
       {display == 'carousel' && (
         <Link
           to={`movies/${category}/${genreId ? genreId : ''}`}
-          className='flex items-center self-center pb-2 pt-5'
+          className={`flex items-center self-center pb-2 pt-5`}
         >
           <>
             <FiArrowRight
-              className='text-3xl font-bold text-[#38bdf8] transition-all duration-150'
+              className={`text-3xl font-bold text-[#38bdf8] transition-all duration-150`}
               style={{
                 width: isListHover ? '20px' : '0',
                 translate: isTitleHover ? '135px' : '0px',
@@ -39,7 +39,7 @@ function MovieListTitle({
             />
           </>
           <p
-            className=' overflow-hidden pl-2 text-[#b5cdf5] transition-all duration-500 hover:text-[#38bdf8] hover:underline'
+            className={`overflow-hidden pl-2 text-[#b5cdf5] transition-all duration-500 hover:text-[#38bdf8] hover:underline`}
             style={{
               translateX: isTitleHover ? '0px' : '-200px',
               opacity: isTitleHover ? '1' : '0',

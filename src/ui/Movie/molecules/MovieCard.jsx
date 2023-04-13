@@ -45,7 +45,7 @@ const MovieCard = ({
       <img
         src={src}
         alt={alt}
-        className='h-[280px] w-[230px] rounded-xl min-[380px]:h-[260px] min-[380px]:max-w-[172px]'
+        className='h-[260px] w-[180px] rounded-xl min-[380px]:h-[260px] min-[380px]:max-w-[172px] shadow-md shadow-info-500'
       />
 
       <div
