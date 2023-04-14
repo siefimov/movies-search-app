@@ -20,7 +20,7 @@ const MovieListTitle = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <p className=' movie-genre cursor-pointer bg-[#0f172a] pb-2 pt-4 text-2xl font-bold text-[#b5cdf5]'>
+      <p className=' movie-genre cursor-pointer bg-[#0f172a] pl-4 pb-2 pt-4 text-2xl font-bold text-[#b5cdf5]'>
         {movieCategories[category] || movieGenre}
       </p>
 
@@ -56,13 +56,18 @@ const MovieListTitle = ({
 MovieListTitle.propTypes = {
   movieCategories: PropTypes.object.isRequired,
   category: PropTypes.string.isRequired,
-  movieGenre: PropTypes.array,
+  movieGenre: PropTypes.string,
   display: PropTypes.string.isRequired,
   genreId: PropTypes.string,
   isListHover: PropTypes.bool.isRequired,
   isTitleHover: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
+};
+
+MovieListTitle.defaultProps = {
+  movieGenre: null,
+  genreId: null,
 };
 
 export default MovieListTitle;

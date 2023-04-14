@@ -71,7 +71,7 @@ const MovieList = memo(({ category, display, genreId }) => {
   }, [category, page, movieTitle]);
 
   return (
-    <div className='mx-auto max-w-[1315px] px-5'>
+    <div className='mx-auto max-w-[1315px] pl-2'>
       <div
         onMouseEnter={() => setIsListHover(true)}
         onMouseLeave={() => setIsListHover(false)}

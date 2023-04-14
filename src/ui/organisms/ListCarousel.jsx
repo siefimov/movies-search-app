@@ -36,11 +36,11 @@ const ListCarousel = ({ display, movies, category }) => {
               1200: { items: 6 },
             }}
           >
-            {movies.map((movie) => (
+            {movies.map((movie, index) => (
               <>
                 {movie.poster_path !== '' && (
-                  <MovieCard
-                    key={`${movie.id}_*_${Math.floor(Math.random() * 10)}`}
+                  <MovieCard                    
+                    key={`${movie.id} * ${Math.random()}`}
                     to={`/movies/${category}/${movie.id}/one`}
                     src={`${IMAGES_URL}${movie.poster_path}`}
                     alt={movie.title}

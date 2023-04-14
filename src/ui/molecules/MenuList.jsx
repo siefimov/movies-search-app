@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import MenuItem from '../atoms/MenuItem';
 import SubMenuItem from '../atoms/SubMenuItem';
-import SubMenuList from '../molecules/SubMenuList';
+import SubMenuList from './SubMenuList';
 
 const MenuList = ({ isMobile }) => {
   return (

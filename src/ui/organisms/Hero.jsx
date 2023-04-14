@@ -14,10 +14,12 @@ const Hero = ({ movie }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const fetchVideo = async () => {
+    if(movie){
     const response = await axios.get(
       `${URL}movie/${movie.id}/videos${API_KEY}`
     );
     setVideoKey(response.data.results[0]?.key);
+    }
   };
 
   useEffect(() => {

@@ -105,7 +105,7 @@ MovieCard.propTypes = {
   alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   release_date: PropTypes.string,
-  vote_average: PropTypes.number,
+  vote_average: PropTypes.string,
   genre_ids: PropTypes.array,
 };
 
