@@ -71,12 +71,20 @@ const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
 };
 
 ListGrid.propTypes = {
-  display: PropTypes.string.isRequired,
-  pageQty: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  movies: PropTypes.array.isRequired,
-  category: PropTypes.string.isRequired,
+  display: PropTypes.string,
+  pageQty: PropTypes.number,
+  page: PropTypes.number,
+  movies: PropTypes.array,
+  category: PropTypes.string,
   setPage: PropTypes.func.isRequired,
 };
+
+ListGrid.defaultProps = {
+  display: 'list-grid',
+  pageQty: 1,
+  page: 1,
+  movies: [],
+  category: 'popular',  
+}
 
 export default ListGrid;

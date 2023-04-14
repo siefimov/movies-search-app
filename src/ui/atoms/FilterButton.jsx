@@ -15,6 +15,7 @@ const FilterButton = ({ handleSearch, disabled }) => {
 
 FilterButton.propTypes = {
   handleSearch: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default FilterButton;

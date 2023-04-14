@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 const HeroButton = ({ to, children, onClick }) => {
   return (
@@ -8,5 +9,14 @@ const HeroButton = ({ to, children, onClick }) => {
     </Link>
   );
 };
+
+HeroButton.propTypes = {
+  to: PropTypes.string,
+}
+
+HeroButton.defaultProps = {
+  to: null,
+}
+
 
 export default HeroButton;

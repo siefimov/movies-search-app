@@ -67,6 +67,10 @@ const Hero = ({ movie }) => {
 };
 
 Hero.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.object,
 };
+
+Hero.defaultProps = {
+  movie: null,
+}
 export default Hero;

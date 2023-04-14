@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 const GenreButton = ({ genre, selectedGenres, handleGenreClick }) => {
   return (
-    <button
-      key={genre.id}
-      onClick={() => handleGenreClick(genre.id)}
+    <button      
+      onClick={() => handleGenreClick(genre?.id)}
       className={`${
-        selectedGenres.includes(genre.id) ? 'active-genre' : undefined
+        selectedGenres.includes(genre?.id) ? 'active-genre' : undefined
       } mr-2 mb-1 rounded-2xl border px-2 hover:bg-slate-500`}
     >
       {genre.name}
@@ -16,7 +15,10 @@ const GenreButton = ({ genre, selectedGenres, handleGenreClick }) => {
 };
 
 GenreButton.propTypes = {
-  genre: PropTypes.object.isRequired,
+  genre: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }),
   selectedGenres: PropTypes.array.isRequired,
   handleGenreClick: PropTypes.func.isRequired,
 };
