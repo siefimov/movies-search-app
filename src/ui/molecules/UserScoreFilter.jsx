@@ -21,4 +21,9 @@ UserScoreFilter.propTypes = {
   setSelectedScore: PropTypes.func,
 };
 
+UserScoreFilter.defaultPropTypes = {
+  selectedScore: null,
+  setSelectedScore: () => {},
+};
+
 export default UserScoreFilter;

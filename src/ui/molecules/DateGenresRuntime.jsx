@@ -30,7 +30,13 @@ const DateGenresRuntime = ({ movie }) => {
 };
 
 DateGenresRuntime.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    release_date: PropTypes.string,
+    runtime: PropTypes.string,
+    genres: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default DateGenresRuntime;

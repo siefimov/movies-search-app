@@ -14,12 +14,11 @@ HeroButton.propTypes = {
   to: PropTypes.string,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
-}
+};
 
 HeroButton.defaultProps = {
   to: null,
   onClick: () => {},
-}
-
+};
 
 export default HeroButton;

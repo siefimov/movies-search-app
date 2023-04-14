@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 const SubMenuItem = ({ to, value }) => {
   return (
@@ -10,6 +11,11 @@ const SubMenuItem = ({ to, value }) => {
       {value}
     </NavLink>
   );
+};
+
+SubMenuItem.propTypes = {
+  to: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,  
 };
 
 export default SubMenuItem;

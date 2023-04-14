@@ -15,7 +15,10 @@ const TitleAndYear = ({ movie }) => {
 };
 
 TitleAndYear.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+  }).isRequired,
 };
 
 export default TitleAndYear;

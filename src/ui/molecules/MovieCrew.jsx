@@ -50,7 +50,14 @@ const MovieCrew = ({ movie }) => {
 };
 
 MovieCrew.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    credits: PropTypes.shape({
+      crew: PropTypes.shape({
+        id:PropTypes.number,
+        name: PropTypes.string,
+      })
+    })
+  }).isRequired,
 };
 
 export default MovieCrew;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import MenuItem from '../atoms/MenuItem';
 import SubMenuItem from '../atoms/SubMenuItem';
-import SubMenuList from './SubMenuList';
 
 const MenuList = ({ isMobile }) => {
   return (
@@ -15,16 +14,22 @@ const MenuList = ({ isMobile }) => {
       <MenuItem to={'/'} value='Home' />
       <div className='relative flex flex-col'>
         <MenuItem to='/movies' value='Movies' peer='peer' />
-        <SubMenuList>
+        <div className='absolute top-6 hidden w-[200px] flex-col rounded bg-[#1e293b] drop-shadow-lg peer-hover:flex hover:flex'>
           <SubMenuItem to={`/movies/popular`} value='Popular' />
           <SubMenuItem to={`/movies/upcoming`} value='Upcoming' />
           <SubMenuItem to={`/movies/top_rated`} value='Top Rated' />
-        </SubMenuList>
+        </div>
       </div>
     </ul>
   );
 };
 
-MenuList.propTypes = {};
+MenuList.propTypes = {
+  isMobile: PropTypes.bool,
+};
+
+MenuList.defaultProps = {
+  isMobile: false,
+};
 
 export default MenuList;

@@ -14,7 +14,9 @@ const Poster = ({ movie }) => {
 };
 
 Poster.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
 };
 
 export default Poster;

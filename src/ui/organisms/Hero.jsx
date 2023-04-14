@@ -69,7 +69,13 @@ const Hero = ({ movie }) => {
 };
 
 Hero.propTypes = {
-  movie: PropTypes.object,
+  movie: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.number,
+    backdrop_path: PropTypes.string,
+    overview: PropTypes.string,
+    original_title: PropTypes.string,
+  }),
 };
 
 Hero.defaultProps = {

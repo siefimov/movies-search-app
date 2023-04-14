@@ -47,4 +47,11 @@ ReleaseDateFilter.propTypes = {
   setSelectedYearTo: PropTypes.func,
 };
 
+ReleaseDateFilter.defaultProps = {
+  selectedYearFrom: null,
+  selectedYearTo: null,
+  setSelectedYearFrom: null,
+  setSelectedYearTo: null,
+};
+
 export default ReleaseDateFilter;

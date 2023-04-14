@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Logo = ({ isMobile }) => {
   return (
@@ -13,6 +14,13 @@ const Logo = ({ isMobile }) => {
       </Link>
     </div>
   );
+};
+
+Logo.propTypes = {
+  isMobile: PropTypes.bool,
+};
+Logo.defaultProps = {
+  isMobile: false,
 };
 
 export default Logo;

@@ -14,6 +14,13 @@ const MenuItem = ({ to, value, peer }) => {
   );
 };
 
-MenuItem.propTypes = {};
+MenuItem.propTypes = {
+  to: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  peer: PropTypes.string,
+};
+MenuItem.defaultProps = {
+  peer: null,
+};
 
 export default MenuItem;

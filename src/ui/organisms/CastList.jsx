@@ -37,7 +37,17 @@ const CastList = ({ movie }) => {
   );
 };
 CastList.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    credits: PropTypes.shape({
+      cast: PropTypes.shape({
+        profile_path: PropTypes.string,
+        id: PropTypes.number,
+        name: PropTypes.string,
+        character: PropTypes.string,
+
+      }),
+    })
+  }).isRequired,
 };
 
 export default CastList;
