@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 
-const VideoModal = ({ isPlaying, handleCloseModal, videoUrl }) => {
+export const VideoModal = ({ isPlaying, handleCloseModal, videoUrl }) => {
   return (
     <ReactModal
       isOpen={isPlaying}
@@ -32,5 +32,3 @@ VideoModal.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
   videoUrl: PropTypes.string.isRequired,
 };
-
-export default VideoModal;

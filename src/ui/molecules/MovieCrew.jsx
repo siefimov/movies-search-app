@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MovieCrew = ({ movie }) => {
+export const MovieCrew = ({ movie }) => {
   return (
     <div className='flex flex-wrap justify-start gap-5'>
       <div className='flex max-h-[120px] flex-col overflow-hidden'>
@@ -53,11 +53,9 @@ MovieCrew.propTypes = {
   movie: PropTypes.shape({
     credits: PropTypes.shape({
       crew: PropTypes.shape({
-        id:PropTypes.number,
+        id: PropTypes.number,
         name: PropTypes.string,
-      })
-    })
+      }),
+    }),
   }).isRequired,
 };
-
-export default MovieCrew;

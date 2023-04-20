@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MenuItem from '../atoms/MenuItem';
-import SubMenuItem from '../atoms/SubMenuItem';
+import { MenuItem, SubMenuItem } from '../atoms';
 
-const MenuList = ({ isMobile }) => {
+export const MenuList = ({ isMobile }) => {
   return (
     <ul
       className={`flex flex-auto gap-8  ${
@@ -31,5 +30,3 @@ MenuList.propTypes = {
 MenuList.defaultProps = {
   isMobile: false,
 };
-
-export default MenuList;

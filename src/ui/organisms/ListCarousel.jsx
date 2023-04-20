@@ -2,7 +2,7 @@ import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import PropTypes from 'prop-types';
 
-import MovieCard from '../molecules/MovieCard';
+import { MovieCard } from '../molecules';
 import { IMAGES_URL } from '../../utils/api';
 
 const ListCarousel = ({ display, movies, category }) => {
@@ -39,7 +39,7 @@ const ListCarousel = ({ display, movies, category }) => {
             {movies.map((movie, index) => (
               <>
                 {movie.poster_path !== '' && (
-                  <MovieCard                    
+                  <MovieCard
                     key={`${movie.id} * ${Math.random()}`}
                     to={`/movies/${category}/${movie.id}/one`}
                     src={`${IMAGES_URL}${movie.poster_path}`}

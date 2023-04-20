@@ -1,10 +1,9 @@
 import React from 'react';
 
-import Logo from '../atoms/Logo';
-import Blockquote from '../atoms/Blockquote';
-import SocialIcons from '../molecules/SocialIcons';
+import { Logo, Blockquote } from '../atoms';
+import { SocialIcons } from '../molecules';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className='footer'>
       <div className='footer-container'>
@@ -19,5 +18,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

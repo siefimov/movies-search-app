@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Logo = ({ isMobile }) => {
+export const Logo = ({ isMobile }) => {
   return (
     <div
       className={`flex-auto text-3xl uppercase text-[#38bdf8] md:flex-initial ${
@@ -22,5 +22,3 @@ Logo.propTypes = {
 Logo.defaultProps = {
   isMobile: false,
 };
-
-export default Logo;

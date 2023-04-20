@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Poster = ({ movie }) => {
+export const Poster = ({ movie }) => {
   return (
     <>
       <img
@@ -18,5 +18,3 @@ Poster.propTypes = {
     title: PropTypes.string,
   }).isRequired,
 };
-
-export default Poster;

@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import { genres } from '../../utils/db_categories';
 
-const MovieCard = ({
+export const MovieCard = ({
   to,
   src,
   alt,
@@ -109,4 +109,4 @@ MovieCard.propTypes = {
   genre_ids: PropTypes.array,
 };
 
-export default MovieCard;
+

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Pagination, Stack } from '@mui/material';
 
 import MovieList from '../ui/organisms/MovieList';
-import MovieCard from '../ui/molecules/MovieCard';
+import { MovieCard } from '../ui/molecules';
 import Filters from '../ui/organisms/Filters';
 import { URL, IMAGES_URL } from '../utils/api';
 

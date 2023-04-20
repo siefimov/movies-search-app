@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DateGenresRuntime = ({ movie }) => {
+export const DateGenresRuntime = ({ movie }) => {
   return (
     <>
       <div className='flex flex-wrap items-center justify-start gap-2'>
@@ -38,5 +38,3 @@ DateGenresRuntime.propTypes = {
     }),
   }).isRequired,
 };
-
-export default DateGenresRuntime;

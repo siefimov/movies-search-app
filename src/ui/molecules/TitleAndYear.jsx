@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TitleAndYear = ({ movie }) => {
+export const TitleAndYear = ({ movie }) => {
   return (
     <>
       <div className='flex flex-wrap items-start min-[220px]:flex-col md:flex-row'>
@@ -20,5 +20,3 @@ TitleAndYear.propTypes = {
     release_date: PropTypes.string,
   }).isRequired,
 };
-
-export default TitleAndYear;

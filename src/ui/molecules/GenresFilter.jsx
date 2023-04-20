@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import GenreButton from '../atoms/GenreButton';
+import { GenreButton } from '../atoms';
 
-const GenresFilter = ({ genres, selectedGenres, handleGenreClick }) => {
+export const GenresFilter = ({ genres, selectedGenres, handleGenreClick }) => {
   return (
     <div className='border-b border-slate-300 pb-4'>
       <h2 className='mb-3 text-[#b5cdf5]'>Genres</h2>
@@ -26,5 +26,3 @@ GenresFilter.propTypes = {
   selectedGenres: PropTypes.array.isRequired,
   handleGenreClick: PropTypes.func.isRequired,
 };
-
-export default GenresFilter;

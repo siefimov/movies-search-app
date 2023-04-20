@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { FaPlay } from 'react-icons/fa';
 import axios from 'axios';
 
-import HeroButton from '../atoms/HeroButton';
-import VideoModal from '../molecules/VideoModal';
+import { HeroButton } from '../atoms';
+import {VideoModal} from '../molecules';
 
 import { URL, API_KEY, YOUTUBE, IMAGES_URL_ORIGINAL } from '../../utils/api';
 
@@ -14,11 +14,11 @@ const Hero = ({ movie }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const fetchVideo = async () => {
-    if(movie){
-    const response = await axios.get(
-      `${URL}movie/${movie.id}/videos${API_KEY}`
-    );
-    setVideoKey(response.data.results[0]?.key);
+    if (movie) {
+      const response = await axios.get(
+        `${URL}movie/${movie.id}/videos${API_KEY}`
+      );
+      setVideoKey(response.data.results[0]?.key);
     }
   };
 
@@ -80,5 +80,5 @@ Hero.propTypes = {
 
 Hero.defaultProps = {
   movie: null,
-}
+};
 export default Hero;

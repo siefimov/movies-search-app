@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ReleaseDateFilter = ({
+export const ReleaseDateFilter = ({
   selectedYearFrom,
   selectedYearTo,
   setSelectedYearFrom,
@@ -54,4 +54,4 @@ ReleaseDateFilter.defaultProps = {
   setSelectedYearTo: null,
 };
 
-export default ReleaseDateFilter;
+

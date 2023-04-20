@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GenreButton = ({ genre, selectedGenres, handleGenreClick }) => {
+export const GenreButton = ({ genre, selectedGenres, handleGenreClick }) => {
   return (
-    <button      
+    <button
       onClick={() => handleGenreClick(genre?.id)}
       className={`${
         selectedGenres.includes(genre?.id) ? 'active-genre' : undefined
@@ -22,5 +22,3 @@ GenreButton.propTypes = {
   selectedGenres: PropTypes.array.isRequired,
   handleGenreClick: PropTypes.func.isRequired,
 };
-
-export default GenreButton;

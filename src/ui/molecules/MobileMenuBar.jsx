@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
-import MenuList from '../molecules/MenuList';
-import Logo from '../atoms/Logo';
+import { MenuList } from '../molecules';
+import { Logo } from '../atoms';
 
-const MobileMenuBar = () => {
+export const MobileMenuBar = () => {
   const [nav, setNav] = useState(false);
 
   const hadleNav = () => {
@@ -28,5 +28,3 @@ const MobileMenuBar = () => {
     </>
   );
 };
-
-export default MobileMenuBar;

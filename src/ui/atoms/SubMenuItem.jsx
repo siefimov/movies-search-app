@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
-const SubMenuItem = ({ to, value }) => {
+export const SubMenuItem = ({ to, value }) => {
   return (
     <NavLink
       to={to}
@@ -15,7 +15,5 @@ const SubMenuItem = ({ to, value }) => {
 
 SubMenuItem.propTypes = {
   to: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,  
+  value: PropTypes.string.isRequired,
 };
-
-export default SubMenuItem;

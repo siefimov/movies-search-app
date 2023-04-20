@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FilterButton = ({ handleSearch, disabled }) => {
+export const FilterButton = ({ handleSearch, disabled }) => {
   return (
     <button
       onClick={handleSearch}
@@ -18,4 +18,3 @@ FilterButton.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-export default FilterButton;

@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import PropTypes from 'prop-types';
 
-import MovieListTitle from '../molecules/MovieListTitle';
+import { MovieListTitle } from '../molecules';
 import ListGrid from './ListGrid';
 import ListCarousel from './ListCarousel';
 

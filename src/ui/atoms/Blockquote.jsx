@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Blockquote = () => {
+export const Blockquote = () => {
   return (
     <blockquote className='flex flex-col justify-start p-4'>
       <span>Success is not the key to happiness.</span>
@@ -12,5 +12,3 @@ const Blockquote = () => {
     </blockquote>
   );
 };
-
-export default Blockquote;

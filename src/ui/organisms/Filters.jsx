@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import UserScoreFilter from '../molecules/UserScoreFilter';
-import GenresFilter from '../molecules/GenresFilter';
-import ReleaseDateFilter from '../molecules/ReleaseDateFilter';
-import FilterButton from '../atoms/FilterButton';
+import { UserScoreFilter, GenresFilter, ReleaseDateFilter } from '../molecules';
+import { FilterButton } from '../atoms';
 
 const Filters = ({
   genres,

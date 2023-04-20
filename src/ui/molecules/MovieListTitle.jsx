@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
-const MovieListTitle = ({
+export const MovieListTitle = ({
   movieCategories,
   category,
   movieGenre,
@@ -69,5 +69,3 @@ MovieListTitle.defaultProps = {
   movieGenre: null,
   genreId: null,
 };
-
-export default MovieListTitle;

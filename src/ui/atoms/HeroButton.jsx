@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
-const HeroButton = ({ to, children, onClick }) => {
+export const HeroButton = ({ to, children, onClick }) => {
   return (
     <Link to={to} onClick={onClick} className='hero-button '>
       {children}
@@ -20,5 +20,3 @@ HeroButton.defaultProps = {
   to: null,
   onClick: () => {},
 };
-
-export default HeroButton;

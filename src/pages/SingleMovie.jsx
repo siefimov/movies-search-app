@@ -5,13 +5,16 @@ import axios from 'axios';
 import { URL, API_KEY } from '../utils/api';
 import MovieList from '../ui/organisms/MovieList';
 import CastList from '../ui/organisms/CastList';
-import VideoModal from '../ui/molecules/VideoModal';
-import TitleAndYear from '../ui/molecules/TitleAndYear';
-import DateGenresRuntime from '../ui/molecules/DateGenresRuntime';
-import ScorePlayBtn from '../ui/molecules/ScorePlayBtn';
-import MovieCrew from '../ui/molecules/MovieCrew';
-import GoBackButton from '../ui/atoms/GoBackButton';
-import Poster from '../ui/atoms/Poster';
+
+import {
+  DateGenresRuntime,
+  MovieCrew,
+  ScorePlayBtn,
+  VideoModal,
+  TitleAndYear,
+} from '../ui/molecules';
+
+import { GoBackButton, Poster } from '../ui/atoms';
 
 const SingleMovie = () => {
   const { id } = useParams();

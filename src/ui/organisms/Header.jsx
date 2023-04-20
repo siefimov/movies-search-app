@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
-import Logo from '../atoms/Logo';
-import MenuList from '../molecules/MenuList';
-import SearchBar from '../molecules/SearchBar';
-import MobileMenuBar from '../molecules/MobileMenuBar';
+import { Logo } from '../atoms';
+import { SearchBar, MobileMenuBar, MenuList } from '../molecules';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,9 +13,7 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`header bg-[${setBgColor}]`}
-    >
+    <header className={`header bg-[${setBgColor}]`}>
       <div className='relative mx-auto flex w-full max-w-[1240px] items-center justify-between'>
         <Logo />
         <MenuList />

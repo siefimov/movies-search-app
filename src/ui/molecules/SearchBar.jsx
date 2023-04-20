@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { AiOutlineCloseCircle, AiOutlineClose } from 'react-icons/ai';
 
-const SearchBar = () => {
+export const SearchBar = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
@@ -63,5 +63,3 @@ const SearchBar = () => {
     </div>
   );
 };
-
-export default SearchBar;

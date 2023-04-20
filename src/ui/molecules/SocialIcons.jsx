@@ -6,7 +6,7 @@ import {
   FaLinkedin,
 } from 'react-icons/fa';
 
-const SocialIcons = () => {
+export const SocialIcons = () => {
   return (
     <div className=' flex justify-center gap-4 p-4'>
       <a href='https://www.facebook.com/' target='_blank'>
@@ -24,5 +24,3 @@ const SocialIcons = () => {
     </div>
   );
 };
-
-export default SocialIcons;

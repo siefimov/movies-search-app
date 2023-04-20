@@ -2,7 +2,7 @@ import React from 'react';
 import { Pagination, Stack } from '@mui/material';
 import PropTypes from 'prop-types';
 
-import MovieCard from '../molecules/MovieCard';
+import { MovieCard } from '../molecules';
 import { IMAGES_URL } from '../../utils/api';
 
 const ListGrid = ({ display, pageQty, page, movies, category, setPage }) => {
@@ -84,7 +84,7 @@ ListGrid.defaultProps = {
   pageQty: 1,
   page: 1,
   movies: [],
-  category: 'popular',  
-}
+  category: 'popular',
+};
 
 export default ListGrid;
