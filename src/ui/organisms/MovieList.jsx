@@ -12,6 +12,12 @@ import ListCarousel from './ListCarousel';
 import { URL, API_KEY } from '../../utils/api';
 import { movieCategories, genres } from '../../utils/db_categories';
 
+import { getTrendingMovies } from '../../api/RestApi';
+import { getMoviesByCategories } from '../../api/RestApi';
+import { getSimilarMovies } from '../../api/RestApi';
+import { getMovieByTitle } from '../../api/RestApi';
+import { getMoviesByGenre } from '../../api/RestApi';
+
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
 
@@ -24,42 +30,36 @@ const MovieList = memo(({ category, display, genreId }) => {
 
   const getData = async () => {
     if (category === 'trending') {
-      const response = await axios.get(
-        `${URL}${category}/movie/week${API_KEY}&page=${page}`
-      );
-      setPageQty(response.data.total_pages);
-      setMovies(response.data.results);
+      const trendingMovies = await getTrendingMovies(category, page);
+
+      setPageQty(trendingMovies.total_pages);
+      setMovies(trendingMovies.results);
     } else if (
       category === 'popular' ||
       category === 'top_rated' ||
       category === 'upcoming'
     ) {
-      const response = await axios.get(
-        `${URL}movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null&page=${page}`
-      );
-      setMovies(response.data.results);
-      setPageQty(response.data.total_pages);
+      const movies = await getMoviesByCategories(category, page);
+
+      setMovies(movies.results);
+      setPageQty(movies.total_pages);
     } else if (category === 'similar') {
-      const response = await axios.get(
-        `${URL}movie/${id}/${category}${API_KEY}&page=${page}}`
-      );
-      setMovies(response.data.results);
-      setPageQty(response.data.total_pages);
+      const similarMovies = await getSimilarMovies(id, category, page);
+
+      setMovies(similarMovies.results);
+      setPageQty(similarMovies.total_pages);
     } else if (category === 'search') {
-      const response = await axios.get(
-        `${URL}${category}/movie${API_KEY}&query=${movieTitle}&page=${page}`
-      );
-      setMovies(response.data.results);
-      setPageQty(response.data.total_pages);
+      const moviesByTitle = await getMovieByTitle(category, movieTitle, page);
+
+      setMovies(moviesByTitle.results);
+      setPageQty(moviesByTitle.total_pages);
 
       const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
       setMovieGenre(currentMovieGenre[0].name);
     } else {
-      const response = await axios.get(
-        `${URL}${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`
-      );
-      setMovies(response.data.results);
-      setPageQty(response.data.total_pages);
+      const movieByGenre = await getMoviesByGenre(category, genreId, page);
+      setMovies(movieByGenre.results);
+      setPageQty(movieByGenre.total_pages);
 
       const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
       setMovieGenre(currentMovieGenre[0].name);
