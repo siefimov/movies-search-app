@@ -42,4 +42,4 @@ class RestApi {
   }
 }
 
-export const api = new RestApi(URL);
+export const movieApi = new RestApi(URL);

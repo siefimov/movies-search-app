@@ -8,7 +8,7 @@ import ListGrid from './ListGrid';
 import ListCarousel from './ListCarousel';
 
 import { movieCategories, genres } from '../../utils/db_categories';
-import { api } from '../../api/RestApis';
+import { movieApi } from '../../api/RestApis';
 
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
@@ -23,24 +23,24 @@ const MovieList = memo(({ category, display, genreId }) => {
   const getData = async () => {
     switch (category) {
       case 'trending':
-        const trendingMovies = await api.get(category, { category, page });
+        const trendingMovies = await movieApi.get(category, { category, page });
         setPageQty(trendingMovies.total_pages);
         setMovies(trendingMovies.results);
         break;
       case 'popular':
       case 'top_rated':
       case 'upcoming':
-        const moviesByCategory = await api.get(category, { category, page });
+        const moviesByCategory = await movieApi.get(category, { category, page });
         setMovies(moviesByCategory.results);
         setPageQty(moviesByCategory.total_pages);
         break;
       case 'similar':
-        const similarMovies = await api.get(category, { id, category, page });
+        const similarMovies = await movieApi.get(category, { id, category, page });
         setMovies(similarMovies.results);
         setPageQty(similarMovies.total_pages);
         break;
       case 'search':
-        const moviesByTitle = await api.get(category, {
+        const moviesByTitle = await movieApi.get(category, {
           category,
           movieTitle,
           page,
@@ -49,7 +49,7 @@ const MovieList = memo(({ category, display, genreId }) => {
         setPageQty(moviesByTitle.total_pages);
         break;
       default:
-        const movieByGenre = await api.get('', { category, genreId, page });
+        const movieByGenre = await movieApi.get('', { category, genreId, page });
 
         setMovies(movieByGenre.results);
         setPageQty(movieByGenre.total_pages);
