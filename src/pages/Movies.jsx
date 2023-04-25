@@ -11,6 +11,9 @@ import { URL, IMAGES_URL } from '../utils/api';
 
 const Movies = () => {
   const { category, genre_id, movieTitle } = useParams();
+  console.log({ category });
+  console.log({ genre_id });
+  console.log({ movieTitle });
 
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);

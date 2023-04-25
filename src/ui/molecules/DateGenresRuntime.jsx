@@ -32,7 +32,7 @@ export const DateGenresRuntime = ({ movie }) => {
 DateGenresRuntime.propTypes = {
   movie: PropTypes.shape({
     release_date: PropTypes.string,
-    runtime: PropTypes.string,
+    runtime: PropTypes.number,
     genres: PropTypes.shape({
       name: PropTypes.string,
     }),

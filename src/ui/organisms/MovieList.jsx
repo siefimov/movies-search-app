@@ -1,22 +1,14 @@
 import React, { useState, useEffect, memo } from 'react';
 import { useParams } from 'react-router-dom';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import axios from 'axios';
-
 import PropTypes from 'prop-types';
 
 import { MovieListTitle } from '../molecules';
 import ListGrid from './ListGrid';
 import ListCarousel from './ListCarousel';
 
-import { URL, API_KEY } from '../../utils/api';
 import { movieCategories, genres } from '../../utils/db_categories';
-
-import { getTrendingMovies } from '../../api/RestApi';
-import { getMoviesByCategories } from '../../api/RestApi';
-import { getSimilarMovies } from '../../api/RestApi';
-import { getMovieByTitle } from '../../api/RestApi';
-import { getMoviesByGenre } from '../../api/RestApi';
+import { api } from '../../api/RestApis';
 
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
@@ -29,40 +21,43 @@ const MovieList = memo(({ category, display, genreId }) => {
   const [pageQty, setPageQty] = useState(0);
 
   const getData = async () => {
-    if (category === 'trending') {
-      const trendingMovies = await getTrendingMovies(category, page);
+    switch (category) {
+      case 'trending':
+        const trendingMovies = await api.get(category, { category, page });
+        setPageQty(trendingMovies.total_pages);
+        setMovies(trendingMovies.results);
+        break;
+      case 'popular':
+      case 'top_rated':
+      case 'upcoming':
+        const moviesByCategory = await api.get(category, { category, page });
+        setMovies(moviesByCategory.results);
+        setPageQty(moviesByCategory.total_pages);
+        break;
+      case 'similar':
+        const similarMovies = await api.get(category, { id, category, page });
+        setMovies(similarMovies.results);
+        setPageQty(similarMovies.total_pages);
+        break;
+      case 'search':
+        const moviesByTitle = await api.get(category, {
+          category,
+          movieTitle,
+          page,
+        });
+        setMovies(moviesByTitle.results);
+        setPageQty(moviesByTitle.total_pages);
+        break;
+      default:
+        const movieByGenre = await api.get('', { category, genreId, page });
 
-      setPageQty(trendingMovies.total_pages);
-      setMovies(trendingMovies.results);
-    } else if (
-      category === 'popular' ||
-      category === 'top_rated' ||
-      category === 'upcoming'
-    ) {
-      const movies = await getMoviesByCategories(category, page);
+        setMovies(movieByGenre.results);
+        setPageQty(movieByGenre.total_pages);
 
-      setMovies(movies.results);
-      setPageQty(movies.total_pages);
-    } else if (category === 'similar') {
-      const similarMovies = await getSimilarMovies(id, category, page);
-
-      setMovies(similarMovies.results);
-      setPageQty(similarMovies.total_pages);
-    } else if (category === 'search') {
-      const moviesByTitle = await getMovieByTitle(category, movieTitle, page);
-
-      setMovies(moviesByTitle.results);
-      setPageQty(moviesByTitle.total_pages);
-
-      const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
-      setMovieGenre(currentMovieGenre[0].name);
-    } else {
-      const movieByGenre = await getMoviesByGenre(category, genreId, page);
-      setMovies(movieByGenre.results);
-      setPageQty(movieByGenre.total_pages);
-
-      const currentMovieGenre = genres.filter((genre) => genre.id === +genreId);
-      setMovieGenre(currentMovieGenre[0].name);
+        const currentMovieGenres = genres.filter(
+          (genre) => genre.id === +genreId
+        );
+        setMovieGenre(currentMovieGenres[0].name);
     }
   };
 
