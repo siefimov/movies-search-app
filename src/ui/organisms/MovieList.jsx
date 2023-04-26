@@ -9,6 +9,10 @@ import ListCarousel from './ListCarousel';
 
 import { movieCategories, genres } from '../../utils/db_categories';
 import { movieApi } from '../../api/RestApis';
+// import { API_KEY } from '../../utils/api';
+
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
@@ -23,33 +27,59 @@ const MovieList = memo(({ category, display, genreId }) => {
   const getData = async () => {
     switch (category) {
       case 'trending':
-        const trendingMovies = await movieApi.get(category, { category, page });
+        const trendingMovies = await movieApi.get(
+          `${category}/movie/week${API_KEY}&page=${page}`,
+          { category, page }
+        );
         setPageQty(trendingMovies.total_pages);
         setMovies(trendingMovies.results);
         break;
       case 'popular':
       case 'top_rated':
       case 'upcoming':
-        const moviesByCategory = await movieApi.get(category, { category, page });
+        const moviesByCategory = await movieApi.get(
+          `movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null&page=${page}`,
+          {
+            category,
+            page,
+          }
+        );
         setMovies(moviesByCategory.results);
         setPageQty(moviesByCategory.total_pages);
         break;
       case 'similar':
-        const similarMovies = await movieApi.get(category, { id, category, page });
+        const similarMovies = await movieApi.get(
+          `movie/${id}/${category}${API_KEY}&page=${page}}`,
+          {
+            id,
+            category,
+            page,
+          }
+        );
         setMovies(similarMovies.results);
         setPageQty(similarMovies.total_pages);
         break;
       case 'search':
-        const moviesByTitle = await movieApi.get(category, {
-          category,
-          movieTitle,
-          page,
-        });
+        const moviesByTitle = await movieApi.get(
+          `${category}/movie${API_KEY}&query=${movieTitle}&page=${page}`,
+          {
+            category,
+            movieTitle,
+            page,
+          }
+        );
         setMovies(moviesByTitle.results);
         setPageQty(moviesByTitle.total_pages);
         break;
       default:
-        const movieByGenre = await movieApi.get('', { category, genreId, page });
+        const movieByGenre = await movieApi.get(
+          `${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`,
+          {
+            category,
+            genreId,
+            page,
+          }
+        );
 
         setMovies(movieByGenre.results);
         setPageQty(movieByGenre.total_pages);

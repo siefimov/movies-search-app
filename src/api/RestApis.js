@@ -1,44 +1,61 @@
 import axios from 'axios';
 
-import { URL, API_KEY } from '../utils/api';
+import { URL } from '../utils/api';
 
 class RestApi {
-  constructor(baseURL) {
+  constructor(baseURL, headers = { 'Content-Type': 'application/json' }) {
     this.api = axios.create({
       baseURL,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
     });
   }
 
-  async get(resource, options = {}) {
-    const { category, page, id, genreId, movieTitle } = options;
-    let url;
-    switch (resource) {
-      case 'trending':
-        url = `${category}/movie/week${API_KEY}&page=${page}`;
-        break;
-      case 'top_rated':
-      case 'popular':
-      case 'upcoming':
-        url = `movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null&page=${page}`;
-        break;
-      case 'similar':
-        url = `movie/${id}/${category}${API_KEY}&page=${page}}`;
-        break;
-      case 'search':
-        url = `${category}/movie${API_KEY}&query=${movieTitle}&page=${page}`;
-        break;
-      case '':
-        url = `${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`;
-        break;
-
-      default:
-        throw new Error(`Unknown resource: ${resource}`);
+  async get(url, params) {
+    try {
+      const response = await this.api.get(url, { ...params });
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
     }
-    const response = await this.api.get(url);
-    return response.data;
+  }
+
+  async post(url, body) {
+    try {
+      const response = await this.api.post(url, { ...body });
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  async put(url, body) {
+    try {
+      const response = await this.api.put(url, { ...body });
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  async delete(url) {
+    try {
+      const response = await this.api.delete(url);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  handleError(error) {
+    if (error.response) {
+      throw new Error(
+        `Request failed with status code ${error.response.status}`
+      );
+    } else if (error.request) {
+      throw new Error('Request failed, no response received from server');
+    } else {
+      throw new Error(`Request failed with error ${error.message}`);
+    }
   }
 }
 
