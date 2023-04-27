@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import PropTypes from 'prop-types';
@@ -9,10 +9,11 @@ import ListCarousel from './ListCarousel';
 
 import { movieCategories, genres } from '../../utils/db_categories';
 import { movieApi } from '../../api/RestApis';
-// import { API_KEY } from '../../utils/api';
+
+import { getTrendingMovies } from '../../utils/getMovies';
+// import { movieFunctionData } from '../../utils/getMovies';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-
 
 const MovieList = memo(({ category, display, genreId }) => {
   const { id, movieTitle } = useParams();
@@ -24,62 +25,59 @@ const MovieList = memo(({ category, display, genreId }) => {
   const [page, setPage] = useState(1);
   const [pageQty, setPageQty] = useState(0);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     switch (category) {
       case 'trending':
-        const trendingMovies = await movieApi.get(
-          `${category}/movie/week${API_KEY}&page=${page}`,
-          { category, page }
-        );
-        setPageQty(trendingMovies.total_pages);
-        setMovies(trendingMovies.results);
+        await getTrendingMovies(category, movieApi, setMovies, setPageQty, page, API_KEY);
+        // const trendingMovies = await movieApi.get(`${category}/movie/week`, {
+        //   params: { api_key: API_KEY, page },
+        // });
+        // setPageQty(trendingMovies.total_pages);
+        // setMovies(trendingMovies.results);
         break;
       case 'popular':
       case 'top_rated':
       case 'upcoming':
-        const moviesByCategory = await movieApi.get(
-          `movie/${category}${API_KEY}&language=en-US&include_image_language=en,jp,uk,null&page=${page}`,
-          {
-            category,
+        const moviesByCategory = await movieApi.get(`movie/${category}`, {
+          params: {
+            api_key: API_KEY,
+            language: 'US',
+            include_image_language: 'en,jp,uk,null',
             page,
-          }
-        );
+          },
+        });
         setMovies(moviesByCategory.results);
         setPageQty(moviesByCategory.total_pages);
         break;
       case 'similar':
-        const similarMovies = await movieApi.get(
-          `movie/${id}/${category}${API_KEY}&page=${page}}`,
-          {
-            id,
-            category,
+        const similarMovies = await movieApi.get(`movie/${id}/${category}`, {
+          params: {
+            api_key: API_KEY,
             page,
-          }
-        );
+          },
+        });
         setMovies(similarMovies.results);
         setPageQty(similarMovies.total_pages);
         break;
       case 'search':
-        const moviesByTitle = await movieApi.get(
-          `${category}/movie${API_KEY}&query=${movieTitle}&page=${page}`,
-          {
-            category,
-            movieTitle,
+        const moviesByTitle = await movieApi.get(`${category}/movie`, {
+          params: {
+            api_key: API_KEY,
+            query: movieTitle,
             page,
-          }
-        );
+          },
+        });
         setMovies(moviesByTitle.results);
         setPageQty(moviesByTitle.total_pages);
         break;
       default:
-        const movieByGenre = await movieApi.get(
-          `${category}/movie${API_KEY}&with_genres=${genreId}&page=${page}`,
-          {
-            category,
+        const movieByGenre = await movieApi.get(`${category}/movie`, {
+          params: {
+            api_key: API_KEY,
             genreId,
             page,
-          }
-        );
+          },
+        });
 
         setMovies(movieByGenre.results);
         setPageQty(movieByGenre.total_pages);
@@ -89,11 +87,11 @@ const MovieList = memo(({ category, display, genreId }) => {
         );
         setMovieGenre(currentMovieGenres[0].name);
     }
-  };
+  }, [category, id, page, movieTitle, genreId]);
 
   useEffect(() => {
     getData();
-  }, [category, page, movieTitle]);
+  }, [getData]);
 
   return (
     <div className='mx-auto max-w-[1315px] pl-2'>

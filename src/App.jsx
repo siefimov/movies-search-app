@@ -6,6 +6,8 @@ import SingleMovie from './pages/SingleMovie';
 import PageNotFound from './pages/PageNotFound';
 import Layout from './ui/templates/Layout';
 
+import { NewMovie } from './ui/organisms/NewMovie';
+
 const App = () => {
   return (
     <Routes>
@@ -14,8 +16,9 @@ const App = () => {
         <Route path='movies' element={<Movies />} />
         <Route path='movies/:category' element={<Movies />} />
         <Route path='movies/:category/:movieTitle' element={<Movies />} />
-        <Route path='movies/:category/:genre_id' element={<Movies />} />
+        {/* <Route path='movies/:category/:genre_id' element={<Movies />} /> */}
         <Route path='movies/:category/:id/:one' element={<SingleMovie />} />
+        <Route path='newmovies' element={<NewMovie />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     </Routes>

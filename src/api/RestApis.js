@@ -10,36 +10,36 @@ class RestApi {
     });
   }
 
-  async get(url, params) {
+  async get(endpoint, params) {
     try {
-      const response = await this.api.get(url, { ...params });
+      const response = await this.api.get(endpoint, { ...params });
       return response.data;
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  async post(url, body) {
+  async post(endpoint, body) {
     try {
-      const response = await this.api.post(url, { ...body });
+      const response = await this.api.post(endpoint, { ...body });
       return response.data;
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  async put(url, body) {
+  async put(endpoint, body) {
     try {
-      const response = await this.api.put(url, { ...body });
+      const response = await this.api.put(endpoint, { ...body });
       return response.data;
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  async delete(url) {
+  async delete(endpoint) {
     try {
-      const response = await this.api.delete(url);
+      const response = await this.api.delete(endpoint);
       return response.data;
     } catch (error) {
       this.handleError(error);

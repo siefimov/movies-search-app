@@ -6,10 +6,12 @@ export const YOUTUBE = 'https://www.youtube.com/watch?v=';
 
 export const endpoints = {
   trending: '/trending/all/week',
-  now_playing: '/movie/now_playing',
+  // now_playing: '/movie/now_playing',
   popular: '/movie/popular',
   top_rated: '/movie/top_rated',
   upcoming: '/movie/upcoming',
   originals: 'discover/tv',
   latest: '/movie/latest',
 };
+
+
