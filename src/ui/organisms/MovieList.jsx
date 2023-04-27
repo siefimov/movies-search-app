@@ -6,12 +6,15 @@ import PropTypes from 'prop-types';
 import { MovieListTitle } from '../molecules';
 import ListGrid from './ListGrid';
 import ListCarousel from './ListCarousel';
-
 import { movieCategories, genres } from '../../utils/db_categories';
 import { movieApi } from '../../api/RestApis';
-
-import { getTrendingMovies } from '../../utils/getMovies';
-// import { movieFunctionData } from '../../utils/getMovies';
+import {
+  getTrendingMovies,
+  getMoviesByCategories,
+  getSimilarMovies,
+  getMovieByTitle,
+  getMovieByGenre,
+} from '../../utils/';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -25,67 +28,38 @@ const MovieList = memo(({ category, display, genreId }) => {
   const [page, setPage] = useState(1);
   const [pageQty, setPageQty] = useState(0);
 
+  const options = {
+    category: category,
+    movieApi: movieApi,
+    setMovies: setMovies,
+    setPageQty: setPageQty,
+    setMovieGenre: setMovieGenre,
+    page: page,
+    API_KEY: API_KEY,
+    id: id,
+    movieTitle: movieTitle,
+    genreId: genreId,
+    genres: genres,
+  };
+
   const getData = useCallback(async () => {
     switch (category) {
       case 'trending':
-        await getTrendingMovies(category, movieApi, setMovies, setPageQty, page, API_KEY);
-        // const trendingMovies = await movieApi.get(`${category}/movie/week`, {
-        //   params: { api_key: API_KEY, page },
-        // });
-        // setPageQty(trendingMovies.total_pages);
-        // setMovies(trendingMovies.results);
+        await getTrendingMovies(options);
         break;
       case 'popular':
       case 'top_rated':
       case 'upcoming':
-        const moviesByCategory = await movieApi.get(`movie/${category}`, {
-          params: {
-            api_key: API_KEY,
-            language: 'US',
-            include_image_language: 'en,jp,uk,null',
-            page,
-          },
-        });
-        setMovies(moviesByCategory.results);
-        setPageQty(moviesByCategory.total_pages);
+        await getMoviesByCategories(options);
         break;
       case 'similar':
-        const similarMovies = await movieApi.get(`movie/${id}/${category}`, {
-          params: {
-            api_key: API_KEY,
-            page,
-          },
-        });
-        setMovies(similarMovies.results);
-        setPageQty(similarMovies.total_pages);
+        await getSimilarMovies(options);
         break;
       case 'search':
-        const moviesByTitle = await movieApi.get(`${category}/movie`, {
-          params: {
-            api_key: API_KEY,
-            query: movieTitle,
-            page,
-          },
-        });
-        setMovies(moviesByTitle.results);
-        setPageQty(moviesByTitle.total_pages);
+        await getMovieByTitle(options);
         break;
       default:
-        const movieByGenre = await movieApi.get(`${category}/movie`, {
-          params: {
-            api_key: API_KEY,
-            genreId,
-            page,
-          },
-        });
-
-        setMovies(movieByGenre.results);
-        setPageQty(movieByGenre.total_pages);
-
-        const currentMovieGenres = genres.filter(
-          (genre) => genre.id === +genreId
-        );
-        setMovieGenre(currentMovieGenres[0].name);
+        await getMovieByGenre(options);      
     }
   }, [category, id, page, movieTitle, genreId]);
 
